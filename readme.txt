@@ -29,7 +29,7 @@ With EmbedPlus, you can upgrade your embeds with:
 
 == Installation ==
 
-1. Install the plugin using the plugin installer within WordPress (or, upload `embedplus.php` to the `/wp-content/plugins/embedplus` directory)
+1. Install the plugin using the plugin installer within WordPress (or, upload `embedplus.php` to the `/wp-content/plugins/embedplus-for-wordpress` directory)
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 1. You can now begin pasting EmbedPlus shortcodes within your WordPress editor. The wizard at [EmbedPlus.com](http://www.embedplus.com) will guide you through getting this code for your video(s).
 
