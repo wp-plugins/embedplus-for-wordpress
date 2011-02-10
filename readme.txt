@@ -8,7 +8,7 @@ Requires at least: 2.5
 Tested up to: 3.0.5
 Stable tag: 1.0
 
-Enable EmbedPlus.com videos to appear in WordPress. 
+Enable WordPress to support EmbedPlus.com videos.
 
 == Description ==
 
