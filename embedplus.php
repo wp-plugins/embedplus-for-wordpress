@@ -3,7 +3,7 @@
 /*
   Plugin Name: EmbedPlus for WordPress
   Plugin URI: http://www.embedplus.com
-  Description: Enable EmbedPlus code to appear in Wordpress
+  Description: Enable WordPress to support EmbedPlus.com videos
   Version: 1.0
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
