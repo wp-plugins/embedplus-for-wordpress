@@ -30,6 +30,7 @@
 
 DEFINE("EMBEDPLUS_HEIGHT", 300);
 DEFINE("EMBEDPLUS_WIDTH", 400);
+
 //tell wordpress to register the shortcode
 add_shortcode("embedplusvideo", "embedplusvideo_handler");
 
