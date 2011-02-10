@@ -4,7 +4,7 @@
   Plugin Name: EmbedPlus for WordPress
   Plugin URI: http://www.embedplus.com
   Description: Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene skipping, etc.)
-  Version: 1.0
+  Version: 1.1
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -98,6 +98,10 @@ function embedplusvideo_function($incomingfromhandler) {
     
     $epvars = wp_specialchars_decode($epvars);
     $epstandard = wp_specialchars_decode($epstandard);
+
+    //strip tags
+    $epvars = strip_tags($epvars);
+    $epstandard = strip_tags($epstandard);
 
     $epoutput = str_replace('~height', $epheight, $epoutput);
     $epoutput = str_replace('~fullheight', $epfullheight, $epoutput);
