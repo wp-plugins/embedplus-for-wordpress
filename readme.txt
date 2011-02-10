@@ -9,7 +9,7 @@ Tested up to: 3.0.5
 Stable tag: trunk
 Version: 1.0
 
-Enable code for EmbedPlus.com videos to appear in WordPress. 
+Enable EmbedPlus.com videos to appear in WordPress. 
 
 == Description ==
 
