@@ -3,7 +3,7 @@
 /*
   Plugin Name: EmbedPlus for WordPress
   Plugin URI: http://www.embedplus.com
-  Description: Enable WordPress to support EmbedPlus.com videos
+  Description: Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene skipping, etc.)
   Version: 1.0
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com

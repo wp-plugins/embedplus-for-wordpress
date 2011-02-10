@@ -8,7 +8,7 @@ Requires at least: 2.5
 Tested up to: 3.0.5
 Stable tag: 1.0
 
-Enable WordPress to support EmbedPlus.com videos.
+Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene skipping, etc.)
 
 == Description ==
 
