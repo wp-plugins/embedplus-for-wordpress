@@ -72,6 +72,8 @@ function embedplusvideo_function($incomingfromhandler) {
     $epvars = preg_replace('/\s/', '', $epvars);
     $epstandard = preg_replace('/\s/', '', $epstandard);
 
+    $epstandard = preg_replace('/youtube.com\/v/i', 'youtube.com/embed/', $epstandard);
+
     if (preg_match('/youtube.com\/v/i', $epstandard)) {
         $epoutputstandard = '<object class="cantembedplus" height="~height" width="~width" type="application/x-shockwave-flash" data="~standard">' . chr(13) .
                 '<param name="movie" value="~standard" />' . chr(13) .
