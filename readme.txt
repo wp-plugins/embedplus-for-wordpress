@@ -6,7 +6,7 @@ Author URI: http://embedplus.com
 Tags: embedplus, embed plus, youtube, web videos, real-time reactions, movable zoom, TV, DVD chapter markers, scene skipping, annotations, video, slow motion, instant replay, enhanced playback, play, slomo, educational, teacher, academic, tool, web 2.0
 Requires at least: 2.5
 Tested up to: 3.1
-Stable tag: 1.1
+Stable tag: 1.2
 
 Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene skipping, etc.)
 
