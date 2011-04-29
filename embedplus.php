@@ -4,7 +4,7 @@
   Plugin Name: EmbedPlus for WordPress
   Plugin URI: http://www.embedplus.com
   Description: Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene skipping, etc.)
-  Version: 1.1
+  Version: 1.2
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -72,12 +72,16 @@ function embedplusvideo_function($incomingfromhandler) {
     $epvars = preg_replace('/\s/', '', $epvars);
     $epstandard = preg_replace('/\s/', '', $epstandard);
 
-    $epoutputstandard = '<object class="cantembedplus" height="~height" width="~width" type="application/x-shockwave-flash" data="~standard">' . chr(13) .
-            '<param name="movie" value="~standard" />' . chr(13) .
-            '<param name="allowScriptAccess" value="always" />' . chr(13) .
-            '<param name="allowFullScreen" value="true" />' . chr(13) .
-            '<param name="wmode" value="transparent" />' . chr(13) .
-            '</object>' . chr(13);
+    if (preg_match('/youtube.com/v/i', $epstandard)) {
+        $epoutputstandard = '<object class="cantembedplus" height="~height" width="~width" type="application/x-shockwave-flash" data="~standard">' . chr(13) .
+                '<param name="movie" value="~standard" />' . chr(13) .
+                '<param name="allowScriptAccess" value="always" />' . chr(13) .
+                '<param name="allowFullScreen" value="true" />' . chr(13) .
+                '<param name="wmode" value="transparent" />' . chr(13) .
+                '</object>' . chr(13);
+    } else {
+        $epoutputstandard = '<iframe class="cantembedplus" title="YouTube video player" width="~width" height="~height" src="~standard" frameborder="0" allowfullscreen></iframe>';
+    }
 
     $epoutput =
             '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="http://getembedplus.com/embedplus.swf">' . chr(13) .
@@ -87,15 +91,14 @@ function embedplusvideo_function($incomingfromhandler) {
             '<param value="always" name="allowscriptaccess" />' . chr(13) .
             '<param value="true" name="allowFullScreen" />' . chr(13) .
             '<param name="flashvars" value="~vars" />' . chr(13) .
-            $epoutputstandard .
+            $epoutputstandard . chr(13) .
             '</object>' . chr(13) .
             '<!--[if lte IE 6]> <style type="text/css">.cantembedplus{display:none;}</style><![endif]-->';
 
-    if (strlen($epvars) == 0)
-    {
+    if (strlen($epvars) == 0) {
         $epoutput = $epoutputstandard;
     }
-    
+
     $epvars = wp_specialchars_decode($epvars);
     $epstandard = wp_specialchars_decode($epstandard);
 
