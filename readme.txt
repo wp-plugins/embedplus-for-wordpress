@@ -40,7 +40,7 @@ With EmbedPlus, you can upgrade your embeds with:
 == Changelog ==
 
 = 1.2 =
-Adds support for new YouTube iframe embedding method, for compatability with non-Flash clients.
+Adds support for new YouTube iframe embedding method, for compatability with non-Flash clients (such as the iPhone, iPad, and iPod Touch).
 
 = 1.1 =
 Fixes obscure annotation scenario.
