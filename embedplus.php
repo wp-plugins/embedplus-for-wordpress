@@ -4,7 +4,7 @@
   Plugin Name: EmbedPlus for WordPress
   Plugin URI: http://www.embedplus.com
   Description: Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene skipping, etc.)
-  Version: 1.2
+  Version: 1.2.1
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -40,7 +40,8 @@ function embedplusvideo_handler($incomingfrompost) {
                 "height" => EMBEDPLUS_HEIGHT,
                 "width" => EMBEDPLUS_WIDTH,
                 "vars" => "",
-                "standard" => ""
+                "standard" => "",
+                "id" => "ep" . rand(1000, 9999)
                     ), $incomingfrompost);
 
     $epoutput = embedplusvideo_function($incomingfrompost);
@@ -53,8 +54,11 @@ function embedplusvideo_function($incomingfromhandler) {
     $epheight = $incomingfromhandler['height'];
     $epwidth = $incomingfromhandler['width'];
     $epvars = $incomingfromhandler['vars'];
+    $epobjid = $incomingfromhandler['id'];
     $epstandard = $incomingfromhandler['standard'];
     $epfullheight = null;
+
+    $epobjid = htmlspecialchars($epobjid);
 
     if (is_numeric($epheight)) {
         $epheight = (int) $epheight;
@@ -86,7 +90,7 @@ function embedplusvideo_function($incomingfromhandler) {
     }
 
     $epoutput =
-            '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="http://getembedplus.com/embedplus.swf">' . chr(13) .
+            '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="http://getembedplus.com/embedplus.swf" id="'. $epobjid .'">' . chr(13) .
             '<param value="http://getembedplus.com/embedplus.swf" name="movie" />' . chr(13) .
             '<param value="high" name="quality" />' . chr(13) .
             '<param value="transparent" name="wmode" />' . chr(13) .
