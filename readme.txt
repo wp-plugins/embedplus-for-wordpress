@@ -10,6 +10,8 @@ Stable tag: 1.2.1
 
 Enables WordPress to support YouTube embeds with enhanced playback and extra content (slow motion, zoom, scene skipping, instant-replay, etc.)
 
+Use it to enhance the viewer experiences and discussions around the YouTube videos you embed for free.
+
 == Description ==
 
 Embed YouTube videos in your WordPress blog using [EmbedPlus](http://embedplus.com).  It not only provides the features of YouTube's standard embed but also enhanced playback and relevant content. Just take a look at our home page demo [here](http://embedplus.com).
