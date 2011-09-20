@@ -8,7 +8,7 @@ Requires at least: 2.5
 Tested up to: 3.2.1
 Stable tag: 1.2.1
 
-Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene skipping, etc.)
+Enables WordPress to support YouTube embeds with enhanced playback and extra content (slow motion, zoom, scene skipping, instant-replay, etc.)
 
 == Description ==
 
