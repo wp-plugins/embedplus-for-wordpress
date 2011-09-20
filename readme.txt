@@ -3,7 +3,7 @@ Contributors: embedplus
 Plugin Name: EmbedPlus for WordPress
 Plugin URI: http://embedplus.com
 Author URI: http://embedplus.com
-Tags: embedplus, embed plus, youtube, web videos, real-time reactions, movable zoom, TV, DVD chapter markers, scene skipping, annotations, video, slow motion, instant replay, enhanced playback, play, slomo, educational, teacher, academic, tool, web 2.0
+Tags: embedplus, embed plus, youtube, web videos, plugin, embed, real-time reactions, movable zoom, TV, DVD chapter markers, scene skipping, annotations, video, slow motion, instant replay, playback, play, slomo, educational, teacher, academic, tool, entertainment
 Requires at least: 2.5
 Tested up to: 3.2.1
 Stable tag: 1.2.1
@@ -12,19 +12,19 @@ Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene 
 
 == Description ==
 
-[EmbedPlus](http://embedplus.com) lets you easily upgrade video embeds with enhanced playback and relevant content. This plugin will prevent WordPress from performing unwanted formatting to EmbedPlus video code.
+Embed YouTube videos in your WordPress blog using [EmbedPlus](http://embedplus.com).  It not only provides the features of YouTube's standard embed but also enhanced playback and relevant content. Just take a look at our home page demo [here](http://embedplus.com).
 
-With EmbedPlus, you can upgrade your embeds with:
+Some specific feature are:
 
-* Scene Skipping
-* Real-time Reactions
-* Slow Motion On-Demand
-* Video Cropping
-* Movable Zoom
-* Instant Replay
-* Third Party Annotations
+* Chapters / Scene Marking
+* Instant Replay with Looping
+* Real-time Social Reactions
+* Scene Cropping/Chopping
+* Moveable Zoom
+* Third-Party Annotations
+* Slow-Motion On-Demand
 
-...All without having to alter original video content. Please see our [home page](http://embedplus.com) for more information.
+This plugin will prevent WordPress from performing unwanted formatting to your video embed code.
 
 == Installation ==
 
