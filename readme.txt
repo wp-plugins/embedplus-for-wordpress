@@ -26,7 +26,7 @@ With EmbedPlus, you can upgrade your embeds with:
 * Instant Replay
 * Third Party Annotations
 
-...All without having to alter original video content. Please see our [home page](http://embedplus.com) for more information.
+...All without having to alter original video content. Please see our [home page](http://embedplus.com) for more information. 
 
 == Installation ==
 
