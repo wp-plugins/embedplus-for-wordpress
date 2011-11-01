@@ -6,7 +6,7 @@ Author URI: http://www.embedplus.com
 Tags: academic, annotations, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, instant replay, movable zoom, play, playback, plugin, real-time reactions, scene skipping, slomo, slow motion, teacher, tool, tv, video, web videos, youtube
 Requires at least: 2.9
 Tested up to: 3.2.1
-Stable tag: trunk
+Stable tag: 2.0
 
 Enables WordPress to support YouTube embeds with enhanced playback and extra content (slow motion, zoom, scene skipping, instant-replay, etc.)
 
@@ -16,7 +16,7 @@ Embed YouTube videos in your WordPress blog using [EmbedPlus](http://www.embedpl
 
 Also, if you're using the nifty [oEmbed method](http://codex.wordpress.org/Embeds) to embed videos, this plugin will also upgrade standard YouTube embed links into EmbedPlus embeds (take a look at the screenshots). All you need to do is put the YouTube link on its own line.
 
-With EmbedPlus, you can upgrade your embeds with:
+With EmbedPlus, you can upgrade your embeds with: 
 
 * Scene Skipping
 * Real-time Reactions
