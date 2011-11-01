@@ -112,7 +112,7 @@ class EmbedPlusOfficialPlugin {
 
     public static function youtube2embedplus_handler($matches, $attr, $url, $rawattr) {
 
-        //for future: cache results
+        //for future: cache results http://codex.wordpress.org/Class_Reference/WP_Object_Cache
         //$cachekey = '_epembed_' . md5( $url . serialize( $attr ) );
         
         self::init_dimensions($url);
