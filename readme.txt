@@ -8,11 +8,11 @@ Requires at least: 2.5
 Tested up to: 3.2.1
 Stable tag: 2.0
 
-Enables WordPress to support YouTube embeds with enhanced playback and extra content (slow motion, zoom, scene skipping, instant-replay, etc.) 
+Enable WordPress to support enhanced YouTube videos with special features like chapter marking, annotations, Internet reactions, chopping, slow motion, and more.
 
 == Description ==
 
-Embed YouTube videos in your WordPress blog using [EmbedPlus](http://www.embedplus.com). It not only provides the features of YouTube's standard embed but also enhanced playback and relevant content. Use it to enhance the viewer experiences and discussions around the YouTube videos you embed, for free. Just take a look at our home page demo [here](http://www.embedplus.com).
+Embed  YouTube videos in your WordPress blog using [EmbedPlus](http://www.embedplus.com). It not only provides the features of YouTube's standard embed but also enhanced playback and relevant content. Use it to enhance the viewer experiences and discussions around the YouTube videos you embed, for free. Just take a look at our home page demo [here](http://www.embedplus.com).
 
 Also, if you're using the nifty [oEmbed method](http://codex.wordpress.org/Embeds) to embed videos, this plugin will also upgrade standard YouTube embed links into EmbedPlus embeds (take a look at the screenshots). All you need to do is put the YouTube link on its own line.
 
