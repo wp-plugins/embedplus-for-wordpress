@@ -7,7 +7,7 @@
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
-
+ 
 /*
   EmbedPlus for WordPress
   Copyright (C) 2011 EmbedPlus.com
@@ -51,12 +51,18 @@ class EmbedPlusOfficialPlugin {
             update_option(self::$opt_sweetspot, 1);
 
             if ($do_autoembeds) {
-                wp_embed_register_handler('youtube2embedplus', self::$ytregex, 'EmbedPlusOfficialPlugin::youtube2embedplus_handler', 1);
+                self::do_yt_ep();
             }
         } else {
             if ($do_youtube2embedplus == 1 && $do_autoembeds) {
-                wp_embed_register_handler('youtube2embedplus', self::$ytregex, 'EmbedPlusOfficialPlugin::youtube2embedplus_handler', 1);
+                self::do_yt_ep();
             }
+        }
+
+
+        if (self::above_version29()) {
+            // add admin menu under settings
+            add_action('admin_menu', 'EmbedPlusOfficialPlugin::embedplus_plugin_menu');
         }
 
         //tell wordpress to register the shortcode
@@ -66,9 +72,21 @@ class EmbedPlusOfficialPlugin {
         if (!is_admin()) {
             add_filter('widget_text', 'do_shortcode', 11);
         }
+    }
 
-        // add admin menu under settings
-        add_action('admin_menu', 'EmbedPlusOfficialPlugin::embedplus_plugin_menu');
+    public static function above_version29() {
+        global $wp_version;
+        if (version_compare($wp_version, '2.9', '>=')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static function do_yt_ep() {
+        if (self::above_version29()) {
+            wp_embed_register_handler('youtube2embedplus', self::$ytregex, 'EmbedPlusOfficialPlugin::youtube2embedplus_handler', 1);
+        }
     }
 
     public static function init_dimensions($url = null) {
@@ -84,12 +102,11 @@ class EmbedPlusOfficialPlugin {
 
             self::$defaultwidth = self::$optembedwidth ? self::$optembedwidth : ($content_width ? $content_width : 480);
             self::$defaultheight = self::get_aspect_height($url);
-            
         }
     }
 
     public static function get_aspect_height($url) {
-        
+
         // attempt to get aspect ratio correct height from oEmbed
         $aspectheight = round((self::$defaultwidth * 9) / 16, 0);
         if ($url) {
@@ -105,7 +122,7 @@ class EmbedPlusOfficialPlugin {
                 $aspectheight = $odata->height;
             }
         }
-        
+
         //add 30 for YouTube's own bar
         return $aspectheight + 30;
     }
@@ -114,7 +131,7 @@ class EmbedPlusOfficialPlugin {
 
         //for future: cache results http://codex.wordpress.org/Class_Reference/WP_Object_Cache
         //$cachekey = '_epembed_' . md5( $url . serialize( $attr ) );
-        
+
         self::init_dimensions($url);
 
         $epreq = array(
@@ -244,9 +261,13 @@ class EmbedPlusOfficialPlugin {
             $epoutput = $epoutputstandard;
         }
 
-        $epvars = wp_specialchars_decode($epvars);
-        $epstandard = wp_specialchars_decode($epstandard);
-
+        if (function_exists('wp_specialchars_decode')) {
+            $epvars = wp_specialchars_decode($epvars);
+            $epstandard = wp_specialchars_decode($epstandard);
+        } else {
+            $epvars = htmlspecialchars_decode($epvars);
+            $epstandard = htmlspecialchars_decode($epstandard);
+        }
         //strip tags
         $epvars = strip_tags($epvars);
         $epstandard = strip_tags($epstandard);
@@ -354,10 +375,10 @@ class EmbedPlusOfficialPlugin {
         </form>
         </div>
 
-            <?php
-        }
-
+        <?php
     }
 
-    $embedplusoplg = new EmbedPlusOfficialPlugin();
-    ?>
+}
+
+$embedplusoplg = new EmbedPlusOfficialPlugin();
+?>
