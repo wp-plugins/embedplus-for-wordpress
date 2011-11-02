@@ -4,7 +4,7 @@ Plugin Name: EmbedPlus for WordPress
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: academic, annotations, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, instant replay, movable zoom, play, playback, plugin, real-time reactions, scene skipping, slomo, slow motion, teacher, tool, tv, video, web videos, youtube
-Requires at least: 2.9
+Requires at least: 2.5
 Tested up to: 3.2.1
 Stable tag: 2.0
 
@@ -16,7 +16,7 @@ Embed YouTube videos in your WordPress blog using [EmbedPlus](http://www.embedpl
 
 Also, if you're using the nifty [oEmbed method](http://codex.wordpress.org/Embeds) to embed videos, this plugin will also upgrade standard YouTube embed links into EmbedPlus embeds (take a look at the screenshots). All you need to do is put the YouTube link on its own line.
 
-With EmbedPlus, you can upgrade your embeds with:
+With EmbedPlus, you can upgrade your embeds with: 
 
 * Scene Skipping
 * Real-time Reactions
@@ -26,7 +26,7 @@ With EmbedPlus, you can upgrade your embeds with:
 * Instant Replay
 * Third Party Annotations
 
-...All without having to alter original video content. Please see our [home page](http://embedplus.com) for more information. 
+...All without having to alter original video content. Please see our [home page](http://embedplus.com) for more information.
 
 == Installation ==
 
@@ -45,7 +45,7 @@ With EmbedPlus, you can upgrade your embeds with:
 == Changelog ==
 
 = 2.0 =
-Upgrades standard YouTube oEmbed links (i.e. links on their own line) to use the EmbedPlus player. Adds plugin settings under Settings > EmbedPlus.
+Upgrades standard YouTube oEmbed links (i.e. links on their own line) to use the EmbedPlus player. Adds plugin settings under Settings > EmbedPlus. (These additions will only appear for blogs using WordPress 2.9+, as that is when oEmbed support began).
 
 = 1.2.1 =
 Fixes obscure IE scenario.
