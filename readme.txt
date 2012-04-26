@@ -5,10 +5,10 @@ Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: academic, annotations, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, instant replay, movable zoom, play, playback, plugin, real-time reactions, scene skipping, slomo, slow motion, teacher, tool, tv, video, web videos, youtube
 Requires at least: 2.5
-Tested up to: 3.3.1
+Tested up to: 3.3.2
 Stable tag: 2.0
 
-Enable WordPress to support enhanced YouTube videos with special features like chapter marking, annotations, Internet reactions, chopping, slow motion, and more.
+EmbedPlus for WordPress enhances the playback and visitor engagement of the YouTube videos you embed on your blogs.
 
 == Description ==
 
