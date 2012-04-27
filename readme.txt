@@ -3,7 +3,7 @@ Contributors: embedplus
 Plugin Name: EmbedPlus for WordPress
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: academic, annotations, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, instant replay, movable zoom, play, playback, plugin, real-time reactions, scene skipping, slomo, slow motion, teacher, tool, tv, video, web videos, youtube
+Tags: academic, annotations, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube
 Requires at least: 2.5
 Tested up to: 3.3.2
 Stable tag: 2.0
@@ -18,15 +18,18 @@ Also, if you're using the nifty [oEmbed method](http://codex.wordpress.org/Embed
 
 With EmbedPlus, you can upgrade your embeds with: 
 
-* Scene Skipping
-* Real-time Reactions
-* Slow Motion On-Demand
-* Video Cropping
-* Movable Zoom
+* Custom Chapters for Scene Skipping 
+* Web Viewer Reactions 
+* Timed Annotations
 * Instant Replay
-* Third Party Annotations
+* Scene/Video Looping
+* Video Cropping
+* Slow Motion On-Demand
+* Movable Zoom
 
 ...All without having to alter original video content. Please see our [home page](http://embedplus.com) for more information.
+
+We love to share EmbedPlus.  If you are a plugin developer and wish to integrate these extra YouTube features with your own plugin, [contact us](http://www.embedplus.com/aboutcontact.aspx).
 
 == Installation ==
 
