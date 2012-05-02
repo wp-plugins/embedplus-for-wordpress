@@ -1,6 +1,6 @@
 === EmbedPlus for WordPress ===
 Contributors: embedplus
-Plugin Name: EmbedPlus for WordPress
+Plugin Name: EmbedPlus: YouTube for WordPress
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: academic, annotations, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube
