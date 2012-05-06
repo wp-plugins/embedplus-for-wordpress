@@ -7,6 +7,7 @@ Tags: academic, annotations, DVD chapter markers, educational, embed, embed plus
 Requires at least: 2.6
 Tested up to: 3.3.2
 Stable tag: 2.1
+License: GPLv3 or later
 
 EmbedPlus for WordPress enhances the playback and visitor engagement of the YouTube videos you embed on your blogs.
 
