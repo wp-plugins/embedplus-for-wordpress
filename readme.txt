@@ -4,9 +4,9 @@ Plugin Name: EmbedPlus: YouTube for WordPress
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: academic, annotations, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube
-Requires at least: 2.5
+Requires at least: 2.6
 Tested up to: 3.3.2
-Stable tag: 2.0
+Stable tag: 2.1
 
 EmbedPlus for WordPress enhances the playback and visitor engagement of the YouTube videos you embed on your blogs.
 
@@ -35,17 +35,22 @@ We love to share EmbedPlus.  If you are a plugin developer and wish to integrate
 
 1. Install the plugin using the plugin installer within WordPress (or, upload `embedplus.php` to the `/wp-content/plugins/embedplus-for-wordpress` directory)
 1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. You can now begin pasting EmbedPlus shortcodes within your WordPress editor. The wizard at [EmbedPlus.com](http://www.embedplus.com) will guide you through getting this code for your video(s).
 1. YouTube links on their own line will automatically be upgraded into EmbedPlus videos.
+1. You can also now begin pasting EmbedPlus shortcodes within your WordPress editor. A new button in your post editor will appear that will guide you through getting this code for your video(s).
 1. View plugin settings under Settings > EmbedPlus.
 
 == Screenshots ==
 
-1. An example of the shortcode that you can paste into your website.
+1. An example of the shortcode that you can paste into your website. Note the editor button you can use to go through the wizard within your blog.
 2. An example of a YouTube link that will automatically be upgraded to an EmbedPlus embed (note that it is on its own line).
 3. An example of your enhanced video.
 
 == Changelog ==
+
+= 2.1 =
+Integrates the shortcode wizard within WordPress.
+Automatically tries to guess the blog's width.
+Automatically calculates the proper height for the video's aspect ratio.
 
 = 2.0 =
 Upgrades standard YouTube oEmbed links (i.e. links on their own line) to use the EmbedPlus player. Adds plugin settings under Settings > EmbedPlus. (These additions will only appear for blogs using WordPress 2.9+, as that is when oEmbed support began).

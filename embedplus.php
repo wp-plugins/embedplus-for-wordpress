@@ -29,7 +29,8 @@
 
 //define('WP_DEBUG', true);
 
-class EmbedPlusOfficialPlugin {
+class EmbedPlusOfficialPlugin
+{
 
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -40,59 +41,73 @@ class EmbedPlusOfficialPlugin {
     public static $opt_sweetspot = 'embedplusopt_sweetspot';
     public static $ytregex = '@^\s*https?://(?:www\.)?(?:youtube.com/watch\?|youtu.be/)([^\s"]+)\s*$@im';
 
-    public function __construct() {
+    public function __construct()
+    {
 
         // register the handler to enhance oEmbed embeds
         $do_youtube2embedplus = get_option(self::$opt_enhance_youtube);
         $do_autoembeds = get_option('embed_autourls');
-        if ($do_youtube2embedplus === false) {
+        if ($do_youtube2embedplus === false)
+        {
+            // ^ if first time installing plugin
             update_option(self::$opt_enhance_youtube, 1);
             update_option(self::$opt_show_react, 1);
             update_option(self::$opt_sweetspot, 1);
 
-            if ($do_autoembeds) {
+            if ($do_autoembeds)
+            {
                 self::do_yt_ep();
             }
-        } else {
-            if ($do_youtube2embedplus == 1 && $do_autoembeds) {
+        }
+        else
+        {
+            if ($do_youtube2embedplus == 1 && $do_autoembeds)
+            {
                 self::do_yt_ep();
             }
         }
 
 
-        if (self::above_version29()) {
+        if (self::wp_above_version('2.9'))
+        {
             // add admin menu under settings
             add_action('admin_menu', 'EmbedPlusOfficialPlugin::embedplus_plugin_menu');
         }
+        if (!is_admin())
+        {
+            //tell wordpress to register the shortcode
+            add_shortcode("embedplusvideo", "EmbedPlusOfficialPlugin::embedplusvideo_shortcode");
 
-        //tell wordpress to register the shortcode
-        add_shortcode("embedplusvideo", "EmbedPlusOfficialPlugin::embedplusvideo_shortcode");
+            // allow shortcode in widgets
 
-        // allow shortcode in widgets
-        if (!is_admin()) {
             add_filter('widget_text', 'do_shortcode', 11);
         }
     }
 
-    public static function above_version29() {
+    public static function wp_above_version($ver)
+    {
         global $wp_version;
-        if (version_compare($wp_version, '2.9', '>=')) {
+        if (version_compare($wp_version, $ver, '>='))
+        {
             return true;
         }
-
         return false;
     }
 
-    public static function do_yt_ep() {
-        if (self::above_version29()) {
+    public static function do_yt_ep()
+    {
+        if (self::wp_above_version('2.9') && !is_admin())
+        {
             wp_embed_register_handler('youtube2embedplus', self::$ytregex, 'EmbedPlusOfficialPlugin::youtube2embedplus_handler', 1);
         }
     }
 
-    public static function init_dimensions($url = null) {
+    public static function init_dimensions($url = null)
+    {
 
         // get default dimensions; try embed size in settings, then try theme's content width, then just 480px
-        if (self::$defaultwidth == null) {
+        if (self::$defaultwidth == null)
+        {
             self::$optembedwidth = intval(get_option('embed_size_w'));
             self::$optembedheight = intval(get_option('embed_size_h'));
 
@@ -105,11 +120,13 @@ class EmbedPlusOfficialPlugin {
         }
     }
 
-    public static function get_aspect_height($url) {
+    public static function get_aspect_height($url)
+    {
 
         // attempt to get aspect ratio correct height from oEmbed
         $aspectheight = round((self::$defaultwidth * 9) / 16, 0);
-        if ($url) {
+        if ($url)
+        {
             require_once( ABSPATH . WPINC . '/class-oembed.php' );
             $oembed = _wp_oembed_get_object();
             $args = array();
@@ -118,7 +135,8 @@ class EmbedPlusOfficialPlugin {
             $args['discover'] = false;
             $odata = $oembed->fetch('http://www.youtube.com/oembed', $url, $args);
 
-            if ($odata) {
+            if ($odata)
+            {
                 $aspectheight = $odata->height;
             }
         }
@@ -127,7 +145,8 @@ class EmbedPlusOfficialPlugin {
         return $aspectheight + 30;
     }
 
-    public static function youtube2embedplus_handler($matches, $attr, $url, $rawattr) {
+    public static function youtube2embedplus_handler($matches, $attr, $url, $rawattr)
+    {
 
         //for future: cache results http://codex.wordpress.org/Class_Reference/WP_Object_Cache
         //$cachekey = '_epembed_' . md5( $url . serialize( $attr ) );
@@ -149,11 +168,15 @@ class EmbedPlusOfficialPlugin {
 
         // extract youtube vars (special case for youtube id)
         $ytkvp = array();
-        foreach ($ytvars as $k => $v) {
+        foreach ($ytvars as $k => $v)
+        {
             $kvp = preg_split('/=/', $v);
-            if (count($kvp) == 2) {
+            if (count($kvp) == 2)
+            {
                 $ytkvp[$kvp[0]] = $kvp[1];
-            } else if (count($kvp) == 1 && $k == 0) {
+            }
+            else if (count($kvp) == 1 && $k == 0)
+            {
                 $ytkvp['v'] = $kvp[0];
             }
         }
@@ -162,7 +185,8 @@ class EmbedPlusOfficialPlugin {
         // setup variables for creating embed code
         $epreq['vars'] = 'ytid=';
         $epreq['standard'] = 'http://www.youtube.com/v/';
-        if ($ytkvp['v']) {
+        if ($ytkvp['v'])
+        {
             $epreq['vars'] .= strip_tags($ytkvp['v']) . '&amp;';
             $epreq['standard'] .= strip_tags($ytkvp['v']) . '?fs=1&amp;';
         }
@@ -188,7 +212,8 @@ class EmbedPlusOfficialPlugin {
         return self::get_embed_code($epreq);
     }
 
-    public static function embedplusvideo_shortcode($incomingfrompost) {
+    public static function embedplusvideo_shortcode($incomingfrompost)
+    {
 
         self::init_dimensions();
 
@@ -206,7 +231,8 @@ class EmbedPlusOfficialPlugin {
         return $epoutput;
     }
 
-    public static function get_embed_code($incomingfromhandler) {
+    public static function get_embed_code($incomingfromhandler)
+    {
         $epheight = $incomingfromhandler['height'];
         $epwidth = $incomingfromhandler['width'];
         $epvars = $incomingfromhandler['vars'];
@@ -216,16 +242,22 @@ class EmbedPlusOfficialPlugin {
 
         $epobjid = htmlspecialchars($epobjid);
 
-        if (is_numeric($epheight)) {
+        if (is_numeric($epheight))
+        {
             $epheight = (int) $epheight;
-        } else {
+        }
+        else
+        {
             $epheight = $this->defaultheight;
         }
         $epfullheight = $epheight + 32;
 
-        if (is_numeric($epwidth)) {
+        if (is_numeric($epwidth))
+        {
             $epwidth = (int) $epwidth;
-        } else {
+        }
+        else
+        {
             $epwidth = $this->defaultwidth;
         }
 
@@ -234,14 +266,17 @@ class EmbedPlusOfficialPlugin {
 
         $epstandard = preg_replace('/youtube.com\/v\//i', 'youtube.com/embed/', $epstandard);
 
-        if (preg_match('/youtube.com\/v/i', $epstandard)) {
+        if (preg_match('/youtube.com\/v/i', $epstandard))
+        {
             $epoutputstandard = '<object class="cantembedplus" height="~height" width="~width" type="application/x-shockwave-flash" data="~standard">' . chr(13) .
                     '<param name="movie" value="~standard" />' . chr(13) .
                     '<param name="allowScriptAccess" value="always" />' . chr(13) .
                     '<param name="allowFullScreen" value="true" />' . chr(13) .
                     '<param name="wmode" value="transparent" />' . chr(13) .
                     '</object>' . chr(13);
-        } else {
+        }
+        else
+        {
             $epoutputstandard = '<iframe class="cantembedplus" title="YouTube video player" width="~width" height="~height" src="~standard" frameborder="0" allowfullscreen></iframe>';
         }
 
@@ -257,14 +292,18 @@ class EmbedPlusOfficialPlugin {
                 '</object>' . chr(13) .
                 '<!--[if lte IE 6]> <style type="text/css">.cantembedplus{display:none;}</style><![endif]-->';
 
-        if (strlen($epvars) == 0) {
+        if (strlen($epvars) == 0)
+        {
             $epoutput = $epoutputstandard;
         }
 
-        if (function_exists('wp_specialchars_decode')) {
+        if (function_exists('wp_specialchars_decode'))
+        {
             $epvars = wp_specialchars_decode($epvars);
             $epstandard = wp_specialchars_decode($epstandard);
-        } else {
+        }
+        else
+        {
             $epvars = htmlspecialchars_decode($epvars);
             $epstandard = htmlspecialchars_decode($epstandard);
         }
@@ -277,17 +316,27 @@ class EmbedPlusOfficialPlugin {
         $epoutput = str_replace('~width', $epwidth, $epoutput);
         $epoutput = str_replace('~standard', $epstandard, $epoutput);
         $epoutput = str_replace('~vars', $epvars, $epoutput);
+
+        // reset static vals for next embed
+        self::$optembedwidth = null;
+        self::$optembedheight = null;
+        self::$defaultheight = null;
+        self::$defaultwidth = null;
+
         //send back text to calling function
         return $epoutput;
     }
 
-    public static function embedplus_plugin_menu() {
+    public static function embedplus_plugin_menu()
+    {
         add_options_page('EmbedPlus Settings', 'EmbedPlus', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options');
     }
 
-    public static function embedplus_show_options() {
+    public static function embedplus_show_options()
+    {
 
-        if (!current_user_can('manage_options')) {
+        if (!current_user_can('manage_options'))
+        {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 
@@ -301,7 +350,8 @@ class EmbedPlusOfficialPlugin {
 
         // See if the user has posted us some information
         // If they did, this hidden field will be set to 'Y'
-        if (isset($_POST[$embedplus_submitted]) && $_POST[$embedplus_submitted] == 'Y') {
+        if (isset($_POST[$embedplus_submitted]) && $_POST[$embedplus_submitted] == 'Y')
+        {
             // Read their posted values
             $opt_enhance_youtube_val = $_POST[self::$opt_enhance_youtube] == (true || 'on') ? 1 : 0;
             $opt_show_react_val = $_POST[self::$opt_show_react] == (true || 'on') ? 1 : 0;
@@ -339,14 +389,15 @@ class EmbedPlusOfficialPlugin {
 
         <form name="form1" method="post" action="" id="epform">
             <input type="hidden" name="<?php echo $embedplus_submitted; ?>" value="Y">
+            
+            <h3><?php _e("Auto-Embed Settings") ?></h3>
 
             <p>
-        <?php _e("WordPress automatically converts YouTube URLs (<a href=\"http://codex.wordpress.org/Embeds#In_A_Nutshell\" target=\"_blank\">that are on their own line &raquo;</a>) to actual video embeds. This plugin can make those \"auto-embeds\" use the <a href=\"http://www.embedplus.com\" target=\"_blank\">EmbedPlus</a> player." . (get_option('embed_autourls') ? "" : "<strong>Make sure that <strong><a href=\"/wp-admin/options-media.php\">Settings &raquo; Media &raquo; Embeds &raquo; Auto-embeds</a></strong> is checked too.</strong>")); ?>
+                <?php _e("WordPress 2.9 and above automatically converts YouTube URLs (<a href=\"http://codex.wordpress.org/Embeds#In_A_Nutshell\" target=\"_blank\">that are on their own line &raquo;</a>) to actual video embeds. This plugin can make those \"auto-embeds\" use the <a href=\"http://www.embedplus.com\" target=\"_blank\">EmbedPlus</a> player by checking the first option below." . (get_option('embed_autourls') ? "" : " <strong>Make sure that <strong><a href=\"/wp-admin/options-media.php\">Settings &raquo; Media &raquo; Embeds &raquo; Auto-embeds</a></strong> is checked too.</strong>")); ?>
             </p>
-
             <p>
                 <input name="<?php echo self::$opt_enhance_youtube; ?>" id="<?php echo self::$opt_enhance_youtube; ?>" <?php checked($opt_enhance_youtube_val, 1); ?> type="checkbox" class="checkbox">
-                <label for="<?php echo self::$opt_enhance_youtube; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.jpg"/> <?php _e('Automatically enhance all your YouTube embeds') ?></label>
+                <label for="<?php echo self::$opt_enhance_youtube; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/> <?php _e('Automatically enhance all your YouTube embeds') ?></label>
             </p>
             <p>
                 <input name="<?php echo self::$opt_show_react; ?>" id="<?php echo self::$opt_show_react; ?>" <?php checked($opt_show_react_val, 1); ?> type="checkbox" class="checkbox">
@@ -357,20 +408,23 @@ class EmbedPlusOfficialPlugin {
                 <label for="<?php echo self::$opt_sweetspot; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/ssm.jpg"/> <?php _e('Enable <a href="http://www.embedplus.com/whysearchhere.aspx" target="_blank">Sweetspot Marking</a> for the next/previous buttons') ?></label>            
             </p>
 
+            <p>
+            <strong><?php _e("Additional URL Options") ?></strong>
+            </p>
+            <?php
+            _e("<p>If you are using the auto-embed feature above, the following optional values can be added to the YouTube URLs to quickly override default behavior. Each option should begin with '&'</p>");
+            _e('<ul>');
+            _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em> Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
+            _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
+            _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
+            _e("<li><strong>hd - If set to 1, this makes the video play in HD quality if available.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
+            _e('</ul>');
+            ?>
+
             <p class="submit">
-                <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
+                <input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
             </p>
 
-            <h3><?php _e("Additional URL Options") ?></h3>
-        <?php
-        _e("<p>The following optional values can be added to the YouTube URLs to override default behavior. Each option should begin with '&'</p>");
-        _e('<ul>');
-        _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em>Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
-        _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
-        _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
-        _e("<li><strong>hd - If set to 1, this makes the video play in HD quality if available.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
-        _e('</ul>');
-        ?>
 
         </form>
         </div>
@@ -380,5 +434,82 @@ class EmbedPlusOfficialPlugin {
 
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//class start
+class Add_new_tinymce_btn
+{
+
+    public $btn_arr;
+    public $js_file;
+
+    /*
+     * call the constructor and set class variables
+     * From the constructor call the functions via wordpress action/filter
+     */
+
+    function __construct($seperator, $btn_name, $javascrip_location)
+    {
+        $this->btn_arr = array("Seperator" => $seperator, "Name" => $btn_name);
+        $this->js_file = $javascrip_location;
+        add_action('init', array(&$this, 'add_tinymce_button'));
+        add_filter('tiny_mce_version', array(&$this, 'refresh_mce_version'));
+    }
+
+    /*
+     * create the buttons only if the user has editing privs.
+     * If so we create the button and add it to the tinymce button array
+     */
+
+    function add_tinymce_button()
+    {
+        if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))
+            return;
+        if (get_user_option('rich_editing') == 'true')
+        {
+            //the function that adds the javascript
+            add_filter('mce_external_plugins', array(&$this, 'add_new_tinymce_plugin'));
+            //adds the button to the tinymce button array
+            add_filter('mce_buttons', array(&$this, 'register_new_button'));
+        }
+    }
+
+    /*
+     * add the new button to the tinymce array
+     */
+
+    function register_new_button($buttons)
+    {
+        array_push($buttons, $this->btn_arr["Seperator"], $this->btn_arr["Name"]);
+        return $buttons;
+    }
+
+    /*
+     * Call the javascript file that loads the
+     * instructions for the new button
+     */
+
+    function add_new_tinymce_plugin($plugin_array)
+    {
+        $plugin_array[$this->btn_arr['Name']] = $this->js_file;
+        return $plugin_array;
+    }
+
+    /*
+     * This function tricks tinymce in thinking
+     * it needs to refresh the buttons
+     */
+
+    function refresh_mce_version($ver)
+    {
+        $ver += 3;
+        return $ver;
+    }
+
+}
+
+//class end
+
 $embedplusoplg = new EmbedPlusOfficialPlugin();
+$embedplusmce = new Add_new_tinymce_btn('|', 'embedpluswiz', plugins_url() . '/embedplus-for-wordpress/js/embedplus_mce.js.php');
+wp_enqueue_style('embedpluswiz', plugins_url() . '/embedplus-for-wordpress/js/embedplus_mce.css');
 ?>
