@@ -1,4 +1,4 @@
-=== EmbedPlus for WordPress ===
+=== EmbedPlus: YouTube for WordPress ===
 Contributors: embedplus
 Plugin Name: EmbedPlus: YouTube for WordPress
 Plugin URI: http://www.embedplus.com
@@ -48,7 +48,7 @@ We love to share EmbedPlus.  If you are a plugin developer and wish to integrate
 == Changelog ==
 
 = 2.1 =
-Integrates the shortcode wizard within WordPress.
+Integrates the shortcode wizard within WordPress. 
 Automatically tries to guess the blog's width.
 Automatically calculates the proper height for the video's aspect ratio.
 
