@@ -6,7 +6,7 @@ Author URI: http://www.embedplus.com
 Tags: academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube
 Requires at least: 2.6
 Tested up to: 3.3.2
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 License: GPLv3 or later
 
 EmbedPlus for WordPress enhances the playback and visitor engagement of the YouTube videos you embed on your blogs.
@@ -48,6 +48,9 @@ Finally, we love to share EmbedPlus. If you are a plugin developer and wish to i
 
 
 == Changelog ==
+
+= 2.1.3 =
+Continued tweaks from version 2.1.2.
 
 = 2.1.2 =
 A number of features were slightly tweaked for better usability.  Digg and Reddit community reactions were incorporated.
