@@ -4,6 +4,7 @@ $installdir = $installdir[0];
 
 require( $installdir . 'wp-load.php' );
 
+
 $blogwidth = null;
 try
 {
