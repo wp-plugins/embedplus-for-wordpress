@@ -3,7 +3,7 @@
   Plugin Name: EmbedPlus for WordPress
   Plugin URI: http://www.embedplus.com
   Description: Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene skipping, etc.)
-  Version: 2.1.1
+  Version: 2.1.2
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -184,6 +184,8 @@ class EmbedPlusOfficialPlugin {
 
         $epreq['vars'] .= 'react=' . get_option(self::$opt_show_react) . '&amp;';
         $epreq['vars'] .= 'sweetspot=' . get_option(self::$opt_sweetspot) . '&amp;';
+        
+        $epreq['vars'] .= 'rs=w&amp;';
 
         return self::get_embed_code($epreq);
     }
@@ -374,7 +376,7 @@ class EmbedPlusOfficialPlugin {
         _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em> Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
         _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
         _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
-        _e("<li><strong>hd - If set to 1, this makes the video play in HD quality if available.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
+        //_e("<li><strong>hd - If set to 1, this makes the video play in HD quality if available.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
         _e('</ul>');
         ?>
 
@@ -391,7 +393,7 @@ class EmbedPlusOfficialPlugin {
             If you use the HTML editor instead, you can use the wizard here below, or go to our <a href="http://www.embedplus.com/embedcode.aspx" target="_blank">website</a>.
 
         </p>
-        <iframe src="http://www.embedplus.com/wpembedcode.aspx?blogwidth=<?php self::init_dimensions();
+        <iframe style="-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;" src="http://www.embedplus.com/wpembedcode.aspx?blogwidth=<?php self::init_dimensions();
         echo self::$defaultwidth ? self::$defaultwidth : "" ?>" width="950" height="1200"/>
         </div>
 
