@@ -1,0 +1,10 @@
+.wp_themeSkin span.mce_embedpluswiz, span.mce_embedpluswiz
+{
+    background: transparent url("btn_embedpluswizoff.png") no-repeat scroll center center !important;
+}
+
+.wp_themeSkin span.mce_embedpluswiz:hover, span.mce_embedpluswiz:hover
+{
+    background-image: url("btn_embedpluswiz.png") !important;
+}
+
