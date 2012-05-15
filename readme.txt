@@ -36,14 +36,14 @@ Finally, we love to share EmbedPlus. If you are a plugin developer and wish to i
 
 1. Install the plugin using the plugin installer within WordPress (or, upload the `embedplus-for-wordpress` folder to the `/wp-content/plugins/` directory)
 1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. YouTube links on their own line will automatically be upgraded into EmbedPlus videos. Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.
+1. YouTube links on their own line will automatically be upgraded into EmbedPlus videos.
 1. You can also now begin pasting EmbedPlus shortcodes within your WordPress editor. These shortcodes encapsulate customizations that you might wish to make. A new button in your post editor will appear that will start a wizard to guide you through making these customizations and getting the shortcode (see Screenshots).
 1. View plugin settings under Settings > EmbedPlus.
 1. **Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.**
 
 == Screenshots ==
 
-1. An example of a YouTube link that will automatically be upgraded to an EmbedPlus embed (note that it is on its own line).
+1. An example of a YouTube link that will automatically be upgraded to an EmbedPlus embed (note that it is on its own line). If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.
 2. An example of the shortcode that you can paste into your website. Note the editor button you can use to go through the wizard within your blog.
 3. An example of your enhanced video.
 4. Example reactions for the Avengers movie trailer.
