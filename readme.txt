@@ -9,7 +9,7 @@ Tested up to: 3.3.2
 Stable tag: 2.1.3
 License: GPLv3 or later
 
-EmbedPlus for WordPress enhances the playback and visitor engagement of the YouTube videos you embed on your blogs.
+EmbedPlus: YouTube for WordPress enhances the playback and visitor engagement of the YouTube videos you embed on your blogs.
 
 == Description ==
 
@@ -30,13 +30,16 @@ Here's a list of what it specifically adds:
 
 Finally, we love to share EmbedPlus. If you are a plugin developer and wish to integrate these extra YouTube features with your own plugin, [contact us](http://www.embedplus.com/aboutcontact.aspx).
 
+**Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.**
+
 == Installation ==
 
 1. Install the plugin using the plugin installer within WordPress (or, upload the `embedplus-for-wordpress` folder to the `/wp-content/plugins/` directory)
 1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. YouTube links on their own line will automatically be upgraded into EmbedPlus videos.
+1. YouTube links on their own line will automatically be upgraded into EmbedPlus videos. Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.
 1. You can also now begin pasting EmbedPlus shortcodes within your WordPress editor. These shortcodes encapsulate customizations that you might wish to make. A new button in your post editor will appear that will start a wizard to guide you through making these customizations and getting the shortcode (see Screenshots).
 1. View plugin settings under Settings > EmbedPlus.
+1. **Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.**
 
 == Screenshots ==
 
