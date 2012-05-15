@@ -49,7 +49,8 @@ Finally, we love to share EmbedPlus. If you are a plugin developer and wish to i
 4. Example reactions for the Avengers movie trailer.
 5. A screenshot leading to Reddit reactions for the popular Avengers Movie Trailer.
 6. An example unobtrusive annotation, that you can add to any video.
-7. Here's the plugin executing the optional Sweet Spot Marking algorithm to create automatic 'social chapters'
+7. Here's another annotation example.  It shows that you can add your own links to a video.  This one links to our MailChimp list signup.
+8. Here's the plugin executing the optional Sweet Spot Marking algorithm to create automatic "social chapters."
 
 == Changelog ==
 
