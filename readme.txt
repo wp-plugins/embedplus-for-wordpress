@@ -44,12 +44,12 @@ Finally, we love to share EmbedPlus. If you are a plugin developer and wish to i
 == Screenshots ==
 
 1. An example of a YouTube link that will automatically be upgraded to an EmbedPlus embed (note that it is on its own line). If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.
-2. An example of the shortcode that you can paste into your website. Note the editor button you can use to go through the wizard within your blog.
+2. If you want to customize an embed with extras like your own annotations, calls-to-action, and chapters, just click on the EmbedPlus editor button highlighted above. It will start a wizard within your blog to generate shortcode that captures the customizations.  You can then simply paste the code into your blog as shown above. 
 3. An example of your enhanced video.
-4. Example reactions for the Avengers movie trailer.
+4. EmbedPlus can make your embeds more social.  Here are example reactions for the Avengers movie trailer - shown right from your blog.
 5. A screenshot leading to Reddit reactions for the popular Avengers Movie Trailer.
 6. An example unobtrusive annotation, that you can add to any video.
-7. Here's another annotation example.  It shows that you can add your own links to a video.  This one links to our MailChimp list signup.
+7. Here's another annotation example. It shows that you can add your own links to a video. This one is a call-to-action that links to our MailChimp list signup.
 8. Here's the plugin executing the optional Sweet Spot Marking algorithm to create automatic "social chapters."
 
 == Changelog ==
