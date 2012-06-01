@@ -15,14 +15,14 @@ EmbedPlus: YouTube for WordPress enhances the playback and visitor engagement of
 
 Enhance the YouTube videos you embed in your WordPress blog using [EmbedPlus](http://www.embedplus.com). It not only provides the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions from communities like Digg and Reddit. Use it to **automatically** enhance the viewer experience and engagement around the YouTube videos you embed, for **free**. 
 
-Install the plugin and immediately get the following: 
+Install the plugin and you and your visitors immediately see the following features:
 
-* Video Reactions (currently from Digg, Reddit, YouTube, and Twitter)
-* Timed Annotations (for captions, links, calls-to-action, etc.)
+* Video Reactions - Discussions around a video you embed might be happening all over the web. Show them to your visitors right from your blog. We have a growing list of communities that includes Digg, Reddit, YouTube, and Twitter.
+* Timed Annotations - Display captions, links, calls-to-action, etc at a specific time during playback.  Use it to link viewers to other articles on your blog or even to a sign up page to follow you.
 * Chaptering (custom and social)
-* Cropping (set start *and stop times*)
+* Cropping - Set start *and stop* times to share just a funny or interesting part.
 * Instant Replay
-* Looping
+* Looping - Repeat a scene you like or the whole video over and over.
 * Slow Motion
 * Movable Zoom
 
