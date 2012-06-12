@@ -3,7 +3,7 @@ Contributors: embedplus
 Plugin Name: EmbedPlus: YouTube for WordPress
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube
+Tags: academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube
 Requires at least: 2.6
 Tested up to: 3.3.2
 Stable tag: 2.1.3
@@ -17,7 +17,7 @@ Enhance the YouTube videos you embed in your WordPress blog using [EmbedPlus](ht
 
 Install the plugin and you and your visitors immediately see the following features:
 
-* Video Reactions - Discussions around a video you embed might be happening all over the web. Show them to your visitors right from your blog. We have a growing list of communities that includes Digg, Reddit, YouTube, and Twitter.
+* Video Reactions - Discussions around a video you embed might be happening all over the web. Show them to your visitors right from your blog. We have a growing list of communities that includes Digg, Google+, Reddit, YouTube, and Twitter.
 * Timed Annotations - Display captions, links, calls-to-action, etc at a specific time during playback.  Use it to link viewers to other articles on your blog or even to a sign up page to follow you.
 * Chaptering (custom and social)
 * Cropping - Set start *and stop* times to share just a funny or interesting part.
