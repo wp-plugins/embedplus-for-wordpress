@@ -13,7 +13,7 @@ EmbedPlus: YouTube for WordPress enhances the playback and visitor engagement of
 
 == Description ==
 
-Enhance the YouTube videos you embed in your WordPress blog using [EmbedPlus](http://www.embedplus.com). It not only provides the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions from communities like Digg and Reddit. Use it to **automatically** enhance the viewer experience and engagement around the YouTube videos you embed, for **free**. 
+Enhance the YouTube videos you embed in your WordPress blog using [EmbedPlus](http://www.embedplus.com). It not only provides the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions from communities like Google+ and Reddit. Use it to **automatically** enhance the viewer experience and engagement around the YouTube videos you embed, for **free**. 
 
 Install the plugin and you and your visitors immediately see the following features:
 
