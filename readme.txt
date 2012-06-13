@@ -23,8 +23,7 @@ Install the plugin and you and your visitors immediately see the following featu
 * Cropping - Set start *and stop* times to share just a funny or interesting part.
 * Instant Replay
 * Looping - Repeat a scene you like or the whole video over and over.
-* Slow Motion
-* Movable Zoom
+* Other DVD-like controls
 
 ...All without having to alter original video content. Please see our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future embeds -- even if you use the the nifty [oEmbed method](http://codex.wordpress.org/Embeds) for YouTube.
 
