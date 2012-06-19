@@ -5,7 +5,7 @@ Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube
 Requires at least: 2.6
-Tested up to: 3.3.2
+Tested up to: 3.4
 Stable tag: 2.1.3
 License: GPLv3 or later
 
