@@ -5,8 +5,8 @@ Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube
 Requires at least: 2.6
-Tested up to: 3.4
-Stable tag: 2.1.3
+Tested up to: 3.4.1
+Stable tag: 2.1.4
 License: GPLv3 or later
 
 EmbedPlus: YouTube for WordPress enhances the playback and visitor engagement of the YouTube videos you embed on your blogs.
@@ -52,6 +52,9 @@ Finally, we love to share EmbedPlus. If you are a plugin developer and wish to i
 8. Here's the plugin executing the optional Sweet Spot Marking algorithm to create automatic "social chapters."
 
 == Changelog ==
+
+= 2.1.4 =
+Includes minor design improvements suggested by users like you.
 
 = 2.1.3 =
 Continued tweaks from version 2.1.2.
