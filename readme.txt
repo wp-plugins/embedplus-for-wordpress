@@ -3,7 +3,7 @@ Contributors: embedplus
 Plugin Name: EmbedPlus: YouTube for WordPress
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube
+Tags: academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode
 Requires at least: 2.6
 Tested up to: 3.4.1
 Stable tag: 2.1.4
