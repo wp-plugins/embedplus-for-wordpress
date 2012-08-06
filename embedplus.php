@@ -327,6 +327,8 @@ class EmbedPlusOfficialPlugin {
             <?php
         }
 
+        
+        
         // Now display the settings editing screen
 
         echo '<div class="wrap">';
