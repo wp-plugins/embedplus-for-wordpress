@@ -126,6 +126,8 @@ class EmbedPlusOfficialPlugin {
         //add 30 for YouTube's own bar
         return $aspectheight + 30;
     }
+    
+    
 
     public static function youtube2embedplus_handler($matches, $attr, $url, $rawattr) {
 

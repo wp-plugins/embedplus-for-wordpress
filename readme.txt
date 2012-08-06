@@ -1,31 +1,43 @@
-=== EmbedPlus: YouTube for WordPress ===
+=== Advanced YouTube Plugin by EmbedPlus ===
 Contributors: embedplus
-Plugin Name: EmbedPlus: YouTube for WordPress
+Plugin Name: Advanced YouTube Plugin by EmbedPlus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode
+Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode
 Requires at least: 2.6
 Tested up to: 3.4.1
 Stable tag: 2.1.4
 License: GPLv3 or later
 
-EmbedPlus: YouTube for WordPress enhances the playback and visitor engagement of the YouTube videos you embed on your blogs.
+An advanced WordPress plugin for YouTube. It enhances the playback and visitor engagement of the YouTube videos you embed in your blogs.
 
 == Description ==
 
-Enhance the YouTube videos you embed in your WordPress blog using [EmbedPlus](http://www.embedplus.com). It not only provides the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions from communities like Google+ and Reddit. Use it to **automatically** enhance the viewer experience and engagement around the YouTube videos you embed, for **free**. 
+Enhance the YouTube videos you embed in your WordPress blog using this plugin. It not only provides the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions beyond YouTube.com comments (e.g., Google+ and Reddit). Use it to **automatically** enhance the viewer experience and engagement around the YouTube videos you embed, for **free**. 
 
-Install the plugin and you and your visitors immediately see the following features:
+Install the plugin and you and your visitors immediately see the following features for each YouTube video:
 
-* Video Reactions - Discussions around a video you embed might be happening all over the web. Show them to your visitors right from your blog. We have a growing list of communities that includes Digg, Google+, Reddit, YouTube, and Twitter.
-* Timed Annotations - Display captions, links, calls-to-action, etc at a specific time during playback.  Use it to link viewers to other articles on your blog or even to a sign up page to follow you.
+* Video Reactions - Discussions around a YouTube video you embed might be happening all over the web, not just YouTube.com. Show them to your visitors right from your blog. We have a growing list of communities that includes Digg, Google+, Reddit, and Twitter. Recent YouTube.com comments are also displayed.
+* Timed Annotations - Now you can add annotations to a video even if you don’t own the YouTube channel.  Use it to display captions, links, calls-to-action, etc at a specific time during playback. 
 * Chaptering (custom and social)
-* Cropping - Set start *and stop* times to share just a funny or interesting part.
+* Cropping - Set start *and stop* times to share just a funny or interesting part of a YouTube video.
 * Instant Replay
 * Looping - Repeat a scene you like or the whole video over and over.
 * Other DVD-like controls
 
 ...All without having to alter original video content. Please see our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future embeds -- even if you use the the nifty [oEmbed method](http://codex.wordpress.org/Embeds) for YouTube.
+
+You can also watch the following YouTube videos to see what others said about our plugin and wizard:
+
+* http://www.youtube.com/watch?v=fjR08h2sm-s
+* http://www.youtube.com/watch?v=tvKZpRIjMmo
+* http://www.youtube.com/watch?v=o_rqWK93tFU
+* http://www.youtube.com/watch?v=JwaQwUHuIMg
+* http://www.youtube.com/watch?v=zv5kOoJz6js
+* http://www.youtube.com/watch?v=awvPq0KNYTo
+* http://www.youtube.com/watch?v=GDpv7NNgGSs
+* http://www.youtube.com/watch?v=IhE3FitXC8o
+* http://www.youtube.com/watch?v=k5o-i0JMPew
 
 Finally, we love to share EmbedPlus. If you are a plugin developer and wish to integrate these extra YouTube features with your own plugin, [contact us](http://www.embedplus.com/aboutcontact.aspx).
 
