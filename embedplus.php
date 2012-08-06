@@ -1,15 +1,15 @@
 <?php
 /*
-  Plugin Name: EmbedPlus for WordPress
+  Plugin Name: Advanced YouTube Plugin by EmbedPlus
   Plugin URI: http://www.embedplus.com
   Description: Enable WordPress to support enhanced EmbedPlus videos (slow motion, zoom, scene skipping, etc.)
-  Version: 2.1.3
+  Version: 2.1.4
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
 
 /*
-  EmbedPlus for WordPress
+  Advanced YouTube Plugin by EmbedPlus
   Copyright (C) 2011 EmbedPlus.com
 
   This program is free software: you can redistribute it and/or modify
@@ -126,8 +126,6 @@ class EmbedPlusOfficialPlugin {
         //add 30 for YouTube's own bar
         return $aspectheight + 30;
     }
-    
-    
 
     public static function youtube2embedplus_handler($matches, $attr, $url, $rawattr) {
 
@@ -329,6 +327,8 @@ class EmbedPlusOfficialPlugin {
             <?php
         }
 
+        
+        
         // Now display the settings editing screen
 
         echo '<div class="wrap">';
