@@ -3,23 +3,23 @@ Contributors: embedplus
 Plugin Name: Advanced YouTube Plugin by EmbedPlus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode
+Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback
 Requires at least: 2.6
 Tested up to: 3.4.1
 Stable tag: 2.1.4
 License: GPLv3 or later
 
-An advanced WordPress plugin for YouTube. It enhances the playback and visitor engagement of the YouTube videos you embed in your blogs.
+An advanced WordPress plugin for YouTube. Its smart features enhance the playback and visitor engagement of the YouTube videos you embed in your blogs.
 
 == Description ==
 
-Enhance the YouTube videos you embed in your WordPress blog using this plugin. It not only provides the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions beyond YouTube.com comments (e.g., Google+ and Reddit). Use it to **automatically** enhance the viewer experience and engagement around the YouTube videos you embed, for **free**. 
+Enhance the videos you embed in your WordPress blog using this feature-rich and smart YouTube plugin. It not only provides the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions beyond YouTube.com comments (e.g., Google+ and Reddit). Use it to **automatically** enhance the viewer experience and engagement around the YouTube videos you embed, for **free**. 
 
 Install the plugin and you and your visitors immediately see the following features for each YouTube video:
 
 * Video Reactions - Discussions around a YouTube video you embed might be happening all over the web, not just YouTube.com. Show them to your visitors right from your blog. We have a growing list of communities that includes Digg, Google+, Reddit, and Twitter. Recent YouTube.com comments are also displayed.
 * Timed Annotations - Now you can add annotations to a video even if you don’t own the YouTube channel.  Use it to display captions, links, calls-to-action, etc at a specific time during playback. 
-* Chaptering (custom and social)
+* Chaptering (custom and smart social chaptering)
 * Cropping - Set start *and stop* times to share just a funny or interesting part of a YouTube video.
 * Instant Replay
 * Looping - Repeat a scene you like or the whole video over and over.
@@ -39,7 +39,7 @@ You can also watch the following YouTube videos to see what others said about ou
 * http://www.youtube.com/watch?v=IhE3FitXC8o
 * http://www.youtube.com/watch?v=k5o-i0JMPew
 
-Finally, we love to share EmbedPlus. If you are a plugin developer and wish to integrate these extra YouTube features with your own plugin, [contact us](http://www.embedplus.com/aboutcontact.aspx).
+Finally, we love to share EmbedPlus. If you are a plugin developer and wish to integrate these extra YouTube features with your own plugin, [contact us](http://www.embedplus.com/aboutcontact.aspx). Contact us if you have new smart features you'd like us to incorporate.
 
 **Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.**
 
@@ -51,6 +51,8 @@ Finally, we love to share EmbedPlus. If you are a plugin developer and wish to i
 1. You can also now begin pasting EmbedPlus shortcodes within your WordPress editor. These shortcodes encapsulate customizations that you might wish to make. A new button in your post editor will appear that will start a wizard to guide you through making these customizations and getting the shortcode (see Screenshots).
 1. View plugin settings under Settings > EmbedPlus.
 1. **Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.**
+
+Some really smart people have also written about installation and usage: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/).
 
 == Screenshots ==
 
