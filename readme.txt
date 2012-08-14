@@ -1,6 +1,6 @@
-=== Advanced YouTube Plugin by EmbedPlus ===
+=== Advanced YouTube Embed Plugin by EmbedPlus ===
 Contributors: embedplus
-Plugin Name: Advanced YouTube Plugin by EmbedPlus
+Plugin Name: Advanced YouTube Embed Plugin by EmbedPlus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback
