@@ -3,13 +3,13 @@ Contributors: embedplus
 Plugin Name: Advanced YouTube Embed by EmbedPlus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback
+Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed
 Requires at least: 2.6
 Tested up to: 3.4.1
 Stable tag: 2.1.4
 License: GPLv3 or later
 
-An advanced WordPress plugin for YouTube. Its smart features enhance the playback and visitor engagement of the YouTube videos you embed in your blogs.
+An advanced WordPress plugin for YouTube embeds. Its smart features enhance the playback and engagement of the YouTube videos you embed in your blogs.
 
 == Description ==
 
@@ -17,17 +17,19 @@ Enhance the videos you embed in your WordPress blog using this feature-rich and 
 
 Install the plugin and you and your visitors immediately see the following features for each YouTube video:
 
-* Video Reactions - Discussions around a YouTube video you embed might be happening all over the web, not just YouTube.com. Show them to your visitors right from your blog. We have a growing list of communities that includes Digg, Google+, Reddit, and Twitter. Recent YouTube.com comments are also displayed.
-* Timed Annotations - Now you can add annotations to a video even if you don’t own the YouTube channel.  Use it to display captions, links, calls-to-action, etc at a specific time during playback. 
+* Video Reactions - Discussions around a YouTube video you embed might be happening all over the web, not just YouTube.com. This feature allows your visitors to read them right from your blog. We have a growing list of communities that includes Digg, Google+, Reddit, and Twitter. Recent YouTube.com comments are also displayed.
+* Timed Annotations - Now you can add annotations to a YouTube embed even if you don't own the YouTube channel.  Use it to display captions, links, calls-to-action, etc at a specific time during playback. 
 * Chaptering (custom and smart social chaptering)
 * Cropping - Set start *and stop* times to share just a funny or interesting part of a YouTube video.
 * Instant Replay
 * Looping - Repeat a scene you like or the whole video over and over.
 * Other DVD-like controls
 
-...All without having to alter original video content. Please see our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future embeds -- even if you use the the nifty [oEmbed method](http://codex.wordpress.org/Embeds) for YouTube.
+...All without having to alter original video content. Please see the YouTube embed on our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future embeds -- even if you use the nifty [oEmbed method](http://codex.wordpress.org/Embeds) of just pasting a YouTube video link on its own line.
 
-You can also watch the following YouTube videos to see what others said about our plugin and wizard:
+If you want to learn more, here’s a great article written on how to use this plugin: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/)
+
+You can also watch the following videos to see what others have said about our WordPress plugin and any-site YouTube embed wizard:
 
 * http://www.youtube.com/watch?v=fjR08h2sm-s
 * http://www.youtube.com/watch?v=tvKZpRIjMmo
