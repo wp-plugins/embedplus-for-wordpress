@@ -56,6 +56,9 @@ Finally, we love to share EmbedPlus. If you are a plugin developer and wish to i
 
 Some really smart people have also written about installation and usage: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/).
 
+= Contact =
+[http://embedplus.com/aboutcontact.aspx](http://embedplus.com/aboutcontact.aspx)
+
 == Screenshots ==
 
 1. An example of a YouTube link that will automatically be upgraded to an EmbedPlus embed (note that it is on its own line). If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.
@@ -101,6 +104,53 @@ Fixes obscure annotation scenario.
 = 1.0 =
 First version released.
 
-== Contact ==
+== Other Notes ==
 
-[http://embedplus.com/aboutcontact.aspx](http://embedplus.com/aboutcontact.aspx)
+Rather than leaving this page blank, we thought to fill it with some ascii art ;-)
+
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+     _       _                               _ 
+    / \   __| |_   ____ _ _ __   ___ ___  __| |
+   / _ \ / _  \ \ / / _  | '_ \ / __/ _ \/ _  |
+  / ___ \ (_| |\ V / (_| | | | | (__  __/ (_| |
+ /_/   \_\__,_| \_/ \__,_|_| |_|\___\___|\__,_|
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+ __   __         _____      _          
+ \ \ / /__  _   |_   _|   _| |__   ___ 
+  \ V / _ \| | | || || | | | '_ \ / _ \
+   | | (_) | |_| || || |_| | |_) |  __/
+   |_|\___/ \__,_||_| \__,_|_.__/ \___|
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+  _____           _              _ 
+ | ____|_ __ ___ | |__   ___  __| |
+ |  _| | '_   _ \| '_ \ / _ \/ _  |
+ | |___| | | | | | |_) |  __/ (_| |
+ |_____|_| |_| |_|_.__/ \___|\__,_|
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+  ____          _____           _              _ ____  _           
+ | __ ) _   _  | ____|_ __ ___ | |__   ___  __| |  _ \| |_   _ ___ 
+ |  _ \| | | | |  _| | '_   _ \| '_ \ / _ \/ _  | |_) | | | | / __|
+ | |_) | |_| | | |___| | | | | | |_) |  __/ (_| |  __/| | |_| \__ \
+ |____/ \__, | |_____|_| |_| |_|_.__/ \___|\__,_|_|   |_|\__,_|___/
+        |___/                                                      
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
