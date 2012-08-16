@@ -3,7 +3,7 @@ Contributors: embedplus
 Plugin Name: Advanced YouTube Embed by EmbedPlus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed
+Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, youtube embedding
 Requires at least: 2.6
 Tested up to: 3.4.1
 Stable tag: 2.1.4
@@ -25,7 +25,7 @@ Install the plugin and you and your visitors immediately see the following featu
 * Looping - Repeat a scene you like or the whole video over and over.
 * Other DVD-like controls
 
-...All without having to alter original video content. Please see the YouTube embed on our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future embeds -- even if you use the nifty [oEmbed method](http://codex.wordpress.org/Embeds) of just pasting a YouTube video link on its own line.
+...All without having to alter original video content. Please see the YouTube embed on our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future YouTube embeds -- even if you use the nifty [oEmbed method](http://codex.wordpress.org/Embeds) of just pasting a YouTube video link on its own line.
 
 If you want to learn more, here’s a great article written on how to use this plugin: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/)
 
@@ -41,9 +41,9 @@ You can also watch the following videos to see what others have said about our W
 * http://www.youtube.com/watch?v=IhE3FitXC8o
 * http://www.youtube.com/watch?v=k5o-i0JMPew
 
-Finally, we love to share EmbedPlus. If you are a plugin developer and wish to integrate these extra YouTube features with your own plugin, [contact us](http://www.embedplus.com/aboutcontact.aspx). Contact us if you have new smart features you'd like us to incorporate.
+Finally, we love to share EmbedPlus. If you are a plugin developer and wish to integrate these extra YouTube embed features with your own plugin, [contact us](http://www.embedplus.com/aboutcontact.aspx). Contact us if you have new smart features you'd like us to incorporate.
 
-**Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.**
+**Note: If you don't see the extra features on your YouTube embeds, you might have another WordPress-YouTube embed plugin that needs to be deactivated first.**
 
 == Installation ==
 
@@ -72,42 +72,43 @@ Some really smart people have also written about installation and usage: [WP Nug
 
 == Changelog ==
 
-= 2.1.4 =
-Includes minor design improvements suggested by users like you.
+= Advanced YouTube Embed 2.1.4 =
+Plugin includes minor design improvements suggested by users like you.
 
-= 2.1.3 =
-Continued tweaks from version 2.1.2.
+= Advanced YouTube Embed 2.1.3 =
+Continued tweaks from plugin version 2.1.2.
 
-= 2.1.2 =
-A number of features were slightly tweaked for better usability.  Digg and Reddit community reactions were incorporated.
+= Advanced YouTube Embed 2.1.2 =
+A number of features were slightly tweaked for better usability.  Digg and Reddit community reactions were incorporated in the plugin.
 
-= 2.1.1 =
-Adds wizard to settings page for bloggers who do not use the rich-text editor.
+= Advanced YouTube Embed 2.1.1 =
+Adds wizard to settings page of the plugin for bloggers who do not use the rich-text editor.
 
-= 2.1 =
-Integrates the shortcode wizard within WordPress. 
+= Advanced YouTube Embed 2.1 =
+Plugin integrates the shortcode wizard within WordPress. 
 Automatically tries to guess the blog's width.
 Automatically calculates the proper height for the video's aspect ratio.
 
-= 2.0 =
-Upgrades standard YouTube oEmbed links (i.e. links on their own line) to use the EmbedPlus player. Adds plugin settings under Settings > EmbedPlus. (These additions will only appear for blogs using WordPress 2.9+, as that is when oEmbed support began).
+= Advanced YouTube Embed 2.0 =
+Upgrades standard YouTube oEmbed links (i.e. links on their own line) to use the EmbedPlus player. Adds plugin settings under Settings > EmbedPlus. (These additions will only appear for plugin versions 2.0+ and blogs using WordPress 2.9+, as that is when oEmbed support began).
 
-= 1.2.1 =
-Fixes obscure IE scenario.
+= Advanced YouTube Embed 1.2.1 =
+Fixes obscure IE scenario on the plugin interface.
 
-= 1.2 =
-Adds support for new YouTube iframe embedding method, for compatability with non-Flash clients (such as the iPhone, iPad, and iPod Touch).
+= Advanced YouTube Embed 1.2 =
+Adds support for new YouTube iframe embedding method, for compatability with non-Flash clients (such as the iPhone, iPad, and iPod Touch). This is a popular feature among YouTube embed plugins.
 
-= 1.1 =
-Fixes obscure annotation scenario.
+= Advanced YouTube Embed 1.1 =
+Fixes an obscure annotation scenario of the plugin.
 
-= 1.0 =
-First version released.
+= Advanced YouTube Embed 1.0 =
+First version of the plugin released for YouTube embeds.
 
 == Other Notes ==
 
 Rather than leaving this page blank, we thought to fill it with some ascii art ;-)
 `
+advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
@@ -123,11 +124,13 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
  __   __         _____      _          
  \ \ / /__  _   |_   _|   _| |__   ___ 
   \ V / _ \| | | || || | | | '_ \ / _ \
    | | (_) | |_| || || |_| | |_) |  __/
    |_|\___/ \__,_||_| \__,_|_.__/ \___|
+advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
@@ -143,12 +146,14 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
+advanced youtube embed advanced youtube embed advanced youtube embed
   ____          _____           _              _ ____  _           
  | __ ) _   _  | ____|_ __ ___ | |__   ___  __| |  _ \| |_   _ ___ 
  |  _ \| | | | |  _| | '_   _ \| '_ \ / _ \/ _  | |_) | | | | / __|
  | |_) | |_| | | |___| | | | | | |_) |  __/ (_| |  __/| | |_| \__ \
  |____/ \__, | |_____|_| |_| |_|_.__/ \___|\__,_|_|   |_|\__,_|___/
         |___/                                                      
+advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
