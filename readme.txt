@@ -523,7 +523,7 @@ Besides checking out our homepage demo, you can see the plugin at work for hundr
 
 And we'll conclude with some ASCII art :D
 
-`    _       _                               _ 
+`.   _       _                               _ 
     / \   __| |_   ____ _ _ __   ___ ___  __| |
    / _ \ / _  \ \ / / _  | '_ \ / __/ _ \/ _  |
   / ___ \ (_| |\ V / (_| | | | | (__  __/ (_| |
