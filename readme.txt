@@ -521,13 +521,6 @@ Besides checking out our homepage demo, you can see the plugin at work for hundr
 1. [youtube-embed-most-shared-100](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=100)
 
 And we'll conclude with some ASCII art :-)
-`
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
      _       _                               _ 
     / \   __| |_   ____ _ _ __   ___ ___  __| |
    / _ \ / _  \ \ / / _  | '_ \ / __/ _ \/ _  |
