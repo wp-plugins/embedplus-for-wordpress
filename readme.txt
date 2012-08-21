@@ -522,13 +522,11 @@ Besides checking out our homepage demo, you can see the plugin at work for hundr
 
 And we'll conclude with some ASCII art :D
 
-`
-     _       _                               _ 
+`    _       _                               _ 
     / \   __| |_   ____ _ _ __   ___ ___  __| |
    / _ \ / _  \ \ / / _  | '_ \ / __/ _ \/ _  |
   / ___ \ (_| |\ V / (_| | | | | (__  __/ (_| |
  /_/   \_\__,_| \_/ \__,_|_| |_|\___\___|\__,_|
-advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
@@ -544,13 +542,11 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
   _____           _              _ 
  | ____|_ __ ___ | |__   ___  __| |
  |  _| | '_   _ \| '_ \ / _ \/ _  |
  | |___| | | | | | |_) |  __/ (_| |
  |_____|_| |_| |_|_.__/ \___|\__,_|
-advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
@@ -562,7 +558,6 @@ advanced youtube embed advanced youtube embed advanced youtube embed
  | |_) | |_| | | |___| | | | | | |_) |  __/ (_| |  __/| | |_| \__ \
  |____/ \__, | |_____|_| |_| |_|_.__/ \___|\__,_|_|   |_|\__,_|___/
         |___/                                                      
-advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
 advanced youtube embed advanced youtube embed advanced youtube embed
