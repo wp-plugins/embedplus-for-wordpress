@@ -3,19 +3,19 @@ Contributors: embedplus
 Plugin Name: Advanced YouTube Embed by EmbedPlus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, youtube embedding
+Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding
 Requires at least: 2.6
 Tested up to: 3.4.1
 Stable tag: 2.1.4
 License: GPLv3 or later
 
-YouTube embeds enhanced for WordPress. This plugin's smart features enhance the playback and engagement of YouTube videos you embed in your blogs.
+YouTube embeds enhanced for WordPress. This plugin's smart features enhance the playback and engagement of YouTube embeds you insert in your blogs.
 
 == Description ==
 
-Enhance the videos you embed in your WordPress blog using this feature-rich and smart YouTube plugin. It not only provides the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions beyond YouTube.com comments (e.g., Google+ and Reddit). Use it to **automatically** enhance the viewer experience and engagement around the YouTube videos you embed, for **free**. 
+Advanced YouTube Embed enhances the videos you embed in your WordPress blog. It's a feature-rich and smart upgrade to the standard YouTube embed. By just pasting a YouTube link, you’ll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions beyond YouTube.com comments (e.g., Google+ and Reddit). Use it to **automatically** enhance the viewer experience and engagement around the YouTube embeds you add to your blog, for **free**.
 
-Install the plugin and you and your visitors immediately see the following features for each YouTube video:
+Install Advanced YouTube Embed and you and your visitors immediately see the following features for each YouTube embed:
 
 * Video Reactions - Discussions around a YouTube video you embed might be happening all over the web, not just YouTube.com. This feature allows your visitors to read them right from your blog. We have a growing list of communities that includes Digg, Google+, Reddit, and Twitter. Recent YouTube.com comments are also displayed.
 * Timed Annotations - Now you can add annotations to a YouTube embed even if you don't own the YouTube channel.  Use it to display captions, links, calls-to-action, etc at a specific time during playback. 
@@ -108,14 +108,14 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 
 == Screenshots ==
 
-1. An example of a YouTube link that will automatically be upgraded to an EmbedPlus embed (note that it is on its own line). If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.
-2. If you want to customize an embed with extras like your own annotations, calls-to-action, and chapters, just click on the EmbedPlus editor button highlighted above. It will start a wizard within your blog to generate shortcode that captures the customizations.  You can then simply paste the code into your blog as shown above. 
-3. An example of your enhanced video.
-4. EmbedPlus can make your embeds more social.  Here are example reactions for the Avengers movie trailer - shown right from your blog.
-5. A screenshot leading to Reddit reactions for the popular Avengers Movie Trailer.
-6. An example unobtrusive annotation, that you can add to any video.
-7. Here's another annotation example. It shows that you can add your own links to a video. This one is a call-to-action that links to our MailChimp list signup.
-8. Here's the plugin executing the optional Sweet Spot Marking algorithm to create automatic "social chapters."
+1. Advance YouTube Embed Screenshot 1: Paste a YouTube link and the YouTube embed will automatically be upgraded to an EmbedPlus embed (note: the link is on its own line). If you don't see the extra features on a YouTube embed, another YouTube plugin might need to be deactivated first.
+2. Advance YouTube Embed Screenshot 2: If you want to customize a YouTube embed with extras like your own annotations, calls-to-action, and chapters, just click on the EmbedPlus editor button highlighted above. It will start a wizard within your blog to generate shortcode that captures the customizations. You can then simply paste the code into your blog as shown above.
+3. Advance YouTube Embed Screenshot 3: A YouTube embed that is enhanced to a EmbedPlus embed.
+4. Advance YouTube Embed Screenshot 4: EmbedPlus can make your YouTube embeds more social. Here are example reactions for the Avengers movie trailer - shown right from your blog.
+5. Advance YouTube Embed Screenshot 5: A screenshot leading to Reddit reactions for the popular Avengers Movie Trailer.
+6. Advance YouTube Embed Screenshot 6: An example unobtrusive annotation, that you can add to any YouTube embed.
+7. Advance YouTube Embed Screenshot 7: Here's another annotation example. It shows that you can add your own links to a YouTube embed. This one is a call-to-action that links to our MailChimp list signup.
+8. Advance YouTube Embed Screenshot 8: Here's the plugin executing the optional Sweet Spot Marking algorithm to create automatic "social chapters" for a given YouTube embed.
 
 == Changelog ==
 
