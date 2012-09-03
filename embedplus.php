@@ -28,6 +28,7 @@
  */
 
 //define('WP_DEBUG', true);
+//
 
 class EmbedPlusOfficialPlugin {
 
