@@ -1,6 +1,6 @@
 === Advanced YouTube Embed by EmbedPlus ===
 Contributors: embedplus
-Plugin Name: Advanced YouTube Embed by EmbedPlus
+Plugin Name: Advanced YouTube Embed by Embed Plus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding
@@ -27,7 +27,7 @@ Install Advanced YouTube Embed and you and your visitors immediately see the fol
 
 ...All without having to alter the original video content. Please see the YouTube embed on our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future YouTube embeds -- even if you use the nifty [oEmbed method](http://codex.wordpress.org/Embeds) of just pasting a YouTube video link on its own line.
 
-If you want to learn more, here’s a great article written on how to use this plugin: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/)
+There have been a few blog articles that review our plugin. Here's the most recent that we've found: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/)
 
 You can also watch the following videos to see what others have said about our WordPress plugin and any-site YouTube embed wizard:
 
