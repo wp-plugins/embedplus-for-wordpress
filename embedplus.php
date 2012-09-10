@@ -9,7 +9,7 @@
  */
 
 /*
-  Advanced YouTube Embed by EmbedPlus
+  Advanced YouTube Embed (by Embed Plus)
   Copyright (C) 2011 EmbedPlus.com
 
   This program is free software: you can redistribute it and/or modify
