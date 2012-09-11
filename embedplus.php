@@ -2,7 +2,7 @@
 /*
   Plugin Name: Advanced YouTube Embed (by Embed Plus)
   Plugin URI: http://www.embedplus.com
-  Description: YouTube embeds enhanced for WordPress. This plugin's smart features enhance the playback and engagement of YouTube embeds you insert in your blogs.
+  Description: YouTube embeds enhanced for WordPress. This plugin's smart features enhance the playback and engagement of each YouTube embed in your blog.
   Version: 2.1.4
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
