@@ -9,7 +9,7 @@ Tested up to: 3.4.2
 Stable tag: 2.1.4
 License: GPLv3 or later
 
-YouTube embeds enhanced for WordPress. This plugin's smart features enhance the playback and engagement of each YouTube embed you insert in your blogs.
+YouTube embeds enhanced for WordPress. This plugin's smart features enhance the playback and engagement of each YouTube embed in your blog.
 
 == Description ==
 
