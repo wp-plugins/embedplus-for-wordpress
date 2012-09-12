@@ -28,7 +28,6 @@
  */
 
 //define('WP_DEBUG', true);
-//
 
 class EmbedPlusOfficialPlugin {
 
@@ -106,6 +105,7 @@ class EmbedPlusOfficialPlugin {
         }
     }
 
+    
     public static function get_aspect_height($url) {
 
         // attempt to get aspect ratio correct height from oEmbed
