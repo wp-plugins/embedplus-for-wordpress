@@ -119,7 +119,7 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 
 == Changelog ==
 
-= Advanced YouTube Embed 2.1.5 =
+= Advanced YouTube Embed 2.1.6 =
 Adds RTL support.
 
 = Advanced YouTube Embed 2.1.4 =
