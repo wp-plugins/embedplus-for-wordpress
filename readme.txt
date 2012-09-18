@@ -3,21 +3,21 @@ Contributors: embedplus
 Plugin Name: Advanced YouTube Embed Plugin by Embed Plus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook
+Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin
 Requires at least: 2.6
 Tested up to: 3.4.2
-Stable tag: 2.1.4
+Stable tag: 2.1.5
 License: GPLv3 or later
 
-YouTube embeds enhanced for WordPress. This plugin's smart features enhance the playback and engagement of each YouTube embed in your blog.
+YouTube embeds enhanced for WordPress. The smart features of this plugin enhance the playback and engagement of each YouTube embed in your blog.
 
 == Description ==
 
-Advanced YouTube Embed enhances the videos you embed in your WordPress blog. It's a feature-rich and smart upgrade to the standard YouTube embed. **By just pasting a YouTube link,** you'll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions beyond YouTube.com comments (e.g., Google+ and Reddit). Use it to **automatically** enhance the viewer experience and engagement around the YouTube embeds you add to your blog, for **free**.
+Advanced YouTube Embed is a plugin that enhances the videos you embed in your WordPress blog. It's a feature-rich and smart upgrade to the standard YouTube embed. **By just pasting a YouTube link,** you'll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions beyond YouTube.com comments (e.g., Google+ and Reddit). Use the plugin to **automatically** enhance the viewer experience and engagement around the YouTube embeds you add to your blog, for **free**.
 
-Install Advanced YouTube Embed and you and your visitors immediately see the following features for each YouTube embed:
+Install Advanced YouTube Embed and you and your visitors see the following features for each YouTube embed:
 
-* Video Reactions - Discussions around a YouTube video you embed might be happening all over the web, not just YouTube.com. This feature allows your visitors to read them right from your blog. We have a growing list of communities that includes Digg, Google+, Reddit, and Twitter. Recent YouTube.com comments are also displayed.
+* Video Reactions - Discussions around a YouTube video you embed might be happening all over the web, not just YouTube.com. This feature allows your visitors to read them right from your blog. We have a growing list of communities that includes Digg, Google+, Reddit, and Twitter. Recent YouTube.com comments can also be displayed by the plugin.
 * Timed Annotations - Now you can add annotations to a YouTube embed even if you don't own the YouTube channel.  Use it to display captions, links, calls-to-action, etc at a specific time during playback. 
 * Chaptering (custom and smart social chaptering)
 * Cropping - Set start *and stop* times to share just a funny or interesting part of a YouTube video.

@@ -2,14 +2,14 @@
 /*
   Plugin Name: Advanced YouTube Embed Plugin by Embed Plus
   Plugin URI: http://www.embedplus.com
-  Description: YouTube embeds enhanced for WordPress. This plugin's smart features enhance the playback and engagement of each YouTube embed in your blog.
+  Description: YouTube embeds enhanced for WordPress. The smart features of this plugin enhance the playback and engagement of each YouTube embed in your blog.
   Version: 2.1.5
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
 
 /*
-  Advanced YouTube Embed (by Embed Plus)
+  Advanced YouTube Embed Plugin by Embed Plus
   Copyright (C) 2011 EmbedPlus.com
 
   This program is free software: you can redistribute it and/or modify
@@ -525,7 +525,15 @@ class Add_new_tinymce_btn
 
 $embedplusoplg = new EmbedPlusOfficialPlugin();
 $embedplusmce = new Add_new_tinymce_btn('|', 'embedpluswiz', plugins_url() . '/embedplus-for-wordpress/js/embedplus_mce.js.php');
-add_action('admin_enqueue_scripts', 'embedplus_admin_enqueue_scripts');
+
+if (EmbedPlusOfficialPlugin::wp_above_version('2.9'))
+{
+    add_action('admin_enqueue_scripts', 'embedplus_admin_enqueue_scripts');
+}
+else
+{
+    wp_enqueue_style('embedpluswiz', plugins_url() . '/embedplus-for-wordpress/js/embedplus_mce.css');
+}
 
 function embedplus_admin_enqueue_scripts()
 {
