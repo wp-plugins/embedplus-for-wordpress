@@ -9,7 +9,7 @@ Tested up to: 3.4.2
 Stable tag: 2.1.6
 License: GPLv3 or later
 
-YouTube embeds enhanced for WordPress. The smart features of this plugin enhance the playback and engagement of each YouTube embed in your blog.
+A YouTube embed plugin for WordPress. The smart features of this plugin enhance the playback and engagement of each YouTube embed in your blog.
 
 == Description ==
 
@@ -41,7 +41,7 @@ You can also watch the following videos to see what others have said about our W
 * http://www.youtube.com/watch?v=IhE3FitXC8o
 * http://www.youtube.com/watch?v=k5o-i0JMPew
 
-Finally, we love to share EmbedPlus. If you are a plugin developer and wish to integrate these extra YouTube embed features with your own plugin, [contact us](http://www.embedplus.com/aboutcontact.aspx). Contact us if you have new smart features you'd like us to incorporate.
+Finally, we love to share EmbedPlus. If you're a plugin developer and wish to integrate these extra YouTube embed features with your own plugin, [contact us](http://www.embedplus.com/aboutcontact.aspx). Contact us if you have new smart features you'd like us to incorporate.
 
 **Note: If you don't see the extra features on your YouTube embeds, you might have another WordPress-YouTube embed plugin that needs to be deactivated first.**
 
