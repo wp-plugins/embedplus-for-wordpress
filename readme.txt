@@ -27,7 +27,7 @@ Install Advanced YouTube Embed and you and your visitors see the following featu
 
 ...All without having to alter the original video's content. Please see the YouTube embed on our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future YouTube embeds -- even if you use the nifty [oEmbed method](http://codex.wordpress.org/Embeds) of just pasting a YouTube video link on its own line.
 
-There have been a few blog articles that review our plugin. Here's the most recent that we've found: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/)
+There have been a few blog articles that reviewed our plugin. Here's the most recent that we've found: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/)
 
 You can also watch the following videos to see what others have said about our WordPress plugin and any-site YouTube embed wizard:
 
