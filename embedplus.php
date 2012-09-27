@@ -397,7 +397,7 @@ class EmbedPlusOfficialPlugin
             <h3><?php _e("Auto-Embed Settings") ?></h3>
 
             <p>
-        <?php _e("WordPress 2.9 and above automatically converts YouTube URLs (<a href=\"http://codex.wordpress.org/Embeds#In_A_Nutshell\" target=\"_blank\">that are on their own line &raquo;</a>) to actual video embeds. This plugin can make those \"auto-embeds\" use the <a href=\"http://www.embedplus.com\" target=\"_blank\">EmbedPlus</a> player by checking the first option below." . (get_option('embed_autourls') ? "" : " <strong>Make sure that <strong><a href=\"/wp-admin/options-media.php\">Settings &raquo; Media &raquo; Embeds &raquo; Auto-embeds</a></strong> is checked too.</strong>")); ?>
+        <?php _e("WordPress 2.9 and above automatically converts YouTube URLs (<a href=\"http://codex.wordpress.org/Embeds#In_A_Nutshell\" target=\"_blank\">that are on their own line &raquo;</a>) to actual video embeds. This plugin can make those \"auto-embeds\" display the enhanced player if you check the first option below." . (get_option('embed_autourls') ? "" : " <strong>Make sure that <strong><a href=\"/wp-admin/options-media.php\">Settings &raquo; Media &raquo; Embeds &raquo; Auto-embeds</a></strong> is checked too.</strong>")); ?>
             </p>
             <p>
                 <input name="<?php echo self::$opt_enhance_youtube; ?>" id="<?php echo self::$opt_enhance_youtube; ?>" <?php checked($opt_enhance_youtube_val, 1); ?> type="checkbox" class="checkbox">
@@ -405,7 +405,7 @@ class EmbedPlusOfficialPlugin
             </p>
             <p>
                 <input name="<?php echo self::$opt_show_react; ?>" id="<?php echo self::$opt_show_react; ?>" <?php checked($opt_show_react_val, 1); ?> type="checkbox" class="checkbox">
-                <label for="<?php echo self::$opt_show_react; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> <?php _e('Allow visitors to see Real-time Reactions') ?></label>            
+                <label for="<?php echo self::$opt_show_react; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> <?php _e('Display Social Media Reactions (This is recommended so your visitors can see web discussions for each video right from your blog)') ?></label>            
             </p>
             <p>
                 <input name="<?php echo self::$opt_sweetspot; ?>" id="<?php echo self::$opt_sweetspot; ?>" <?php checked($opt_sweetspot_val, 1); ?> type="checkbox" class="checkbox">
@@ -433,6 +433,9 @@ class EmbedPlusOfficialPlugin
         </form>
 
         <h3><?php _e("EmbedPlus Wizard") ?></h3>
+        <p>
+            If you want make further customizations, use the wizard below and you'll get the appropriate code to embed in the end. Otherwise, you can just click save changes above and begin embedding videos.
+        </p>
         <p>
             If your blog's rich-text editor is enabled, you have access to a new EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>). 
             If you use the HTML editor instead, you can use the wizard here below, or go to our <a href="http://www.embedplus.com/embedcode.aspx" target="_blank">website</a>.
