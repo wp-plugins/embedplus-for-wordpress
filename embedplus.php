@@ -209,7 +209,7 @@ class EmbedPlusOfficialPlugin
         $epreq['vars'] .= 'react=' . get_option(self::$opt_show_react) . '&amp;';
         $epreq['vars'] .= 'sweetspot=' . get_option(self::$opt_sweetspot) . '&amp;';
 
-        $epreq['vars'] .= 'rs=w&amp;';
+        //$epreq['vars'] .= 'rs=w&amp;';
 
         return self::get_embed_code($epreq);
     }
@@ -289,7 +289,7 @@ class EmbedPlusOfficialPlugin
                 '<param value="transparent" name="wmode" />' . chr(13) .
                 '<param value="always" name="allowscriptaccess" />' . chr(13) .
                 '<param value="true" name="allowFullScreen" />' . chr(13) .
-                '<param name="flashvars" value="~vars" />' . chr(13) .
+                '<param name="flashvars" value="~vars&amp;rs=w" />' . chr(13) .
                 $epoutputstandard . chr(13) .
                 '</object>' . chr(13) .
                 '<!--[if lte IE 6]> <style type="text/css">.cantembedplus{display:none;}</style><![endif]-->';
