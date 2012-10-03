@@ -119,7 +119,7 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 
 == Changelog ==
 
-= Advanced YouTube Embed 2.1.6 =
+= Advanced YouTube Embed 2.1.7 =
 Improved regex matching.
 
 = Advanced YouTube Embed 2.1.6 =
