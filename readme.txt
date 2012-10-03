@@ -6,14 +6,14 @@ Author URI: http://www.embedplus.com
 Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin
 Requires at least: 2.6
 Tested up to: 3.4.2
-Stable tag: 2.1.6
+Stable tag: 2.1.7
 License: GPLv3 or later
 
 A YouTube embed plugin for WordPress. The smart features of this plugin enhance the playback and engagement of each YouTube embed in your blog.
 
 == Description ==
 
-Advanced YouTube Embed is a plugin that enhances the videos you embed in your WordPress blog. It's a feature-rich and smart upgrade to the standard YouTube embed. **By just pasting a YouTube link,** you'll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions beyond YouTube.com comments (e.g., Google+ and Reddit). Use the plugin to **automatically** enhance the viewer experience and engagement around the YouTube embeds you add to your blog, for **free**.
+Advanced YouTube Embed is a plugin that enhances the videos you embed in your WordPress blog. It's a feature-rich and smart upgrade to the standard YouTube embed. **By just pasting a YouTube link,** you'll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, and video reactions beyond YouTube.com comments (e.g., Google+, Reddit, and Twitter). Use the plugin to **automatically** enhance the viewer experience and engagement around the YouTube embeds you add to your blog, for **free**.
 
 Install Advanced YouTube Embed and you and your visitors see the following features for each YouTube embed:
 
@@ -27,7 +27,7 @@ Install Advanced YouTube Embed and you and your visitors see the following featu
 
 ...All without having to alter the original video's content. Please see the YouTube embed on our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future YouTube embeds -- even if you use the nifty [oEmbed method](http://codex.wordpress.org/Embeds) of just pasting a YouTube video link on its own line.
 
-There have been a few blog articles that review our plugin. Here's the most recent that we've found: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/)
+There have been a few blog articles that reviewed our plugin. Here's the most recent that we've found: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/)
 
 You can also watch the following videos to see what others have said about our WordPress plugin and any-site YouTube embed wizard:
 
@@ -120,6 +120,9 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 == Changelog ==
 
 = Advanced YouTube Embed 2.1.6 =
+Improved regex matching.
+
+= Advanced YouTube Embed 2.1.6 =
 Adds RTL support.
 
 = Advanced YouTube Embed 2.1.4 =
@@ -156,7 +159,7 @@ First version of the plugin released for YouTube embeds.
 
 == Other Notes ==
 
-Besides checking out our homepage demo, you can see the plugin at work for hundreds of YouTube videos in different categories below.  We've included feeds like most popular and most discussed to hopefully illustrate our plugin's social features like Reactions.  These videos are updated daily based on YouTube statistics.
+Besides checking out our homepage demo, you can see the plugin at work for hundreds of YouTube videos in the different categories below.  We've included feeds like most popular and most discussed to hopefully illustrate our plugin's social features like Reactions.  These videos are updated daily based on YouTube statistics.
 
 = Most Popular =
 
