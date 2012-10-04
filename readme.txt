@@ -162,7 +162,7 @@ First version of the plugin released for YouTube embeds.
 
 == Other Notes ==
 
-Besides checking out our homepage demo, you can see the plugin at work for hundreds of YouTube videos in different categories below.  We've included feeds like most popular and most discussed to hopefully illustrate our plugin's social features like Reactions.  These videos are updated daily based on YouTube statistics.
+Besides checking out our homepage demo, you can see the plugin at work for hundreds of YouTube videos in the different categories below.  We've included feeds like most popular and most discussed to hopefully illustrate our plugin's social features like Reactions.  These videos are updated daily based on YouTube statistics.
 
 = Most Popular =
 
