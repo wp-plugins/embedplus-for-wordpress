@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: Advanced YouTube Embed Plugin by Embed Plus
+  Plugin Name: Advanced YouTube Embed Plugin - Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embeds enhanced for WordPress. The smart features of this plugin enhance the playback and engagement of each YouTube embed in your blog.
   Version: 2.1.8
