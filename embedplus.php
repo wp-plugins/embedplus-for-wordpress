@@ -2,8 +2,8 @@
 /*
   Plugin Name: Advanced YouTube Embed Plugin - Embed Plus
   Plugin URI: http://www.embedplus.com
-  Description: YouTube embeds enhanced for WordPress. The smart features of this plugin enhance the playback and engagement of each YouTube embed in your blog.
-  Version: 2.1.8
+  Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
+  Version: 2.1.9
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -61,8 +61,12 @@ class EmbedPlusOfficialPlugin
         }
         else
         {
-            if ($do_youtube2embedplus == 1 && $do_autoembeds)
+            if ($do_youtube2embedplus == 1)
             {
+                if ($do_autoembeds == 0)
+                {
+                    update_option('embed_autourls', 1);
+                }
                 self::do_yt_ep();
             }
         }
@@ -81,6 +85,14 @@ class EmbedPlusOfficialPlugin
             // allow shortcode in widgets
 
             add_filter('widget_text', 'do_shortcode', 11);
+        }
+    }
+
+    static function install()
+    {
+        if (self::wp_above_version('2.9'))
+        {
+            update_option('embed_autourls', 1);
         }
     }
 
@@ -310,11 +322,11 @@ class EmbedPlusOfficialPlugin
                 '</object>' . chr(13) .
                 '<!--[if lte IE 6]> <style type="text/css">.cantembedplus{display:none;}</style><![endif]-->';
 
-		$ua = $_SERVER['HTTP_USER_AGENT'];
+        $ua = $_SERVER['HTTP_USER_AGENT'];
         if (strlen($epvars) == 0 ||
-		stripos($ua, 'iPhone') !== false ||
-		stripos($ua, 'iPad') !== false ||
-		stripos($ua, 'iPod') !== false)
+                stripos($ua, 'iPhone') !== false ||
+                stripos($ua, 'iPad') !== false ||
+                stripos($ua, 'iPod') !== false)
         {// if no embedplus vars for some reason, or if iOS
             $epoutput = $epoutputstandard;
         }
@@ -464,7 +476,7 @@ class EmbedPlusOfficialPlugin
         <iframe style="-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;" src="http://www.embedplus.com/wpembedcode.aspx?blogwidth=<?php
         self::init_dimensions();
         echo self::$defaultwidth ? self::$defaultwidth : ""
-        ?>" width="950" height="1200"/>
+            ?>" width="950" height="1200"/>
         </div>
 
         <?php
@@ -546,6 +558,8 @@ class Add_new_tinymce_btn
 }
 
 //class end
+
+register_activation_hook(__FILE__, array('EmbedPlusOfficialPlugin', 'install'));
 
 $embedplusoplg = new EmbedPlusOfficialPlugin();
 $embedplusmce = new Add_new_tinymce_btn('|', 'embedpluswiz', plugins_url() . '/embedplus-for-wordpress/js/embedplus_mce.js.php');
