@@ -3,7 +3,7 @@
   Plugin Name: Advanced YouTube Embed Plugin - Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
-  Version: 2.1.9
+  Version: 2.2.0
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -38,6 +38,7 @@ class EmbedPlusOfficialPlugin
     public static $defaultwidth = null;
     public static $opt_enhance_youtube = 'embedplusopt_enhance_youtube';
     public static $opt_show_react = 'embedplusopt_show_react';
+    public static $opt_auto_hd = 'embedplusopt_auto_hd';
     public static $opt_sweetspot = 'embedplusopt_sweetspot';
     public static $ytregex = '@^\s*https?://(?:www\.)?(?:youtube.com/watch\?|youtu.be/)([^\s"]+)\s*$@im';
 
@@ -53,6 +54,7 @@ class EmbedPlusOfficialPlugin
             update_option(self::$opt_enhance_youtube, 1);
             update_option(self::$opt_show_react, 1);
             update_option(self::$opt_sweetspot, 1);
+            update_option(self::$opt_auto_hd, 0);
 
             if ($do_autoembeds)
             {
@@ -226,7 +228,9 @@ class EmbedPlusOfficialPlugin
         $epreq['vars'] .= 'width=' . $realwidth . '&amp;';
         $epreq['width'] = $realwidth;
 
-        $realhd = $ytkvp['hd'] ? 'hd=' . intval($ytkvp['hd']) . '&amp;' : '';
+        
+        $realhd = intval(get_option(self::$opt_auto_hd, '0')) == 1 ? 'hd=1&amp;' : '';
+        $realhd = $ytkvp['hd'] ? 'hd=' . intval($ytkvp['hd']) . '&amp;' : $realhd;
         $epreq['vars'] .= $realhd;
         $epreq['standard'] .= $realhd;
 
@@ -380,6 +384,7 @@ class EmbedPlusOfficialPlugin
         // Read in existing option values from database
         $opt_enhance_youtube_val = get_option(self::$opt_enhance_youtube);
         $opt_show_react_val = get_option(self::$opt_show_react);
+        $opt_auto_hd_val = get_option(self::$opt_auto_hd);
         $opt_sweetspot_val = get_option(self::$opt_sweetspot);
 
         // See if the user has posted us some information
@@ -389,11 +394,13 @@ class EmbedPlusOfficialPlugin
             // Read their posted values
             $opt_enhance_youtube_val = $_POST[self::$opt_enhance_youtube] == (true || 'on') ? 1 : 0;
             $opt_show_react_val = $_POST[self::$opt_show_react] == (true || 'on') ? 1 : 0;
+            $opt_auto_hd_val = $_POST[self::$opt_auto_hd] == (true || 'on') ? 1 : 0;
             $opt_sweetspot_val = $_POST[self::$opt_sweetspot] == (true || 'on') ? 1 : 0;
 
             // Save the posted value in the database
             update_option(self::$opt_enhance_youtube, $opt_enhance_youtube_val);
             update_option(self::$opt_show_react, $opt_show_react_val);
+            update_option(self::$opt_auto_hd, $opt_auto_hd_val);
             update_option(self::$opt_sweetspot, $opt_sweetspot_val);
 
             // Put a settings updated message on the screen
@@ -436,12 +443,16 @@ class EmbedPlusOfficialPlugin
                 <label for="<?php echo self::$opt_enhance_youtube; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/> <?php _e('Automatically enhance all your YouTube embeds') ?></label>
             </p>
             <p>
-                <input name="<?php echo self::$opt_show_react; ?>" id="<?php echo self::$opt_show_react; ?>" <?php checked($opt_show_react_val, 1); ?> type="checkbox" class="checkbox">
-                <label for="<?php echo self::$opt_show_react; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> <?php _e('Display Social Media Reactions (This is recommended so your visitors can see web discussions for each video right from your blog)') ?></label>            
+                <input name="<?php echo self::$opt_auto_hd; ?>" id="<?php echo self::$opt_auto_hd; ?>" <?php checked($opt_auto_hd_val, 1); ?> type="checkbox" class="checkbox">
+                <label for="<?php echo self::$opt_auto_hd; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hd.jpg"/> <?php _e('Automatically make all videos HD quality (when possible).') ?></label>
             </p>
             <p>
                 <input name="<?php echo self::$opt_sweetspot; ?>" id="<?php echo self::$opt_sweetspot; ?>" <?php checked($opt_sweetspot_val, 1); ?> type="checkbox" class="checkbox">
                 <label for="<?php echo self::$opt_sweetspot; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/ssm.jpg"/> <?php _e('Enable <a href="http://www.embedplus.com/whysearchhere.aspx" target="_blank">Sweetspot Marking</a> for the next/previous buttons') ?></label>            
+            </p>
+            <p>
+                <input name="<?php echo self::$opt_show_react; ?>" id="<?php echo self::$opt_show_react; ?>" <?php checked($opt_show_react_val, 1); ?> type="checkbox" class="checkbox">
+                <label for="<?php echo self::$opt_show_react; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> <?php _e('Display Social Media Reactions (This is recommended so your visitors can see web discussions for each video right from your blog)') ?></label>            
             </p>
 
             <p>
@@ -453,7 +464,7 @@ class EmbedPlusOfficialPlugin
             _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em> Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
             _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
             _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
-            //_e("<li><strong>hd - If set to 1, this makes the video play in HD quality if available.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
+            _e("<li><strong>hd - If set to 1, this makes the video play in HD quality when possible.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
             _e('</ul>');
             ?>
 
@@ -501,8 +512,8 @@ class Add_new_tinymce_btn
     {
         $this->btn_arr = array("Seperator" => $seperator, "Name" => $btn_name);
         $this->js_file = $javascrip_location;
-        add_action('init', array(&$this, 'add_tinymce_button'));
-        add_filter('tiny_mce_version', array(&$this, 'refresh_mce_version'));
+        add_action('init', array($this, 'add_tinymce_button'));
+        add_filter('tiny_mce_version', array($this, 'refresh_mce_version'));
     }
 
     /*
@@ -517,9 +528,9 @@ class Add_new_tinymce_btn
         if (get_user_option('rich_editing') == 'true')
         {
             //the function that adds the javascript
-            add_filter('mce_external_plugins', array(&$this, 'add_new_tinymce_plugin'));
+            add_filter('mce_external_plugins', array($this, 'add_new_tinymce_plugin'));
             //adds the button to the tinymce button array
-            add_filter('mce_buttons', array(&$this, 'register_new_button'));
+            add_filter('mce_buttons', array($this, 'register_new_button'));
         }
     }
 
