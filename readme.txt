@@ -34,6 +34,8 @@ Finally, we love to share EmbedPlus. If you're a plugin developer and wish to in
 
 **Note: If you don't see the extra features on your YouTube embeds, you might have another WordPress-YouTube embed plugin that needs to be deactivated first.**
 
+Hear about major upcoming announcements and feature updates by [signing up here](http://eepurl.com/tpncn).
+
 == Installation ==
 
 1. Install the plugin using the plugin installer within WordPress (or, upload the `embedplus-for-wordpress` folder to the `/wp-content/plugins/` directory)
@@ -156,6 +158,8 @@ Fixes an obscure annotation scenario of the plugin.
 First version of the plugin released for YouTube embeds.
 
 == Other Notes ==
+
+Hear about major upcoming announcements and feature updates by [signing up here](http://eepurl.com/tpncn).
 
 Besides checking out our homepage demo, you can see the plugin at work for hundreds of YouTube videos in the different categories below.  We've included feeds like most popular and most discussed to hopefully illustrate our plugin's social features like Reactions.  These videos are updated daily based on YouTube statistics.
 
