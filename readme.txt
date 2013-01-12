@@ -6,7 +6,7 @@ Author URI: http://www.embedplus.com
 Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
 Requires at least: 2.6
 Tested up to: 3.5
-Stable tag: 2.2.0
+Stable tag: 2.3.0
 License: GPLv3 or later
 
 YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
@@ -109,6 +109,9 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 8. Advance YouTube Embed Screenshot 8: Here's the plugin executing the optional Sweet Spot Marking algorithm to create automatic "social chapters" for a given YouTube embed.
 
 == Changelog ==
+
+= Advanced YouTube Embed 2.3.0 =
+Improved iOS support.
 
 = Advanced YouTube Embed 2.2.0 =
 Improved HD support.

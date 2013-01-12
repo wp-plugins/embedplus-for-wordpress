@@ -3,14 +3,14 @@
   Plugin Name: Advanced YouTube Embed Plugin - Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
-  Version: 2.2.0
+  Version: 2.3.0
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
 
 /*
   Advanced YouTube Embed Plugin by Embed Plus
-  Copyright (C) 2011 EmbedPlus.com
+  Copyright (C) 2013 EmbedPlus.com
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -296,23 +296,21 @@ class EmbedPlusOfficialPlugin
         }
 
         $epvars = preg_replace('/\s/', '', $epvars);
+        $epvars = preg_replace('/¬/', '&not', $epvars);
+        
+        if ($epstandard == "")
+        {
+            $epstandard = "http://www.youtube.com/embed/";
+            $ytidmatch = array();
+            preg_match('/ytid=([^&]+)&/i', $epvars, $ytidmatch);
+            $epstandard .= $ytidmatch[1];
+        }
+        
         $epstandard = preg_replace('/\s/', '', $epstandard);
 
         $epstandard = preg_replace('/youtube.com\/v\//i', 'youtube.com/embed/', $epstandard);
-
-        if (preg_match('/youtube.com\/v/i', $epstandard))
-        {
-            $epoutputstandard = '<object class="cantembedplus" height="~height" width="~width" type="application/x-shockwave-flash" data="~standard">' . chr(13) .
-                    '<param name="movie" value="~standard" />' . chr(13) .
-                    '<param name="allowScriptAccess" value="always" />' . chr(13) .
-                    '<param name="allowFullScreen" value="true" />' . chr(13) .
-                    '<param name="wmode" value="transparent" />' . chr(13) .
-                    '</object>' . chr(13);
-        }
-        else
-        {
             $epoutputstandard = '<iframe class="cantembedplus" title="YouTube video player" width="~width" height="~height" src="~standard" frameborder="0" allowfullscreen></iframe>';
-        }
+        
 
         $epoutput =
                 '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="http://getembedplus.com/embedplus.swf" id="' . $epobjid . '">' . chr(13) .
