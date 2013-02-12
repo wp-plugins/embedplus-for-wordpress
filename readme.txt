@@ -5,8 +5,8 @@ Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
 Requires at least: 2.6
-Tested up to: 3.5
-Stable tag: 2.3.0
+Tested up to: 3.5.1
+Stable tag: 2.4.0
 License: GPLv3 or later
 
 YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
@@ -25,6 +25,7 @@ Install Advanced YouTube Embed and you and your visitors see the following featu
 * Looping / Auto Replay - Repeat a scene you like or the whole video over and over.
 * Other DVD-like controls
 * Auto HD
+* User-friendly Analytics Dashboard - Learn how much your visitors are actually watching the videos you post, and more.
 
 ...All without having to alter the original video's content. Please see the YouTube embed on our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future YouTube embeds -- even if you use the nifty [oEmbed method](http://codex.wordpress.org/Embeds) of just [pasting a YouTube video link on its own line](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg?r=618112).
 
@@ -42,7 +43,8 @@ Hear about major upcoming announcements and feature updates by [signing up here]
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 1. [YouTube links on their own line](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg?r=618112) will automatically be upgraded into EmbedPlus videos.
 1. You can also now begin pasting EmbedPlus shortcodes within your WordPress editor. These shortcodes encapsulate customizations that you might wish to make. A new button in your post editor will appear that will start a wizard to guide you through making these customizations and getting the shortcode (see Screenshots).
-1. View plugin settings under Settings > EmbedPlus.
+1. View plugin settings and wizard under the EmbedPlus admin tab.
+1. Are you interested in learning how much your visitors are actually watching the videos you post? We suggest signing up now for this [popular video analytics feature](https://www.embedplus.com/dashboard/wordpress-video-analytics-seo.aspx) to start getting data today.
 1. **Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.**
 
 Some really smart people have also written about installation and usage: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/).
@@ -107,8 +109,12 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 6. Advance YouTube Embed Screenshot 6: An example unobtrusive annotation, that you can add to any YouTube embed.
 7. Advance YouTube Embed Screenshot 7: Here's another annotation example. It shows that you can add your own links to a YouTube embed. This one is a call-to-action that links to our MailChimp list signup.
 8. Advance YouTube Embed Screenshot 8: Here's the plugin executing the optional Sweet Spot Marking algorithm to create automatic "social chapters" for a given YouTube embed.
+9. Advance YouTube Embed Screenshot 9: Are you interested in learning how much your visitors are actually watching the videos you post? We suggest signing up now for this popular analytics feature to start getting data today.
 
 == Changelog ==
+
+= Advanced YouTube Embed 2.4.0 =
+Improved menu access for embed settings/wizard and analytics.
 
 = Advanced YouTube Embed 2.3.0 =
 Improved iOS support.

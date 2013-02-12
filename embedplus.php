@@ -3,7 +3,7 @@
   Plugin Name: Advanced YouTube Embed Plugin - Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
-  Version: 2.3.0
+  Version: 2.4.0
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -228,7 +228,7 @@ class EmbedPlusOfficialPlugin
         $epreq['vars'] .= 'width=' . $realwidth . '&amp;';
         $epreq['width'] = $realwidth;
 
-        
+
         $realhd = intval(get_option(self::$opt_auto_hd, '0')) == 1 ? 'hd=1&amp;' : '';
         $realhd = $ytkvp['hd'] ? 'hd=' . intval($ytkvp['hd']) . '&amp;' : $realhd;
         $epreq['vars'] .= $realhd;
@@ -297,7 +297,7 @@ class EmbedPlusOfficialPlugin
 
         $epvars = preg_replace('/\s/', '', $epvars);
         $epvars = preg_replace('/¬/', '&not', $epvars);
-        
+
         if ($epstandard == "")
         {
             $epstandard = "http://www.youtube.com/embed/";
@@ -305,12 +305,12 @@ class EmbedPlusOfficialPlugin
             preg_match('/ytid=([^&]+)&/i', $epvars, $ytidmatch);
             $epstandard .= $ytidmatch[1];
         }
-        
+
         $epstandard = preg_replace('/\s/', '', $epstandard);
 
         $epstandard = preg_replace('/youtube.com\/v\//i', 'youtube.com/embed/', $epstandard);
-            $epoutputstandard = '<iframe class="cantembedplus" title="YouTube video player" width="~width" height="~height" src="~standard" frameborder="0" allowfullscreen></iframe>';
-        
+        $epoutputstandard = '<iframe class="cantembedplus" title="YouTube video player" width="~width" height="~height" src="~standard" frameborder="0" allowfullscreen></iframe>';
+
 
         $epoutput =
                 '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="http://getembedplus.com/embedplus.swf" id="' . $epobjid . '">' . chr(13) .
@@ -365,9 +365,41 @@ class EmbedPlusOfficialPlugin
 
     public static function embedplus_plugin_menu()
     {
+        add_menu_page('EmbedPlus Settings', 'EmbedPlus', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options', plugins_url('images/epicon.png', __FILE__), '10.00392854349');
+        add_menu_page('EmbedPlus Video Analytics Dashboard', 'My YouTube Stats', 'manage_options', 'embedplus-video-analytics-dashboard', 'EmbedPlusOfficialPlugin::epstats_show_options', plugins_url('images/epstats16.png', __FILE__), '10.00492854349');
         add_options_page('EmbedPlus Settings', 'EmbedPlus', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options');
     }
 
+    public static function epstats_show_options()
+    {
+
+        if (!current_user_can('manage_options'))
+        {
+            wp_die(__('You do not have sufficient permissions to access this page.'));
+        }
+
+        // Now display the settings editing screen
+        ?>
+        <div class="wrap">
+            <?php
+            // header
+
+            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus Video Analytics Dashboard') . "</h2>";
+
+            // settings form
+            ?>
+            <style type="text/css">
+                .epicon { width: 20px; height: 20px; vertical-align: middle; padding-right: 5px;}
+                .epindent {padding-left: 25px;}
+            </style>
+                <br>
+                <iframe style="-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;" src="http://www.embedplus.com/dashboard/wordpress-video-analytics-seo.aspx?domain=<?php
+                  echo (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ""); ?>" width="1030" height="1500" scrolling="auto"/>
+        </div>
+        <?php
+    }
+
+    
     public static function embedplus_show_options()
     {
 
@@ -410,84 +442,84 @@ class EmbedPlusOfficialPlugin
 
 
         // Now display the settings editing screen
-
-        echo '<div class="wrap">';
-
-        // header
-
-        echo "<h2>" . __('EmbedPlus Settings') . "</h2>";
-
-        // settings form
         ?>
-        <style type="text/css">
-            .epicon { width: 20px; height: 20px; vertical-align: middle; padding-right: 5px;}
-            #epform p { line-height: 20px; }
-            .epindent {margin-left: 45px;}
-            .epsmalltext {font-style: italic;}
-            #epform ul li {margin-left: 30px; list-style: disc outside none;}
-
-        </style>
-
-        <form name="form1" method="post" action="" id="epform">
-            <input type="hidden" name="<?php echo $embedplus_submitted; ?>" value="Y">
-
-            <h3><?php _e("Auto-Embed Settings") ?></h3>
-
-            <p>
-                <?php _e("WordPress 2.9 and above automatically converts YouTube URLs (<a href=\"http://codex.wordpress.org/Embeds#In_A_Nutshell\" target=\"_blank\">that are on their own line &raquo;</a>) to actual video embeds. This plugin can make those \"auto-embeds\" display the enhanced player if you check the first option below." . (get_option('embed_autourls') ? "" : " <strong>Make sure that <strong><a href=\"/wp-admin/options-media.php\">Settings &raquo; Media &raquo; Embeds &raquo; Auto-embeds</a></strong> is checked too.</strong>")); ?>
-            </p>
-            <p>
-                <input name="<?php echo self::$opt_enhance_youtube; ?>" id="<?php echo self::$opt_enhance_youtube; ?>" <?php checked($opt_enhance_youtube_val, 1); ?> type="checkbox" class="checkbox">
-                <label for="<?php echo self::$opt_enhance_youtube; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/> <?php _e('Automatically enhance all your YouTube embeds') ?></label>
-            </p>
-            <p>
-                <input name="<?php echo self::$opt_auto_hd; ?>" id="<?php echo self::$opt_auto_hd; ?>" <?php checked($opt_auto_hd_val, 1); ?> type="checkbox" class="checkbox">
-                <label for="<?php echo self::$opt_auto_hd; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hd.jpg"/> <?php _e('Automatically make all videos HD quality (when possible).') ?></label>
-            </p>
-            <p>
-                <input name="<?php echo self::$opt_sweetspot; ?>" id="<?php echo self::$opt_sweetspot; ?>" <?php checked($opt_sweetspot_val, 1); ?> type="checkbox" class="checkbox">
-                <label for="<?php echo self::$opt_sweetspot; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/ssm.jpg"/> <?php _e('Enable <a href="http://www.embedplus.com/whysearchhere.aspx" target="_blank">Sweetspot Marking</a> for the next/previous buttons') ?></label>            
-            </p>
-            <p>
-                <input name="<?php echo self::$opt_show_react; ?>" id="<?php echo self::$opt_show_react; ?>" <?php checked($opt_show_react_val, 1); ?> type="checkbox" class="checkbox">
-                <label for="<?php echo self::$opt_show_react; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> <?php _e('Display Social Media Reactions (This is recommended so your visitors can see web discussions for each video right from your blog)') ?></label>            
-            </p>
-
-            <p>
-                <strong><?php _e("Additional URL Options") ?></strong>
-            </p>
+        <div class="wrap">
             <?php
-            _e("<p>If you are using the auto-embed feature above, the following optional values can be added to the YouTube URLs to quickly override default behavior. Each option should begin with '&'</p>");
-            _e('<ul>');
-            _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em> Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
-            _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
-            _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
-            _e("<li><strong>hd - If set to 1, this makes the video play in HD quality when possible.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
-            _e('</ul>');
+            // header
+
+            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus Settings') . "</h2>";
+
+            // settings form
             ?>
+            <style type="text/css">
+                .epicon { width: 20px; height: 20px; vertical-align: middle; padding-right: 5px;}
+                #epform p { line-height: 20px; }
+                .epindent {padding-left: 25px;}
+                .epsmalltext {font-style: italic;}
+                #epform ul li {margin-left: 30px; list-style: disc outside none;}
 
-            <p class="submit">
-                <input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
-            </p>
+            </style>
+            <div class="epindent">
+                <form name="form1" method="post" action="" id="epform">
+                    <input type="hidden" name="<?php echo $embedplus_submitted; ?>" value="Y">
+
+                    <h3><?php _e("Auto-Embed Settings") ?></h3>
+
+                    <p>
+                        <?php _e("WordPress 2.9 and above automatically converts YouTube URLs (<a href=\"http://codex.wordpress.org/Embeds#In_A_Nutshell\" target=\"_blank\">that are on their own line &raquo;</a>) to actual video embeds. This plugin can make those \"auto-embeds\" display the enhanced player if you check the first option below." . (get_option('embed_autourls') ? "" : " <strong>Make sure that <strong><a href=\"/wp-admin/options-media.php\">Settings &raquo; Media &raquo; Embeds &raquo; Auto-embeds</a></strong> is checked too.</strong>")); ?>
+                    </p>
+                    <p>
+                        <input name="<?php echo self::$opt_enhance_youtube; ?>" id="<?php echo self::$opt_enhance_youtube; ?>" <?php checked($opt_enhance_youtube_val, 1); ?> type="checkbox" class="checkbox">
+                        <label for="<?php echo self::$opt_enhance_youtube; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/> <?php _e('Automatically enhance all your YouTube embeds') ?></label>
+                    </p>
+                    <p>
+                        <input name="<?php echo self::$opt_auto_hd; ?>" id="<?php echo self::$opt_auto_hd; ?>" <?php checked($opt_auto_hd_val, 1); ?> type="checkbox" class="checkbox">
+                        <label for="<?php echo self::$opt_auto_hd; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hd.jpg"/> <?php _e('Automatically make all videos HD quality (when possible).') ?></label>
+                    </p>
+                    <p>
+                        <input name="<?php echo self::$opt_sweetspot; ?>" id="<?php echo self::$opt_sweetspot; ?>" <?php checked($opt_sweetspot_val, 1); ?> type="checkbox" class="checkbox">
+                        <label for="<?php echo self::$opt_sweetspot; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/ssm.jpg"/> <?php _e('Enable <a href="http://www.embedplus.com/whysearchhere.aspx" target="_blank">Sweetspot Marking</a> for the next/previous buttons') ?></label>            
+                    </p>
+                    <p>
+                        <input name="<?php echo self::$opt_show_react; ?>" id="<?php echo self::$opt_show_react; ?>" <?php checked($opt_show_react_val, 1); ?> type="checkbox" class="checkbox">
+                        <label for="<?php echo self::$opt_show_react; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> <?php _e('Display Social Media Reactions (This is recommended so your visitors can see web discussions for each video right from your blog)') ?></label>            
+                    </p>
+
+                    <p>
+                        <strong><?php _e("Additional URL Options") ?></strong>
+                    </p>
+                    <?php
+                    _e("<p>If you are using the auto-embed feature above, the following optional values can be added to the YouTube URLs to quickly override default behavior. Each option should begin with '&'</p>");
+                    _e('<ul>');
+                    _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em> Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
+                    _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
+                    _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
+                    _e("<li><strong>hd - If set to 1, this makes the video play in HD quality when possible.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
+                    _e('</ul>');
+                    ?>
+
+                    <p class="submit">
+                        <input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+                    </p>
 
 
-        </form>
+                </form>
 
-        <h3><?php _e("EmbedPlus Wizard") ?></h3>
-        <p>
-            If you want make further customizations, use the wizard below and you'll get the appropriate code to embed in the end. Otherwise, you can just click save changes above and begin embedding videos.
-        </p>
-        <p>
-            If your blog's rich-text editor is enabled, you have access to a new EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>). 
-            If you use the HTML editor instead, you can use the wizard here below, or go to our <a href="http://www.embedplus.com/embedcode.aspx" target="_blank">website</a>.
+                <h3><?php _e("EmbedPlus Wizard") ?></h3>
+                <p>
+                    If you want make further customizations, use the wizard below and you'll get the appropriate code to embed in the end. Otherwise, you can just click save changes above and begin embedding videos.
+                </p>
+                <p>
+                    If your blog's rich-text editor is enabled, you have access to a new EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>). 
+                    If you use the HTML editor instead, you can use the wizard here below, or go to our <a href="http://www.embedplus.com/embedcode.aspx" target="_blank">website</a>.
 
-        </p>
-        <iframe style="-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;" src="http://www.embedplus.com/wpembedcode.aspx?blogwidth=<?php
-        self::init_dimensions();
-        echo self::$defaultwidth ? self::$defaultwidth : ""
-            ?>" width="950" height="1200"/>
+                </p>
+                <iframe style="-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;" src="http://www.embedplus.com/wpembedcode.aspx?blogwidth=<?php
+            self::init_dimensions();
+            echo self::$defaultwidth ? self::$defaultwidth : ""
+                    ?>" width="950" height="1200"/>
+            </div>
         </div>
-
         <?php
     }
 
@@ -572,6 +604,7 @@ register_activation_hook(__FILE__, array('EmbedPlusOfficialPlugin', 'install'));
 
 $embedplusoplg = new EmbedPlusOfficialPlugin();
 $embedplusmce = new Add_new_tinymce_btn('|', 'embedpluswiz', plugins_url() . '/embedplus-for-wordpress/js/embedplus_mce.js.php');
+$epstatsmce = new Add_new_tinymce_btn('|', 'embedplusstats', plugins_url() . '/embedplus-for-wordpress/js/embedplusstats_mce.js.php');
 
 if (EmbedPlusOfficialPlugin::wp_above_version('2.9'))
 {
