@@ -39,13 +39,12 @@ catch (Exception $ex)
                 plep.src = url+'/btn_embedpluswiz.png';
                 ed.addButton('embedpluswiz', {
                     title : 'EmbedPlus Shortcode Wizard',
-                    //image : url+'/btn_embedpluswizoff.png',
                     onclick : function(ev) {
                         modalw = Math.round(jQuery(window).width() *.9);
                         modalh = Math.round(jQuery(window).height() *.8);
                         ed.windowManager.open({
                             title : "EmbedPlus Shortcode Wizard",
-                            file : 'http://www.embedplus.com/wpembedcode.aspx?blogwidth=<?php echo $blogwidth ? $blogwidth : "" ?>',
+                            file : 'http://www.embedplus.com/wpembedcode.aspx?blogwidth=<?php echo $blogwidth ? $blogwidth : "" ?>' + '&domain=' + escape(window.location.hostname),
                             width : 950,
                             height : modalh,
                             inline : true,
@@ -66,13 +65,14 @@ catch (Exception $ex)
                 return {
                     longname : "Embedplus Shortcode Wizard",
                     author : 'EmbedPlus',
-                    authorurl : 'http://embedplus.com/',
-                    infourl : 'http://embedplus.com/',
-                    version : "1.0"
+                    authorurl : 'http://www.embedplus.com/',
+                    infourl : 'http://www.embedplus.com/',
+                    version : "2.4.0"
                 };
             }
         });
         tinymce.PluginManager.add('embedpluswiz', tinymce.plugins.Embedpluswiz);
+    
     
     })();
 
