@@ -9,11 +9,11 @@ Tested up to: 3.5.1
 Stable tag: 2.4.0
 License: GPLv3 or later
 
-YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog. With YouTube Analytics!
+YouTube embed plugin. Its smart features enhance the playback and engagement of each YouTube embed. It can now supplement your Google Analytics!
 
 == Description ==
 
-Advanced YouTube Embed is a plugin that enhances the videos you embed in your WordPress blog. It's a feature-rich and smart upgrade to the standard YouTube embed. **[By just pasting a YouTube link](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg?r=618112),** you'll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, video reactions beyond YouTube.com comments (e.g., Google+, Reddit, and Twitter), and user-friendly video analytics support. Use the plugin to **automatically** enhance the viewer experience and engagement around the YouTube embeds you add to your blog, for **free**.
+Advanced YouTube Embed is a plugin that enhances the videos you embed in your WordPress blog. It's a feature-rich and smart upgrade to the standard YouTube embed. **[By just pasting a YouTube link](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg?r=618112),** you'll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, video reactions beyond YouTube.com comments (e.g., Google+, Reddit, and Twitter), and user-friendly video analytics support to supplement Google Analytics. Use the plugin to **automatically** enhance the viewer experience and engagement around the YouTube embeds you add to your blog, for **free**.
 
 Install Advanced YouTube Embed and you and your visitors see the following features for each YouTube embed:
 
