@@ -1,15 +1,15 @@
-=== Advanced YouTube Embed Plugin - Embed Plus ===
+=== Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus ===
 Contributors: embedplus
-Plugin Name: Advanced YouTube Embed Plugin - Embed Plus
+Plugin Name: Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
-Tags: analytics, seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
+Tags: analytics, vlog, vlogging, video blogging, seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
 Requires at least: 2.6
 Tested up to: 3.5.1
 Stable tag: 2.4.0
 License: GPLv3 or later
 
-YouTube embed plugin. Its smart features enhance the playback and engagement of each YouTube embed. It can now supplement your Google Analytics!
+YouTube embed plugin. Smart features to enhance playback and engagement of each YouTube embed and a Google Analytics -like dashboard for view stats!
 
 == Description ==
 
@@ -25,9 +25,15 @@ Install Advanced YouTube Embed and you and your visitors see the following featu
 * Looping / Auto Replay - Repeat a scene you like or the whole video over and over.
 * Other DVD-like controls
 * Auto HD
-* [User-friendly YouTube Analytics Dashboard](https://www.embedplus.com/dashboard/wordpress-video-analytics-seo.aspx) - Learn how much your visitors are actually watching the videos you post, and more. Use it to supplement Google Analytics.
 
 ...All without having to alter the original video's content. Please see the YouTube embed on our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future YouTube embeds -- even if you use the nifty [oEmbed method](http://codex.wordpress.org/Embeds) of just [pasting a YouTube video link on its own line](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg?r=618112).
+
+After installing, you have the option of adding our [user-friendly YouTube Analytics Dashboard](https://www.embedplus.com/dashboard/wordpress-video-analytics-seo.aspx). It can be a great complement to other Google Analytics plugins. Try it and get answers to questions like:
+
+* How much are your visitors actually watching the videos you post?
+* How does the view activity on your site compare to other sites like it?
+* What and when are your best and worst performers?
+* How much do the YouTube videos you embed rely on **your** site for views?
 
 There have been a few blog articles that reviewed our plugin. Here's the most recent that we've found: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/)
 
@@ -44,8 +50,15 @@ Hear about major upcoming announcements and feature updates by [signing up here]
 1. [YouTube links on their own line](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg?r=618112) will automatically be upgraded into EmbedPlus videos.
 1. You can also now begin pasting EmbedPlus shortcodes within your WordPress editor. These shortcodes encapsulate customizations that you might wish to make. A new button in your post editor will appear that will start a wizard to guide you through making these customizations and getting the shortcode (see Screenshots).
 1. View plugin settings and wizard under the EmbedPlus admin tab.
-1. Are you interested in learning how much your visitors are actually watching the videos you post? We suggest signing up now for this [popular video analytics feature](https://www.embedplus.com/dashboard/wordpress-video-analytics-seo.aspx) to start getting data today. Use it to supplement Google Analytics.
-1. **Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.**
+
+After installing, you have the option of adding our [user-friendly YouTube Analytics Dashboard](https://www.embedplus.com/dashboard/wordpress-video-analytics-seo.aspx). It can be a great complement to other Google Analytics plugins. Try it and get answers to questions like:
+
+* How much are your visitors actually watching the videos you post?
+* How does the view activity on your site compare to other sites like it?
+* What and when are your best and worst performers?
+* How much do the YouTube videos you embed rely on **your** site for views?
+
+**Note: If you don't see the extra features on your YouTube embeds, you might have another YouTube-WordPress plugin that needs to be deactivated first.**
 
 Some really smart people have also written about installation and usage: [WP Nuggets on EmbedPlus](http://wpnuggets.com/wp-plugin-review/embedplus/).
 
@@ -58,42 +71,42 @@ And we'll conclude with some ASCII art :D
    / _ \ / _  \ \ / / _  | '_ \ / __/ _ \/ _  |
   / ___ \ (_| |\ V / (_| | | | | (__  __/ (_| |
  /_/   \_\__,_| \_/ \__,_|_| |_|\___\___|\__,_|
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
  __   __         _____      _          
  \ \ / /__  _   |_   _|   _| |__   ___ 
   \ V / _ \| | | || || | | | '_ \ / _ \
    | | (_) | |_| || || |_| | |_) |  __/
    |_|\___/ \__,_||_| \__,_|_.__/ \___|
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
   _____           _              _ 
  | ____|_ __ ___ | |__   ___  __| |
  |  _| | '_   _ \| '_ \ / _ \/ _  |
  | |___| | | | | | |_) |  __/ (_| |
  |_____|_| |_| |_|_.__/ \___|\__,_|
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
   ____          _____           _              _ ____  _           
  | __ ) _   _  | ____|_ __ ___ | |__   ___  __| |  _ \| |_   _ ___ 
  |  _ \| | | | |  _| | '_   _ \| '_ \ / _ \/ _  | |_) | | | | / __|
  | |_) | |_| | | |___| | | | | | |_) |  __/ (_| |  __/| | |_| \__ \
  |____/ \__, | |_____|_| |_| |_|_.__/ \___|\__,_|_|   |_|\__,_|___/
         |___/                                                      
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
-advanced youtube embed advanced youtube embed advanced youtube embed
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
 `
 
 = Contact =
@@ -114,7 +127,7 @@ advanced youtube embed advanced youtube embed advanced youtube embed
 == Changelog ==
 
 = Advanced YouTube Embed 2.4.0 =
-Improved menu access for embed settings/wizard and video analytics.
+Improved menu access for embed settings/wizard and google analytics -like view stats.
 
 = Advanced YouTube Embed 2.3.0 =
 Improved iOS support.
@@ -170,7 +183,7 @@ First version of the plugin released for YouTube embeds.
 
 Hear about major upcoming announcements and feature updates by [signing up here](http://eepurl.com/tpncn).
 
-Besides checking out our homepage demo, you can see the plugin at work for hundreds of YouTube videos in the different categories below.  We've included feeds like most popular and most discussed to hopefully illustrate our plugin's social features like Reactions.  These videos are updated daily based on YouTube statistics.
+Besides checking out our homepage demo, you can see the plugin at work for hundreds of YouTube videos in the different categories below. Here's a feed dump of the most most popular and most discussed to hopefully illustrate our plugin's social features like Reactions.  These videos are updated daily based on YouTube statistics.
 
 = Most Popular =
 
@@ -483,53 +496,3 @@ Besides checking out our homepage demo, you can see the plugin at work for hundr
 * youtube-embed-plugin most-shared-48  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=48)
 * youtube-embed-plugin most-shared-49  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=49)
 * youtube-embed-plugin most-shared-50  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=50)
-* youtube-embed-plugin most-shared-51  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=51)
-* youtube-embed-plugin most-shared-52  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=52)
-* youtube-embed-plugin most-shared-53  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=53)
-* youtube-embed-plugin most-shared-54  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=54)
-* youtube-embed-plugin most-shared-55  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=55)
-* youtube-embed-plugin most-shared-56  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=56)
-* youtube-embed-plugin most-shared-57  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=57)
-* youtube-embed-plugin most-shared-58  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=58)
-* youtube-embed-plugin most-shared-59  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=59)
-* youtube-embed-plugin most-shared-60  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=60)
-* youtube-embed-plugin most-shared-61  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=61)
-* youtube-embed-plugin most-shared-62  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=62)
-* youtube-embed-plugin most-shared-63  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=63)
-* youtube-embed-plugin most-shared-64  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=64)
-* youtube-embed-plugin most-shared-65  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=65)
-* youtube-embed-plugin most-shared-66  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=66)
-* youtube-embed-plugin most-shared-67  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=67)
-* youtube-embed-plugin most-shared-68  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=68)
-* youtube-embed-plugin most-shared-69  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=69)
-* youtube-embed-plugin most-shared-70  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=70)
-* youtube-embed-plugin most-shared-71  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=71)
-* youtube-embed-plugin most-shared-72  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=72)
-* youtube-embed-plugin most-shared-73  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=73)
-* youtube-embed-plugin most-shared-74  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=74)
-* youtube-embed-plugin most-shared-75  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=75)
-* youtube-embed-plugin most-shared-76  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=76)
-* youtube-embed-plugin most-shared-77  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=77)
-* youtube-embed-plugin most-shared-78  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=78)
-* youtube-embed-plugin most-shared-79  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=79)
-* youtube-embed-plugin most-shared-80  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=80)
-* youtube-embed-plugin most-shared-81  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=81)
-* youtube-embed-plugin most-shared-82  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=82)
-* youtube-embed-plugin most-shared-83  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=83)
-* youtube-embed-plugin most-shared-84  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=84)
-* youtube-embed-plugin most-shared-85  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=85)
-* youtube-embed-plugin most-shared-86  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=86)
-* youtube-embed-plugin most-shared-87  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=87)
-* youtube-embed-plugin most-shared-88  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=88)
-* youtube-embed-plugin most-shared-89  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=89)
-* youtube-embed-plugin most-shared-90  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=90)
-* youtube-embed-plugin most-shared-91  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=91)
-* youtube-embed-plugin most-shared-92  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=92)
-* youtube-embed-plugin most-shared-93  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=93)
-* youtube-embed-plugin most-shared-94  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=94)
-* youtube-embed-plugin most-shared-95  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=95)
-* youtube-embed-plugin most-shared-96  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=96)
-* youtube-embed-plugin most-shared-97  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=97)
-* youtube-embed-plugin most-shared-98  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=98)
-* youtube-embed-plugin most-shared-99  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=99)
-* youtube-embed-plugin most-shared-100  [view](http://www.embedplus.com/youtube-embed-shortcode-plugin/video.aspx?most-shared=100)
