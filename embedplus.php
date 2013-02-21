@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: Advanced YouTube Embed Plugin - Embed Plus
+  Plugin Name: Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
   Version: 2.4.0
