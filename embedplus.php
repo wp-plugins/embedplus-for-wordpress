@@ -3,7 +3,7 @@
   Plugin Name: Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
-  Version: 2.4.0
+  Version: 2.5.0
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -28,10 +28,12 @@
  */
 
 //define('WP_DEBUG', true);
-
+////////////////////////////////////////////////////////////////////////////// next: optomize options
 class EmbedPlusOfficialPlugin
 {
 
+    public static $version = '2.5';
+    public static $opt_version = 'embedplusopt_version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
     public static $defaultheight = null;
@@ -392,14 +394,12 @@ class EmbedPlusOfficialPlugin
                 .epicon { width: 20px; height: 20px; vertical-align: middle; padding-right: 5px;}
                 .epindent {padding-left: 25px;}
             </style>
-                <br>
-                <iframe style="-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;" src="http://www.embedplus.com/dashboard/wordpress-video-analytics-seo.aspx?domain=<?php
-                  echo (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ""); ?>" width="1030" height="1500" scrolling="auto"/>
+            <br>
+            <iframe style="-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;" src="http://www.embedplus.com/dashboard/wordpress-video-analytics-seo.aspx?domain=<?php echo (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ""); ?>" width="1030" height="1500" scrolling="auto"></iframe>
         </div>
         <?php
     }
 
-    
     public static function embedplus_show_options()
     {
 
@@ -517,7 +517,11 @@ class EmbedPlusOfficialPlugin
                 <iframe style="-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;" src="http://www.embedplus.com/wpembedcode.aspx?blogwidth=<?php
             self::init_dimensions();
             echo self::$defaultwidth ? self::$defaultwidth : ""
-                    ?>" width="950" height="1200"/>
+                    ?>" width="950" height="1200"></iframe>
+                <p>
+                    Need support?  Email us at <?php echo antispambot('team@embedplus.com') ?>.  Due to the number of feature requests we get, priority will be give to users currently subscribing to one of our available <a href="https://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx" target="_blank">analytics options &raquo;</a>.
+                </p>
+                <br>
             </div>
         </div>
         <?php

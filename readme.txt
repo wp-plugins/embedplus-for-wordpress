@@ -6,7 +6,7 @@ Author URI: http://www.embedplus.com
 Tags: analytics, vlog, vlogging, video blogging, seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
 Requires at least: 2.6
 Tested up to: 3.5.1
-Stable tag: 2.4.0
+Stable tag: 2.5
 License: GPLv3 or later
 
 YouTube embed plugin. Smart features to enhance playback and engagement of each YouTube embed and a Google Analytics -like dashboard for view stats!
@@ -125,6 +125,9 @@ Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
 9. Advanced YouTube Embed Screenshot 9: Are you interested in learning how much your visitors are actually watching the videos you post? We suggest signing up now for this popular analytics feature to start getting data today. Use it to supplement Google Analytics.
 
 == Changelog ==
+
+= Advanced YouTube Embed 2.5 =
+Minor changes
 
 = Advanced YouTube Embed 2.4.0 =
 Improved menu access for embed settings/wizard and google analytics -like view stats.
