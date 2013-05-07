@@ -1,33 +1,5 @@
-<?php
-$installdir = explode("wp-content", __FILE__);
-$installdir = $installdir[0];
-
-require( $installdir . 'wp-load.php' );
-
-
-$blogwidth = null;
-try
-{
-    $optembedwidth = intval(get_option('embed_size_w'));
-    $optembedheight = intval(get_option('embed_size_h'));
-
-    global $content_width;
-    if (empty($content_width))
-        $content_width = $GLOBALS['content_width'];
-    if (empty($content_width))
-        $content_width = $_GLOBALS['content_width'];
-
-    $blogwidth = $optembedwidth ? $optembedwidth : ($content_width ? $content_width : 450);
-}
-catch (Exception $ex)
-{
-    
-}
-?>
-
 <?php if (false)
 { ?>
-
 
     <script type="text/javascript">
 <?php } ?>
@@ -44,7 +16,7 @@ catch (Exception $ex)
                         modalh = Math.round(jQuery(window).height() *.8);
                         ed.windowManager.open({
                             title : "EmbedPlus Shortcode Wizard",
-                            file : 'http://www.embedplus.com/wpembedcode.aspx?blogwidth=<?php echo $blogwidth ? $blogwidth : "" ?>' + '&domain=' + escape(window.location.hostname),
+                            file : 'http://www.embedplus.com/wpembedcode.aspx?blogwidth=' + epblogwidth + '&domain=' + escape(window.location.hostname),
                             width : 950,
                             height : modalh,
                             inline : true,
@@ -67,7 +39,7 @@ catch (Exception $ex)
                     author : 'EmbedPlus',
                     authorurl : 'http://www.embedplus.com/',
                     infourl : 'http://www.embedplus.com/',
-                    version : "2.4.0"
+                    version : "2.6.0"
                 };
             }
         });
