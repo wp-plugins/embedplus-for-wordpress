@@ -3,13 +3,12 @@
   Plugin Name: Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
-  Version: 2.5.0
+  Version: 2.6
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
 
 /*
-  Advanced YouTube Embed Plugin by Embed Plus
   Copyright (C) 2013 EmbedPlus.com
 
   This program is free software: you can redistribute it and/or modify
@@ -32,7 +31,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '2.5';
+    public static $version = '2.6';
     public static $opt_version = 'embedplusopt_version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -607,6 +606,7 @@ class Add_new_tinymce_btn
 register_activation_hook(__FILE__, array('EmbedPlusOfficialPlugin', 'install'));
 
 $embedplusoplg = new EmbedPlusOfficialPlugin();
+
 $embedplusmce = new Add_new_tinymce_btn('|', 'embedpluswiz', plugins_url() . '/embedplus-for-wordpress/js/embedplus_mce.js.php');
 $epstatsmce = new Add_new_tinymce_btn('|', 'embedplusstats', plugins_url() . '/embedplus-for-wordpress/js/embedplusstats_mce.js.php');
 
@@ -621,5 +621,30 @@ else
 
 function embedplus_admin_enqueue_scripts()
 {
+    add_action('wp_print_scripts', 'embedplus_output_blogwidth');
     wp_enqueue_style('embedpluswiz', plugins_url() . '/embedplus-for-wordpress/js/embedplus_mce.css');
+}
+
+function embedplus_output_blogwidth()
+{
+    $blogwidth = null;
+    try
+    {
+        $embed_size_w = intval(get_option('embed_size_w'));
+
+        global $content_width;
+        if (empty($content_width))
+            $content_width = $GLOBALS['content_width'];
+        if (empty($content_width))
+            $content_width = $_GLOBALS['content_width'];
+
+        $blogwidth = $embed_size_w ? $embed_size_w : ($content_width ? $content_width : 450);
+    }
+    catch (Exception $ex)
+    {
+        
+    }
+    ?>
+    <script type="text/javascript">var epblogwidth = <?php echo $blogwidth; ?>;</script>
+    <?php
 }
