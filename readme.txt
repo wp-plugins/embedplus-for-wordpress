@@ -1,12 +1,12 @@
-=== Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus ===
+=== Advanced YouTube Embed by Embed Plus ===
 Contributors: embedplus
-Plugin Name: Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Plugin Name: Advanced YouTube Embed by Embed Plus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: analytics, vlog, vlogging, video blogging, seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
-Requires at least: 2.6
-Tested up to: 3.5.1
-Stable tag: 2.6
+Requires at least: 2.8
+Tested up to: 3.5.2
+Stable tag: 3.0
 License: GPLv3 or later
 
 YouTube embed plugin. Smart features to enhance playback and engagement of each YouTube embed and a Google Analytics -like dashboard for view stats!
@@ -71,42 +71,42 @@ And we'll conclude with some ASCII art :D
    / _ \ / _  \ \ / / _  | '_ \ / __/ _ \/ _  |
   / ___ \ (_| |\ V / (_| | | | | (__  __/ (_| |
  /_/   \_\__,_| \_/ \__,_|_| |_|\___\___|\__,_|
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
  __   __         _____      _          
  \ \ / /__  _   |_   _|   _| |__   ___ 
   \ V / _ \| | | || || | | | '_ \ / _ \
    | | (_) | |_| || || |_| | |_) |  __/
    |_|\___/ \__,_||_| \__,_|_.__/ \___|
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
   _____           _              _ 
  | ____|_ __ ___ | |__   ___  __| |
  |  _| | '_   _ \| '_ \ / _ \/ _  |
  | |___| | | | | | |_) |  __/ (_| |
  |_____|_| |_| |_|_.__/ \___|\__,_|
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
   ____          _____           _              _ ____  _           
  | __ ) _   _  | ____|_ __ ___ | |__   ___  __| |  _ \| |_   _ ___ 
  |  _ \| | | | |  _| | '_   _ \| '_ \ / _ \/ _  | |_) | | | | / __|
  | |_) | |_| | | |___| | | | | | |_) |  __/ (_| |  __/| | |_| \__ \
  |____/ \__, | |_____|_| |_| |_|_.__/ \___|\__,_|_|   |_|\__,_|___/
         |___/                                                      
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
-Advanced YouTube Embed With Google Analytics -like Stats, by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
+Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
 `
 
 = Contact =
