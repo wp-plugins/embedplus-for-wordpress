@@ -127,11 +127,11 @@ Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
 == Changelog ==
 
 = Advanced YouTube Embed 3.0 =
-Autologin for PRO analytics
-More button control
-Edit link included in shorcode
-Improved speed
-Support for shorthand youtu.be links
+Autologin for PRO analytics.
+More button control.
+Edit link included in shortcode.
+Improved speed.
+Support for shorthand youtu.be links.
 
 = Advanced YouTube Embed 2.6 =
 Improved support for non-standard `wp-content` folder location.
