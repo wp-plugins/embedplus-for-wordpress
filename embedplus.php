@@ -46,8 +46,8 @@ class EmbedPlusOfficialPlugin
     public static $opt_pro = 'pro';
     public static $opt_alloptions = 'embedplusopt_alloptions';
     public static $alloptions = null;
-    public static $epbase = 'http://localhost:2346';
-    //public static $epbase = 'http://www.embedplus.com';
+    //public static $epbase = 'http://localhost:2346';
+    public static $epbase = 'http://www.embedplus.com';
     //TEST REGEX
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -424,7 +424,7 @@ class EmbedPlusOfficialPlugin
             <?php
             // header
 
-            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus Video Analytics Dashboard') . "</h2>";
+            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus PRO') . "</h2>";
 
             // settings form
             ?>
@@ -544,7 +544,45 @@ class EmbedPlusOfficialPlugin
 
         // Now display the settings editing screen
         ?>
+        <style type="text/css">
+            .epicon { width: 20px; height: 20px; vertical-align: middle; padding-right: 5px;}
+            #epform p { line-height: 20px; }
+            .epindent {padding-left: 25px;}
+            .epsmalltext {font-style: italic;}
+            #epform ul li, ul.reglist li {margin-left: 30px; list-style: disc outside none;}
+            .orange {color: #f85d00;}
+            .bold {font-weight: bold;}
+            .grey{color: #888888;}
+            iframe.shadow {-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;}
+            .smallnote {font-style: italic; color: #888888; font-size: 11px;}
+        </style>
         <div class="wrap">
+
+
+            <?php
+            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Go PRO') . "</h2>";
+            ?>
+            <div class="epindent">
+
+
+                <form name="form2" method="post" action="" id="epform2">
+                    <input type="hidden" name="<?php echo $pro_submitted; ?>" value="Y">
+
+                    <a href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">Click here to go PRO.</a> Your PRO key will then be immediately emailed to you.
+                    <p class="submit">
+                        <label for="opt_pro"><?php _e('Enter PRO key:') ?></label>
+                        <input style="box-shadow: 0px 0px 5px 0px #1870D5; width: 270px;" name="<?php echo self::$opt_pro; ?>" id="opt_pro" value="<?php echo $all[self::$opt_pro]; ?>" type="text">
+
+                        <input type="submit" name="Submit" class="button-primary" id="prokeysubmit" value="<?php _e('Save Key') ?>" /> &nbsp;
+                        <span style="display: none;" id="prokeyloading" class="orange bold">Verifying...</span>
+                        <span  class="orange bold" style="display: none;" id="prokeysuccess">Success! Please refresh this page.</span>
+                        <span class="orange bold" style="display: none;" id="prokeyfailed">Sorry, that seems to be an invalid key.</span>
+                    </p>
+
+                </form>
+
+            </div>
+
             <?php
             // header
 
@@ -552,18 +590,7 @@ class EmbedPlusOfficialPlugin
 
             // settings form
             ?>
-            <style type="text/css">
-                .epicon { width: 20px; height: 20px; vertical-align: middle; padding-right: 5px;}
-                #epform p { line-height: 20px; }
-                .epindent {padding-left: 25px;}
-                .epsmalltext {font-style: italic;}
-                #epform ul li, ul.reglist li {margin-left: 30px; list-style: disc outside none;}
-                .orange {color: #f85d00;}
-                .bold {font-weight: bold;}
-                .grey{color: #888888;}
-                iframe.shadow {-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;}
-                .smallnote {font-style: italic; color: #888888; font-size: 11px;}
-            </style>
+
             <div class="epindent">
                 <form name="form1" method="post" action="" id="epform">
                     <input type="hidden" name="<?php echo $embedplus_submitted; ?>" value="Y">
@@ -572,7 +599,7 @@ class EmbedPlusOfficialPlugin
 
                     <p>
                         <?php
-                        _e("WordPress 2.9 and above automatically converts YouTube URLs that are on their own line, in plain text, to actual video embeds. All you have to do is paste the YouTube URL in the editor (example: <code>http://www.youtube.com/watch?v=YVvn8dpSAt0</code>), and:");
+                        _e("This plugin automatically converts YouTube URLs that are on their own line, in plain text, to actual video embeds. All you have to do is paste the YouTube URL in the editor (example: <code>http://www.youtube.com/watch?v=YVvn8dpSAt0</code>), and:");
                         ?>
                     <ul class="reglist">
                         <li>Make sure the url is really on its own line by itself</li>
@@ -656,38 +683,13 @@ class EmbedPlusOfficialPlugin
                     ?>
                     <p>
                         <input type="checkbox" disabled class="checkbox">
-                        <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/nobar.jpg"/> <i>Coming Soon?</i> Advanced hiding of extra control bar with dynamic player resizing
+                        <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/nobar.jpg"/> <i>Coming Soon?</i> Advanced hiding of other buttons or entire extra control bar with dynamic player resizing
                     </p>
                     <p class="submit">
                         <input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
                     </p>
             </div>
 
-            <?php
-            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Go PRO') . "</h2>";
-            ?>
-            <div class="epindent">
-
-
-                <form name="form2" method="post" action="" id="epform2">
-                    <input type="hidden" name="<?php echo $pro_submitted; ?>" value="Y">
-
-                    <p>
-                        <a href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">Click here to go PRO.</a> Your PRO key will then be immediately emailed to you.
-                    </p>
-                    <p class="submit">
-                        <label for="opt_pro"><?php _e('Enter PRO key:') ?></label>
-                        <input style="box-shadow: 0px 0px 5px 0px #1870D5; width: 270px;" name="<?php echo self::$opt_pro; ?>" id="opt_pro" value="<?php echo $all[self::$opt_pro]; ?>" type="text">
-
-                        <input type="submit" name="Submit" class="button-primary" id="prokeysubmit" value="<?php _e('Save Key') ?>" /> &nbsp;
-                        <span style="display: none;" id="prokeyloading" class="orange bold">Verifying...</span>
-                        <span  class="orange bold" style="display: none;" id="prokeysuccess">Success! Please refresh this page.</span>
-                        <span class="orange bold" style="display: none;" id="prokeyfailed">Sorry, that seems to be an invalid key.</span>
-                    </p>
-
-                </form>
-
-            </div>
 
             <?php echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" />' . " Additional URL Options</h2>" ?>
             <div class="epindent">
@@ -731,7 +733,7 @@ class EmbedPlusOfficialPlugin
         ?>
         <div class="epindent">
             <p>
-                <strong>PRO users:</strong> Below, We've enabled the ability to have priority email support with our team.  Use this to get one-on-one help with any issues you might have or to send us suggestions for future features.  We typically respond within minutes during normal work hours.  
+                <strong>PRO users:</strong> Below, We've enabled the ability to have priority support with our team.  Use this to get one-on-one help with any issues you might have or to send us suggestions for future features.  We typically respond within minutes during normal work hours.  
             </p>
             <p>
                 <strong>Tip for non-PRO users:</strong> We've found that a common support request has been from users that are pasting video links on single lines, as required, but are not seeing the video embed show up. One of these two suggestions is usually the fix:
@@ -746,9 +748,9 @@ class EmbedPlusOfficialPlugin
         </div>
         <script type="text/javascript">
             jQuery(document).ready(function($) {
-                                                                                                                                                                                
+                                                                                                                                                                                                
                 $('.pp').prettyPhoto({ modal: false, theme: 'dark_rounded' });
-                                                                                                                                                                		                                                                                                                 
+                                                                                                                                                                                		                                                                                                                 
                 jQuery('#prokeysubmit').click(function(){
                     jQuery(this).attr('disabled', 'disabled');
                     jQuery('#prokeyfailed').hide();
@@ -776,9 +778,9 @@ class EmbedPlusOfficialPlugin
                             jQuery('#prokeyloading').hide();
                             jQuery('#prokeysubmit').removeAttr('disabled');
                         }
-                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                        
                     });
-                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                            
                     return false;
 
                 });
