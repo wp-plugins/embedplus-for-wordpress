@@ -3,7 +3,7 @@
   Plugin Name: Advanced YouTube Embed by Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
-  Version: 3.0
+  Version: 3.1
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '3.0';
+    public static $version = '3.1';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -560,7 +560,24 @@ class EmbedPlusOfficialPlugin
 
 
             <?php
-            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Go PRO') . "</h2>";
+            $haspro = ($all[self::$opt_pro] && strlen(trim($all[self::$opt_pro])) > 0);
+
+            if ($haspro)
+            {
+                echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Thank you for going PRO.');
+                echo ' &nbsp;<input type="submit" name="showkey" class="button-primary" style="vertical-align: 15%;" id="showprokey" value="Show my PRO key" />';
+                echo "</h2>";
+                ?>
+                <?php
+
+            }
+            else
+            {
+                echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Go PRO') . "</h2>";
+                ?>
+                <a href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">Click here to go PRO.</a> Your PRO key will then be immediately emailed to you.
+                <?php
+            }
             ?>
             <div class="epindent">
 
@@ -568,8 +585,7 @@ class EmbedPlusOfficialPlugin
                 <form name="form2" method="post" action="" id="epform2">
                     <input type="hidden" name="<?php echo $pro_submitted; ?>" value="Y">
 
-                    <a href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">Click here to go PRO.</a> Your PRO key will then be immediately emailed to you.
-                    <p class="submit">
+                    <p class="submit submitpro" <?php if ($haspro) echo 'style="display: none;"' ?>>
                         <label for="opt_pro"><?php _e('Enter PRO key:') ?></label>
                         <input style="box-shadow: 0px 0px 5px 0px #1870D5; width: 270px;" name="<?php echo self::$opt_pro; ?>" id="opt_pro" value="<?php echo $all[self::$opt_pro]; ?>" type="text">
 
@@ -624,7 +640,6 @@ class EmbedPlusOfficialPlugin
                     </p>
                     <?php
                     $eadopt = get_option('embedplusopt_enhance_youtube') !== false;
-                    $haspro = ($all[self::$opt_pro] && strlen(trim($all[self::$opt_pro])) > 0);
                     $prostuffmsg = "<p class=\"smallnote\">
                             We're building a growing list of customizations that offer more advanced and dynamic functionality. These will be made available to our PRO users as they are developed over time. We, in fact, encourage you to send us suggestions with the PRO priority support form (at the bottom of this page).
                         </p>";
@@ -691,7 +706,7 @@ class EmbedPlusOfficialPlugin
             </div>
 
 
-            <?php echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" />' . " Additional URL Options</h2>" ?>
+                <?php echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" />' . " Additional URL Options</h2>" ?>
             <div class="epindent">
 
                 <?php
@@ -748,9 +763,15 @@ class EmbedPlusOfficialPlugin
         </div>
         <script type="text/javascript">
             jQuery(document).ready(function($) {
-                                                                                                                                                                                                
+                                                                                                                                                                                                        
                 $('.pp').prettyPhoto({ modal: false, theme: 'dark_rounded' });
-                                                                                                                                                                                		                                                                                                                 
+                
+                jQuery('#showprokey').click(function(){
+                    jQuery('.submitpro').show(500);
+                    return false;
+                });
+                
+                                                                                                                                                                                        		                                                                                                                 
                 jQuery('#prokeysubmit').click(function(){
                     jQuery(this).attr('disabled', 'disabled');
                     jQuery('#prokeyfailed').hide();
@@ -761,7 +782,7 @@ class EmbedPlusOfficialPlugin
                         type : "post",
                         dataType : "json",
                         timeout: 30000,
-                        url : ajaxurl,
+                        url : "<?php echo admin_url('admin-ajax.php') ?>",
                         data : { action: 'my_embedplus_pro_validate', <?php echo self::$opt_pro; ?>: prokeyval},
                         success: function(response) {
                             if(response.type == "success") {
@@ -778,9 +799,9 @@ class EmbedPlusOfficialPlugin
                             jQuery('#prokeyloading').hide();
                             jQuery('#prokeysubmit').removeAttr('disabled');
                         }
-                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                
                     });
-                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                    
                     return false;
 
                 });
