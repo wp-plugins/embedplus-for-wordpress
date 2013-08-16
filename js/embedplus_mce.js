@@ -9,7 +9,7 @@
                     modalw = Math.round(jQuery(window).width() *.9);
                     modalh = Math.round(jQuery(window).height() *.8);
                     ed.windowManager.open({
-                        title : "EmbedPlus Shortcode Wizard",
+                        title : "EmbedPlus Shortcode Wizard - for YouTube",
                         file : epbasesite + '/wpembedcode.aspx?blogwidth=' + epblogwidth + '&domain=' + escape(window.location.toString()) + '&prokey=' + escape(epprokey) + '&eadopt=' + epeadopt,
                         width : 950,
                         height : modalh,
