@@ -3,7 +3,7 @@
   Plugin Name: Advanced YouTube Embed by Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
-  Version: 3.1
+  Version: 3.5
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '3.1';
+    public static $version = '3.5';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -112,7 +112,7 @@ class EmbedPlusOfficialPlugin
                 $_opt_show_react = get_option('embedplusopt_show_react', 1);
                 $_opt_auto_hd = get_option('embedplusopt_auto_hd', 0);
                 $_opt_sweetspot = get_option('embedplusopt_sweetspot', 1);
-                $_opt_emb = get_option('embedplusopt_emb', 1);
+                $_opt_emb = 1; //get_option('embedplusopt_emb', 1);
                 $_opt_pro = get_option('embedplusopt_pro', '');
 
                 $all = array(
@@ -274,9 +274,7 @@ class EmbedPlusOfficialPlugin
 
         $epreq['vars'] .= 'react=' . intval(self::$alloptions[self::$opt_show_react]) . '&amp;';
         $epreq['vars'] .= 'sweetspot=' . intval(self::$alloptions[self::$opt_sweetspot]) . '&amp;';
-        $epreq['vars'] .= 'emb=' . (intval(self::$alloptions[self::$opt_emb]) == 1 ? '0' : '1') . '&amp;';
-
-        //$epreq['vars'] .= 'rs=w&amp;';
+        $epreq['vars'] .= self::$alloptions[self::$opt_emb] == '0' ? 'emb=0&amp;' : '';
 
         return self::get_embed_code($epreq);
     }
@@ -295,7 +293,7 @@ class EmbedPlusOfficialPlugin
             "id" => "ep" . rand(10000, 99999)
                 ), $incomingfrompost);
 
-        if (self::$alloptions[self::$opt_emb] == '1')
+        if (self::$alloptions[self::$opt_emb] == '0')
         {
             $incomingfrompost['vars'] .= '&emb=0';
         }
@@ -498,6 +496,36 @@ class EmbedPlusOfficialPlugin
         die();
     }
 
+    public static function my_embedplus_pro_record()
+    {
+        $result = array();
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+        {
+            $tmppro = preg_replace('/[^A-Za-z0-9-]/i', '', $_REQUEST[self::$opt_pro]);
+            $new_options = array();
+            $new_options[self::$opt_pro] = $tmppro;
+            $all = get_option(self::$opt_alloptions);
+            $all = $new_options + $all;
+            update_option(self::$opt_alloptions, $all);
+
+            if (strlen($tmppro) > 0)
+            {
+                $result['type'] = 'success';
+            }
+            else
+            {
+                $result['type'] = 'error';
+            }
+            echo json_encode($result);
+        }
+        else
+        {
+            $result['type'] = 'error';
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+        }
+        die();
+    }
+
     public static function embedplus_show_options()
     {
 
@@ -529,7 +557,7 @@ class EmbedPlusOfficialPlugin
             $new_options[self::$opt_show_react] = $_POST[self::$opt_show_react] == (true || 'on') ? 1 : 0;
             $new_options[self::$opt_auto_hd] = $_POST[self::$opt_auto_hd] == (true || 'on') ? 1 : 0;
             $new_options[self::$opt_sweetspot] = $_POST[self::$opt_sweetspot] == (true || 'on') ? 1 : 0;
-            $new_options[self::$opt_emb] = $_POST[self::$opt_emb] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_emb] = $_POST[self::$opt_emb] == (true || 'on') ? 0 : 1;
 
             $all = $new_options + $all;
 
@@ -569,7 +597,6 @@ class EmbedPlusOfficialPlugin
                 echo "</h2>";
                 ?>
                 <?php
-
             }
             else
             {
@@ -680,7 +707,7 @@ class EmbedPlusOfficialPlugin
                     {
                         ?>
                         <p>
-                            <input name="<?php echo self::$opt_emb; ?>" id="<?php echo self::$opt_emb; ?>" <?php checked($all[self::$opt_emb], 1); ?> type="checkbox" class="checkbox">
+                            <input name="<?php echo self::$opt_emb; ?>" id="<?php echo self::$opt_emb; ?>" <?php checked($all[self::$opt_emb], '0'); ?> type="checkbox" class="checkbox">
                             <label for="<?php echo self::$opt_emb; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/get.jpg"/> <?php _e('Hide GET button') ?></label>
                         </p>
 
@@ -706,7 +733,7 @@ class EmbedPlusOfficialPlugin
             </div>
 
 
-                <?php echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" />' . " Additional URL Options</h2>" ?>
+            <?php echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" />' . " Additional URL Options</h2>" ?>
             <div class="epindent">
 
                 <?php
@@ -762,28 +789,41 @@ class EmbedPlusOfficialPlugin
 
         </div>
         <script type="text/javascript">
+            var prokeyval;
             jQuery(document).ready(function($) {
-                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                
                 $('.pp').prettyPhoto({ modal: false, theme: 'dark_rounded' });
-                
+                                                                                                        
                 jQuery('#showprokey').click(function(){
                     jQuery('.submitpro').show(500);
                     return false;
                 });
-                
-                                                                                                                                                                                        		                                                                                                                 
+                                                                                             
+                                                                                             
                 jQuery('#prokeysubmit').click(function(){
                     jQuery(this).attr('disabled', 'disabled');
                     jQuery('#prokeyfailed').hide();
                     jQuery('#prokeysuccess').hide();
                     jQuery('#prokeyloading').show();
-                    var prokeyval = jQuery('#opt_pro').val();
+                    prokeyval = jQuery('#opt_pro').val();
+                                                                                                                            
+                    var tempscript=document.createElement("script");
+                    tempscript.src="//www.embedplus.com/dashboard/wordpress-pro-validatejp.aspx?prokey=" + prokeyval;
+                    var n=document.getElementsByTagName("head")[0].appendChild(tempscript);
+                    setTimeout(function(){
+                        n.parentNode.removeChild(n)
+                    },500);
+                    return false;
+                });
+                                                                                        
+                window.embedplus_record_prokey = function(good){
+                                            
                     jQuery.ajax({
                         type : "post",
                         dataType : "json",
                         timeout: 30000,
                         url : "<?php echo admin_url('admin-ajax.php') ?>",
-                        data : { action: 'my_embedplus_pro_validate', <?php echo self::$opt_pro; ?>: prokeyval},
+                        data : { action: 'my_embedplus_pro_record', <?php echo self::$opt_pro; ?>:  (good? prokeyval : "")},
                         success: function(response) {
                             if(response.type == "success") {
                                 jQuery("#prokeysuccess").show();
@@ -799,12 +839,11 @@ class EmbedPlusOfficialPlugin
                             jQuery('#prokeyloading').hide();
                             jQuery('#prokeysubmit').removeAttr('disabled');
                         }
-                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                        
                     });
-                                                                                                                                                                                                                                                                    
-                    return false;
-
-                });
+                                            
+                };
+                                                                                        
             });
         </script>
         <?php
@@ -897,7 +936,8 @@ $epstatsmce = new Add_new_tinymce_btn_EmbedPlus('|', 'embedplusstats', plugins_u
 if (EmbedPlusOfficialPlugin::wp_above_version('2.9'))
 {
     add_action('admin_enqueue_scripts', 'embedplus_admin_enqueue_scripts');
-    add_action("wp_ajax_my_embedplus_pro_validate", array('EmbedPlusOfficialPlugin', 'my_embedplus_pro_validate'));
+    //add_action("wp_ajax_my_embedplus_pro_validate", array('EmbedPlusOfficialPlugin', 'my_embedplus_pro_validate'));
+    add_action("wp_ajax_my_embedplus_pro_record", array('EmbedPlusOfficialPlugin', 'my_embedplus_pro_record'));
 }
 else
 {
