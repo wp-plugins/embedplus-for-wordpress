@@ -9,7 +9,7 @@ Tested up to: 3.6
 Stable tag: 3.6
 License: GPLv3 or later
 
-YouTube embed plugin. Smart features to enhance playback and engagement of each YouTube embed. Now with analytics to track performance.
+YouTube embed plugin. Enhanced playback and engagement of each YouTube embed. Optional analytics dashboard to track your Youtube embed performance.
 
 == Description ==
 
