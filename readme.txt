@@ -4,12 +4,12 @@ Plugin Name: Advanced YouTube Embed by Embed Plus
 Plugin URI: http://www.embedplus.com
 Author URI: http://www.embedplus.com
 Tags: analytics, vlog, vlogging, video blogging, seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
-Requires at least: 2.8
+Requires at least: 2.9
 Tested up to: 3.6
-Stable tag: 3.5
+Stable tag: 3.6
 License: GPLv3 or later
 
-YouTube embed plugin. Enhanced playback and engagement of each YouTube embed. Optional analytics dashboard to track your Youtube embed performance.
+YouTube embed plugin. Smart features to enhance playback and engagement of each YouTube embed. Now with analytics to track performance.
 
 == Description ==
 
@@ -120,6 +120,9 @@ Advanced YouTube Embed by Embed Plus Advanced YouTube Embed by Embed Plus
 9. Advanced YouTube Embed Screenshot 9: Are you interested in learning how much your visitors are actually watching the videos you post? We suggest signing up now for this popular analytics feature to start getting data today. Use it to supplement Google Analytics.
 
 == Changelog ==
+
+= Advanced YouTube Embed 3.6 =
+Fixed obscure height issue.
 
 = Advanced YouTube Embed 3.5 =
 Fixed obscure PRO key issue for some servers.

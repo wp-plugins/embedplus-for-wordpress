@@ -3,7 +3,7 @@
   Plugin Name: Advanced YouTube Embed by Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
-  Version: 3.5
+  Version: 3.6
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '3.5';
+    public static $version = '3.6';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -191,7 +191,7 @@ class EmbedPlusOfficialPlugin
             $oembed = _wp_oembed_get_object();
             $args = array();
             $args['width'] = self::$defaultwidth;
-            $args['height'] = self::$optembedheight;
+            //$args['height'] = self::$optembedheight;
             $args['discover'] = false;
             $odata = $oembed->fetch('http://www.youtube.com/oembed', $url, $args);
 
