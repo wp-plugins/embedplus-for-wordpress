@@ -2,7 +2,7 @@
 /*
   Plugin Name: Advanced YouTube Embed by Embed Plus
   Plugin URI: http://www.embedplus.com
-  Description: YouTube embed plugin for WordPress. The smart features of this video plugin enhance the playback and engagement of each YouTube embed in your blog.
+  Description: YouTube embed plugin. Enhanced playback and engagement of each YouTube embed. Optional analytics dashboard to track your Youtube embed performance.
   Version: 3.6
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
@@ -602,7 +602,9 @@ class EmbedPlusOfficialPlugin
             {
                 echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Go PRO') . "</h2>";
                 ?>
-                <a href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">Click here to go PRO.</a> Your PRO key will then be immediately emailed to you.
+                <span class="orange bold">
+                    Our PRO users help to keep this plugin running and frequently updated. Go PRO and get enhanced embedding and 
+                    <a href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">special perks &raquo;</a> </span>
                 <?php
             }
             ?>
@@ -791,22 +793,22 @@ class EmbedPlusOfficialPlugin
         <script type="text/javascript">
             var prokeyval;
             jQuery(document).ready(function($) {
-                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                        
                 $('.pp').prettyPhoto({ modal: false, theme: 'dark_rounded' });
-                                                                                                        
+                                                                                                                
                 jQuery('#showprokey').click(function(){
                     jQuery('.submitpro').show(500);
                     return false;
                 });
-                                                                                             
-                                                                                             
+                                                                                                     
+                                                                                                     
                 jQuery('#prokeysubmit').click(function(){
                     jQuery(this).attr('disabled', 'disabled');
                     jQuery('#prokeyfailed').hide();
                     jQuery('#prokeysuccess').hide();
                     jQuery('#prokeyloading').show();
                     prokeyval = jQuery('#opt_pro').val();
-                                                                                                                            
+                                                                                                                                    
                     var tempscript=document.createElement("script");
                     tempscript.src="//www.embedplus.com/dashboard/wordpress-pro-validatejp.aspx?prokey=" + prokeyval;
                     var n=document.getElementsByTagName("head")[0].appendChild(tempscript);
@@ -815,9 +817,9 @@ class EmbedPlusOfficialPlugin
                     },500);
                     return false;
                 });
-                                                                                        
+                                                                                                
                 window.embedplus_record_prokey = function(good){
-                                            
+                                                    
                     jQuery.ajax({
                         type : "post",
                         dataType : "json",
@@ -839,11 +841,11 @@ class EmbedPlusOfficialPlugin
                             jQuery('#prokeyloading').hide();
                             jQuery('#prokeysubmit').removeAttr('disabled');
                         }
-                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                
                     });
-                                            
+                                                    
                 };
-                                                                                        
+                                                                                                
             });
         </script>
         <?php
