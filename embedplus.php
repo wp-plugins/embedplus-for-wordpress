@@ -603,8 +603,8 @@ class EmbedPlusOfficialPlugin
                 echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Go PRO') . "</h2>";
                 ?>
                 <span class="orange bold">
-                    Our PRO users help to keep this plugin running and frequently updated. Go PRO and get enhanced embedding and 
-                    <a href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">special perks &raquo;</a> </span>
+                    Want to go PRO? Our PRO users help to keep this plugin running and frequently updated. Go PRO and get enhanced embedding and 
+                    <a class="button-primary" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">special perks &raquo;</a> </span>
                 <?php
             }
             ?>
