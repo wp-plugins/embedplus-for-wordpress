@@ -967,8 +967,6 @@ function embedplus_output_scriptvars()
         global $content_width;
         if (empty($content_width))
             $content_width = $GLOBALS['content_width'];
-        if (empty($content_width))
-            $content_width = $_GLOBALS['content_width'];
 
         $blogwidth = $embed_size_w ? $embed_size_w : ($content_width ? $content_width : 450);
     }
