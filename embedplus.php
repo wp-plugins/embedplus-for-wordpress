@@ -786,29 +786,35 @@ class EmbedPlusOfficialPlugin
                 <li>Make sure the url is not an active hyperlink (i.e., it should just be plain text). Otherwise, highlight the url and click the "unlink" button in your editor: <img src="<?php echo plugins_url('images/unlink.png', __FILE__) ?>"/>.</li>
             </ul>                
             </p>
-            <iframe src="<?php echo self::$epbase ?>/dashboard/prosupport.aspx?&prokey=<?php echo $all[self::$opt_pro]; ?>&domain=<?php echo site_url(); ?>" width="500" height="600"></iframe>
+            <iframe src="<?php echo self::$epbase ?>/dashboard/prosupport.aspx?&prokey=<?php echo $all[self::$opt_pro]; ?>&domain=<?php echo site_url(); ?>" width="500" height="500"></iframe>
         </div>
+        <?php
+        echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __("What's next for us? Take this survey.") . "</h2>";
+        ?>
 
+        <div class="epindent">
+            <div id="surveyMonkeyInfo" style="width:600px;font-size:10px;color:#666;border:1px solid #ccc;padding:4px;"><div><iframe id="sm_e_s" src="http://www.surveymonkey.com/jsEmbed.aspx?sm=fzDp_2bBj61z8oFK7Z7Kd3lQ_3d_3d" width="600" height="900" style="border:0px;padding-bottom:4px;" frameborder="0" allowtransparency="true" ></iframe></div>
+            </div>
         </div>
         <script type="text/javascript">
             var prokeyval;
             jQuery(document).ready(function($) {
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                
                 $('.pp').prettyPhoto({ modal: false, theme: 'dark_rounded' });
-                                                                                                                
+                                                                                                                                        
                 jQuery('#showprokey').click(function(){
                     jQuery('.submitpro').show(500);
                     return false;
                 });
-                                                                                                     
-                                                                                                     
+                                                                                                                             
+                                                                                                                             
                 jQuery('#prokeysubmit').click(function(){
                     jQuery(this).attr('disabled', 'disabled');
                     jQuery('#prokeyfailed').hide();
                     jQuery('#prokeysuccess').hide();
                     jQuery('#prokeyloading').show();
                     prokeyval = jQuery('#opt_pro').val();
-                                                                                                                                    
+                                                                                                                                                            
                     var tempscript=document.createElement("script");
                     tempscript.src="//www.embedplus.com/dashboard/wordpress-pro-validatejp.aspx?prokey=" + prokeyval;
                     var n=document.getElementsByTagName("head")[0].appendChild(tempscript);
@@ -817,9 +823,9 @@ class EmbedPlusOfficialPlugin
                     },500);
                     return false;
                 });
-                                                                                                
+                                                                                                                        
                 window.embedplus_record_prokey = function(good){
-                                                    
+                                                                            
                     jQuery.ajax({
                         type : "post",
                         dataType : "json",
@@ -841,11 +847,11 @@ class EmbedPlusOfficialPlugin
                             jQuery('#prokeyloading').hide();
                             jQuery('#prokeysubmit').removeAttr('disabled');
                         }
-                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                        
                     });
-                                                    
+                                                                            
                 };
-                                                                                                
+                                                                                                                        
             });
         </script>
         <?php
