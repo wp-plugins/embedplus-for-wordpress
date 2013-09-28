@@ -583,6 +583,7 @@ class EmbedPlusOfficialPlugin
             .grey{color: #888888;}
             iframe.shadow {-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;}
             .smallnote {font-style: italic; color: #888888; font-size: 11px;}
+            #nonprosupport {border-radius: 15px; padding: 5px 10px 10px 10px;  border: 3px solid #ff6655; width: 800px;}
         </style>
         <div class="wrap">
 
@@ -648,7 +649,8 @@ class EmbedPlusOfficialPlugin
                         ?>
                     <ul class="reglist">
                         <li>Make sure the url is really on its own line by itself</li>
-                        <li>Make sure the url is <strong>not</strong> an active hyperlink (i.e., it should just be plain text). Otherwise, highlight the url and click the "unlink" button in your editor: <img src="<?php echo plugins_url('images/unlink.png', __FILE__) ?>"/>.</li>
+                        <li>Make sure the url is <strong>not</strong> an active hyperlink (i.e., it should just be plain text). Otherwise, highlight the url and click the "unlink" button in your editor: <img src="<?php echo plugins_url('images/unlink.png', __FILE__) ?>"/></li>
+                        <li>Make sure you did <strong>not</strong> format or align the url in any way. If your url still appears in your actual post instead of a video, highlight it and click the "remove formatting" button (formatting can be invisible sometimes): <img src="<?php echo plugins_url('images/erase.png', __FILE__) ?>"/></li>
                     </ul>       
                     <?php
                     _e("This plugin can make those \"auto-embeds\" display the enhanced player if you check the first option below"
@@ -779,13 +781,17 @@ class EmbedPlusOfficialPlugin
             <p>
                 <strong>PRO users:</strong> Below, We've enabled the ability to have priority support with our team.  Use this to get one-on-one help with any issues you might have or to send us suggestions for future features.  We typically respond within minutes during normal work hours.  
             </p>
-            <p>
-                <strong>Tip for non-PRO users:</strong> We've found that a common support request has been from users that are pasting video links on single lines, as required, but are not seeing the video embed show up. One of these two suggestions is usually the fix:
-            <ul class="reglist">
-                <li>Make sure the url is really on its own line by itself</li>
-                <li>Make sure the url is not an active hyperlink (i.e., it should just be plain text). Otherwise, highlight the url and click the "unlink" button in your editor: <img src="<?php echo plugins_url('images/unlink.png', __FILE__) ?>"/>.</li>
-            </ul>                
-            </p>
+            <div id="nonprosupport">
+                <h3>Support tips for non-PRO users</h3>
+                We've found that a common support request has been from users that are pasting video links on single lines, as required, but are not seeing the video embed show up. One of these suggestions is usually the fix:
+                <ul class="reglist">
+                    <li>Make sure the url is really on its own line by itself</li>
+                    <li>Make sure the url is not an active hyperlink (i.e., it should just be plain text). Otherwise, highlight the url and click the "unlink" button in your editor: <img src="<?php echo plugins_url('images/unlink.png', __FILE__) ?>"/>.</li>
+                    <li>Make sure you did <strong>not</strong> format or align the url in any way. If your url still appears in your actual post instead of a video, highlight it and click the "remove formatting" button (formatting can be invisible sometimes): <img src="<?php echo plugins_url('images/erase.png', __FILE__) ?>"/></li>
+                    <li>Finally, there's a slight chance your custom theme is the issue, if you have one. To know for sure, we suggest temporarily switching to one of the default WordPress themes (e.g., "Twenty Thirteen") just to see if your video does appear. If it suddenly works, then your custom theme is the issue. You can switch back when done testing.</li>
+                </ul>                
+                </p>
+            </div>
             <iframe src="<?php echo self::$epbase ?>/dashboard/prosupport.aspx?&prokey=<?php echo $all[self::$opt_pro]; ?>&domain=<?php echo site_url(); ?>" width="500" height="500"></iframe>
         </div>
         <?php
@@ -799,22 +805,22 @@ class EmbedPlusOfficialPlugin
         <script type="text/javascript">
             var prokeyval;
             jQuery(document).ready(function($) {
-                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                
                 $('.pp').prettyPhoto({ modal: false, theme: 'dark_rounded' });
-                                                                                                                                        
+                                                                                                                                                        
                 jQuery('#showprokey').click(function(){
                     jQuery('.submitpro').show(500);
                     return false;
                 });
-                                                                                                                             
-                                                                                                                             
+                                                                                                                                             
+                                                                                                                                             
                 jQuery('#prokeysubmit').click(function(){
                     jQuery(this).attr('disabled', 'disabled');
                     jQuery('#prokeyfailed').hide();
                     jQuery('#prokeysuccess').hide();
                     jQuery('#prokeyloading').show();
                     prokeyval = jQuery('#opt_pro').val();
-                                                                                                                                                            
+                                                                                                                                                                            
                     var tempscript=document.createElement("script");
                     tempscript.src="//www.embedplus.com/dashboard/wordpress-pro-validatejp.aspx?prokey=" + prokeyval;
                     var n=document.getElementsByTagName("head")[0].appendChild(tempscript);
@@ -823,9 +829,9 @@ class EmbedPlusOfficialPlugin
                     },500);
                     return false;
                 });
-                                                                                                                        
+                                                                                                                                        
                 window.embedplus_record_prokey = function(good){
-                                                                            
+                                                                                            
                     jQuery.ajax({
                         type : "post",
                         dataType : "json",
@@ -847,11 +853,11 @@ class EmbedPlusOfficialPlugin
                             jQuery('#prokeyloading').hide();
                             jQuery('#prokeysubmit').removeAttr('disabled');
                         }
-                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                                                        
                     });
-                                                                            
+                                                                                            
                 };
-                                                                                                                        
+                                                                                                                                        
             });
         </script>
         <?php
