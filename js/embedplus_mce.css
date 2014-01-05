@@ -1,0 +1,20 @@
+.wp_themeSkin span.mce_embedpluswiz, span.mce_embedpluswiz
+{
+    background: transparent url("btn_embedpluswizoff.png") no-repeat scroll center center !important;
+}
+
+.wp_themeSkin span.mce_embedpluswiz:hover, span.mce_embedpluswiz:hover
+{
+    background-image: url("btn_embedpluswiz.png") !important;
+}
+
+.wp_themeSkin span.mce_embedplusstats, span.mce_embedplusstats
+{
+    background: transparent url("btn_embedplusstatsoff.png") no-repeat scroll center center !important;
+}
+
+.wp_themeSkin span.mce_embedplusstats:hover, span.mce_embedplusstats:hover
+{
+    background-image: url("btn_embedplusstats.png") !important;
+}
+
