@@ -2,8 +2,8 @@
 /*
   Plugin Name: Advanced YouTube Embed by Embed Plus
   Plugin URI: http://www.embedplus.com
-  Description: YouTube embed plugin. Enhanced playback and engagement of each YouTube embed. Optional analytics dashboard to track your Youtube embed performance.
-  Version: 3.6
+  Description: YouTube embed plugin. Enhanced playback and engagement of each YouTube embed. Optional analytics dashboard to track your YouTube embed performance.
+  Version: 4.0
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '3.6';
+    public static $version = '4.0';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -44,17 +44,20 @@ class EmbedPlusOfficialPlugin
     public static $opt_sweetspot = 'sweetspot';
     public static $opt_emb = 'emb';
     public static $opt_pro = 'pro';
+    public static $opt_oldspacing = 'oldspacing';
+    public static $opt_schemaorg = 'schemaorg';
     public static $opt_alloptions = 'embedplusopt_alloptions';
     public static $alloptions = null;
     //public static $epbase = 'http://localhost:2346';
-    public static $epbase = 'http://www.embedplus.com';
-    //TEST REGEX
+    public static $epbase = '//www.embedplus.com';
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
-    public static $ytregex = '@^\s*https?://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)\s*$@im';
+    public static $oldytregex = '@^\s*https?://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)\s*$@im';
+    //public static $ytregex = '@^[\r\n]{0,1}[[:blank:]]*https?://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)[[:blank:]]*[\r\n]{0,1}$@im';
+    public static $ytregex = '@^[\r\t ]*https?://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)[\r\t ]*$@im';
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,6 +74,12 @@ class EmbedPlusOfficialPlugin
             self::install();
         }
 
+        if (self::$alloptions[self::$opt_oldspacing] == 1)
+        {
+            self::$ytregex = self::$oldytregex;
+        }
+
+
         if (self::$optembedwidth == null)
         {
             self::$optembedwidth = intval(get_option('embed_size_w'));
@@ -84,11 +93,8 @@ class EmbedPlusOfficialPlugin
             self::do_yt_ep();
         }
 
-        if (self::wp_above_version('2.9'))
-        {
-            // add admin menu under settings
-            add_action('admin_menu', 'EmbedPlusOfficialPlugin::embedplus_plugin_menu');
-        }
+        // add admin menu under settings
+        add_action('admin_menu', 'EmbedPlusOfficialPlugin::embedplus_plugin_menu');
         if (!is_admin())
         {
             //tell wordpress to register the shortcode
@@ -102,33 +108,53 @@ class EmbedPlusOfficialPlugin
 
     static function install()
     {
-        if (self::wp_above_version('2.9'))
+        $_opt_enhance_youtube = get_option('embedplusopt_enhance_youtube', 1);
+        $_opt_show_react = get_option('embedplusopt_show_react', 1);
+        $_opt_auto_hd = get_option('embedplusopt_auto_hd', 0);
+        $_opt_sweetspot = get_option('embedplusopt_sweetspot', 1);
+        $_opt_emb = 1;
+        $_opt_pro = get_option('embedplusopt_pro', '');
+        $_opt_oldspacing = 1;
+        $_schemaorg = 0;
+
+        $arroptions = get_option(self::$opt_alloptions);
+
+        if ($arroptions !== false)
         {
-            update_option('embed_autourls', 1);
-
-            if (get_option(self::$opt_alloptions) === false)
-            {
-                $_opt_enhance_youtube = get_option('embedplusopt_enhance_youtube', 1);
-                $_opt_show_react = get_option('embedplusopt_show_react', 1);
-                $_opt_auto_hd = get_option('embedplusopt_auto_hd', 0);
-                $_opt_sweetspot = get_option('embedplusopt_sweetspot', 1);
-                $_opt_emb = 1; //get_option('embedplusopt_emb', 1);
-                $_opt_pro = get_option('embedplusopt_pro', '');
-
-                $all = array(
-                    self::$opt_version => self::$version,
-                    self::$opt_enhance_youtube => $_opt_enhance_youtube,
-                    self::$opt_show_react => $_opt_show_react,
-                    self::$opt_auto_hd => $_opt_auto_hd,
-                    self::$opt_sweetspot => $_opt_sweetspot,
-                    self::$opt_pro => $_opt_pro,
-                    self::$opt_emb => $_opt_emb
-                );
-
-                add_option(self::$opt_alloptions, $all);
-            }
-            self::$alloptions = get_option(self::$opt_alloptions);
+            $_opt_enhance_youtube = self::tryget($arroptions, self::$opt_enhance_youtube, 1);
+            $_opt_show_react = self::tryget($arroptions, self::$opt_show_react, 1);
+            $_opt_auto_hd = self::tryget($arroptions, self::$opt_auto_hd, 0);
+            $_opt_sweetspot = self::tryget($arroptions, self::$opt_sweetspot, 1);
+            $_opt_emb = self::tryget($arroptions, self::$opt_emb, 1);
+            $_opt_pro = self::tryget($arroptions, self::$opt_pro, '');
+            $_opt_oldspacing = self::tryget($arroptions, self::$opt_oldspacing, 1);
+            $_schemaorg = self::tryget($arroptions, self::$opt_schemaorg, 0);
         }
+        else
+        {
+            $_opt_oldspacing = 0;
+        }
+
+        $all = array(
+            self::$opt_version => self::$version,
+            self::$opt_enhance_youtube => $_opt_enhance_youtube,
+            self::$opt_show_react => $_opt_show_react,
+            self::$opt_auto_hd => $_opt_auto_hd,
+            self::$opt_sweetspot => $_opt_sweetspot,
+            self::$opt_pro => $_opt_pro,
+            self::$opt_emb => $_opt_emb,
+            self::$opt_oldspacing => $_opt_oldspacing,
+            self::$opt_schemaorg => $_schemaorg
+        );
+
+        update_option(self::$opt_alloptions, $all);
+        update_option('embed_autourls', 1);
+        self::$alloptions = get_option(self::$opt_alloptions);
+    }
+
+    public static function tryget($array, $key, $default = null)
+    {
+        return isset($array[$key]) ? $array[$key] : $default;
     }
 
     public static function wp_above_version($ver)
@@ -143,7 +169,7 @@ class EmbedPlusOfficialPlugin
 
     public static function do_yt_ep()
     {
-        if (self::wp_above_version('2.9') && !is_admin())
+        if (!is_admin())
         {
             add_filter('the_content', 'EmbedPlusOfficialPlugin::youtube2embedplus_non_oembed', 1);
             wp_embed_register_handler('youtube2embedplus', self::$ytregex, 'EmbedPlusOfficialPlugin::youtube2embedplus_handler', 1);
@@ -154,7 +180,7 @@ class EmbedPlusOfficialPlugin
     {
         if (strpos($content, 'httpv://') !== false)
         {
-            $findv = '@^\s*http[vh]://(?:www\.)?(?:youtube.com/watch\?|youtu.be/)([^\s"]+)\s*$@im';
+            $findv = '@^[\r\t ]*http[vh]://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)[\r\t ]*$@im';
             $content = preg_replace_callback($findv, "EmbedPlusOfficialPlugin::httpv_convert", $content);
         }
         return $content;
@@ -173,8 +199,9 @@ class EmbedPlusOfficialPlugin
         {
             global $content_width;
             if (empty($content_width))
+            {
                 $content_width = $GLOBALS['content_width'];
-
+            }
             self::$defaultwidth = self::$optembedwidth ? self::$optembedwidth : ($content_width ? $content_width : 480);
             self::$defaultheight = self::get_aspect_height($url);
         }
@@ -312,6 +339,18 @@ class EmbedPlusOfficialPlugin
         $epobjid = $incomingfromhandler['id'];
         $epstandard = $incomingfromhandler['standard'];
         $epfullheight = null;
+        $schemaorgoutput = '';
+
+
+        if (self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0)
+        {
+            if (self::$alloptions[self::$opt_schemaorg] == 1)
+            {
+                $epvarsarr = self::keyvalue($epvars, true);
+                $schemaorgoutput = self::getschemaorgoutput($epvarsarr['ytid']);
+            }
+        }
+
 
         $epobjid = htmlspecialchars($epobjid);
 
@@ -334,6 +373,9 @@ class EmbedPlusOfficialPlugin
             $epwidth = $this->defaultwidth;
         }
 
+
+
+
         $epvars = preg_replace('/\s/', '', $epvars);
         $epvars = preg_replace('/¬/', '&not', $epvars);
 
@@ -352,7 +394,7 @@ class EmbedPlusOfficialPlugin
         $epoutputstandard = '<iframe class="cantembedplus" title="YouTube video player" width="~width" height="~height" src="~standard" frameborder="0" allowfullscreen></iframe>';
 
 
-        $epoutput =
+        $epoutput = $schemaorgoutput .
                 '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="http://getembedplus.com/embedplus.swf" id="' . $epobjid . '">' . chr(13) .
                 '<param value="http://getembedplus.com/embedplus.swf" name="movie" />' . chr(13) .
                 '<param value="high" name="quality" />' . chr(13) .
@@ -401,28 +443,120 @@ class EmbedPlusOfficialPlugin
         return $epoutput;
     }
 
+    public static function getschemaorgoutput($vidid)
+    {
+        $schemaorgcode = '';
+        try
+        {
+            $ytapilink = 'https://gdata.youtube.com/feeds/api/videos/' . $vidid . '?v=2&alt=json&fields=id,published,title,content,media:group(media:description,yt:duration)';
+            $apidata = wp_remote_get($ytapilink);
+            if (!is_wp_error($apidata))
+            {
+                $raw = wp_remote_retrieve_body($apidata);
+                if (!empty($raw))
+                {
+                    $json = json_decode($raw, true);
+                    if (is_array($json))
+                    {
+                        $_name = esc_attr(sanitize_text_field($json['entry']['title']['$t']));
+                        $_description = esc_attr(sanitize_text_field($json['entry']['media$group']['media$description']['$t']));
+                        $_thumbnailUrl = esc_url("http://i.ytimg.com/vi/" . $vidid . "/0.jpg");
+                        $_duration = self::formatDuration(self::secondsToDuration(intval($json['entry']['media$group']['yt$duration']['seconds'])));
+                        $_uploadDate = sanitize_text_field($json['entry']['published']['$t']);
+
+                        $schemaorgcode = '<div style="display:none;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">';
+                        $schemaorgcode .= '<meta itemprop="embedURL" content="http://www.youtube.com/embed/' . $vidid . '">';
+                        $schemaorgcode .= '<meta itemprop="name" content="' . $_name . '">';
+                        $schemaorgcode .= '<meta itemprop="description" content="' . $_description . '">';
+                        $schemaorgcode .= '<meta itemprop="thumbnailUrl" content="' . $_thumbnailUrl . '">';
+                        $schemaorgcode .= '<meta itemprop="duration" content="' . $_duration . '">';
+                        $schemaorgcode .= '<meta itemprop="uploadDate" content="' . $_uploadDate . '">';
+                        $schemaorgcode .= '</div>';
+                    }
+                }
+            }
+        }
+        catch (Exception $ex)
+        {
+            
+        }
+        return $schemaorgcode;
+    }
+    
+    
+    public static function secondsToDuration($seconds)
+    {
+        $remaining = $seconds;
+        $parts = array();
+        $multipliers = array(
+            'hours' => 3600,
+            'minutes' => 60,
+            'seconds' => 1
+        );
+
+        foreach ($multipliers as $type => $m)
+        {
+            $parts[$type] = (int) ($remaining / $m);
+            $remaining -= ($parts[$type] * $m);
+        }
+
+        return $parts;
+    }
+
+    public static function formatDuration($parts)
+    {
+        $default = array(
+            'hours' => 0,
+            'minutes' => 0,
+            'seconds' => 0
+        );
+
+        extract(array_merge($default, $parts));
+
+        return "T{$hours}H{$minutes}M{$seconds}S";
+    }
+
+
     public static function embedplus_plugin_menu()
     {
-        add_menu_page('EmbedPlus Settings', 'EmbedPlus', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options', plugins_url('images/epicon.png', __FILE__), '10.00392854349');
-        add_menu_page('EmbedPlus Video Analytics Dashboard', 'EmbedPlus PRO', 'manage_options', 'embedplus-video-analytics-dashboard', 'EmbedPlusOfficialPlugin::epstats_show_options', plugins_url('images/epstats16.png', __FILE__), '10.00492854349');
+        if (self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0)
+        {
+            add_menu_page('EmbedPlus Settings', 'EmbedPlus PRO', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options', plugins_url('images/epicon.png', __FILE__), '10.000592854349');
+            add_menu_page('EmbedPlus Video Analytics Dashboard', 'PRO Analytics', 'manage_options', 'embedplus-video-analytics-dashboard', 'EmbedPlusOfficialPlugin::epstats_show_options', plugins_url('images/epstats16.png', __FILE__), '10.000692884349');
+        }
+        else
+        {
+            add_menu_page('EmbedPlus Settings', 'EmbedPlus Free', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options', plugins_url('images/epicon.png', __FILE__), '10.000592854349');
+            add_submenu_page('embedplus-official-options', '', '', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options');
+            add_submenu_page('embedplus-official-options', 'EmbedPlus PRO', 'EmbedPlus PRO', 'manage_options', 'embedplus-video-analytics-dashboard', 'EmbedPlusOfficialPlugin::epstats_show_options');
+        }
+        
         add_options_page('EmbedPlus Settings', 'EmbedPlus', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options');
     }
 
     public static function epstats_show_options()
     {
-
         if (!current_user_can('manage_options'))
         {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 
-        // Now display the settings editing screen
         ?>
         <div class="wrap">
             <?php
-            // header
-
-            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus PRO') . "</h2>";
+            
+            if (self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0)
+            {
+                //// header
+                echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('YouTube Analytics Dashboard') . "</h2>";
+                echo '<p><i>Logging you in...</i></p>';
+            }
+            else
+            {
+                //// header
+                echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus PRO') . "</h2><p class='bold orange'>This tab is here to provide direct access to analytics. Graphs and other data about your site will show below after you activate PRO.</p><br>";
+            }
+            
 
             // settings form
             ?>
@@ -435,65 +569,26 @@ class EmbedPlusOfficialPlugin
             <?php
             $thishost = (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "");
             $thiskey = self::$alloptions[self::$opt_pro];
-            if (self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0)
-            {
-                echo '<p><i>Logging you in...</i></p>';
-            }
             ?>
             <iframe class="shadow" src="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab&domain=<?php echo $thishost; ?>&prokey=<?php echo $thiskey; ?>" width="1030" height="2000" scrolling="auto"></iframe>
         </div>
         <?php
     }
 
-    public static function has_pro()
+    public static function keyvalue($qry, $includev)
     {
-        
-    }
-
-    public static function my_embedplus_pro_validate()
-    {
-        $result = array();
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+        $ytvars = explode('&', $qry);
+        $ytkvp = array();
+        foreach ($ytvars as $k => $v)
         {
-
-            try
+            $kvp = explode('=', $v);
+            if (count($kvp) == 2 && ($includev || strtolower($kvp[0]) != 'v'))
             {
-                $tmppro = preg_replace('/[^A-Za-z0-9-]/i', '', $_REQUEST[self::$opt_pro]);
-                $new_options = array();
-                $websiteurl = site_url();
-
-                $valurl = self::$epbase . "/dashboard/wordpress-pro-validate.aspx?domain=" . urlencode($websiteurl) . "&prokey=" . $tmppro;
-                $is_valid = file_get_contents($valurl);
-
-                $result['data'] = $is_valid;
-
-                if (trim($is_valid) === '1')
-                {
-                    $new_options[self::$opt_pro] = $tmppro;
-                    $result['type'] = 'success';
-                }
-                else
-                {
-                    $new_options[self::$opt_pro] = '';
-                    $result['type'] = 'failed';
-                }
-
-                $all = get_option(self::$opt_alloptions);
-                $all = $new_options + $all;
-                update_option(self::$opt_alloptions, $all);
+                $ytkvp[$kvp[0]] = $kvp[1];
             }
-            catch (Exception $ex)
-            {
-                $result['type'] = 'error';
-            }
+        }
 
-            echo json_encode($result);
-        }
-        else
-        {
-            header("Location: " . $_SERVER["HTTP_REFERER"]);
-        }
-        die();
+        return $ytkvp;
     }
 
     public static function my_embedplus_pro_record()
@@ -538,12 +633,6 @@ class EmbedPlusOfficialPlugin
         $embedplus_submitted = 'embedplus_submitted';
         $pro_submitted = 'pro_submitted';
 
-        // Read in existing option values from database
-//        $opt_enhance_youtube_val = self::$alloptions[self::$opt_enhance_youtube];
-//        $opt_show_react_val = self::$alloptions[self::$opt_show_react];
-//        $opt_auto_hd_val = self::$alloptions[self::$opt_auto_hd];
-//        $opt_sweetspot_val = self::$alloptions[self::$opt_sweetspot];
-
         $all = get_option(self::$opt_alloptions);
 
         // See if the user has posted us some information
@@ -558,6 +647,8 @@ class EmbedPlusOfficialPlugin
             $new_options[self::$opt_auto_hd] = $_POST[self::$opt_auto_hd] == (true || 'on') ? 1 : 0;
             $new_options[self::$opt_sweetspot] = $_POST[self::$opt_sweetspot] == (true || 'on') ? 1 : 0;
             $new_options[self::$opt_emb] = $_POST[self::$opt_emb] == (true || 'on') ? 0 : 1;
+            $new_options[self::$opt_oldspacing] = $_POST[self::$opt_oldspacing] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_schemaorg] = isset($_POST[self::$opt_schemaorg]) && $_POST[self::$opt_schemaorg] == (true || 'on') ? 1 : 0;
 
             $all = $new_options + $all;
 
@@ -584,8 +675,9 @@ class EmbedPlusOfficialPlugin
             iframe.shadow {-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;}
             .smallnote {font-style: italic; color: #888888; font-size: 11px;}
             #nonprosupport {border-radius: 15px; padding: 5px 10px 10px 10px;  border: 3px solid #ff6655; width: 800px;}
+            .ssschema {float: right; width: 350px; height: auto; margin-right: 10px;}
         </style>
-        <div class="wrap">
+        <div class="wrap" style="max-width: 1000px;">
 
 
             <?php
@@ -640,9 +732,6 @@ class EmbedPlusOfficialPlugin
             <div class="epindent">
                 <form name="form1" method="post" action="" id="epform">
                     <input type="hidden" name="<?php echo $embedplus_submitted; ?>" value="Y">
-
-                    <h3><?php _e("Auto-Embed Settings") ?></h3>
-
                     <p>
                         <?php
                         _e("This plugin automatically converts YouTube URLs that are on their own line, in plain text, to actual video embeds. All you have to do is paste the YouTube URL in the editor (example: <code>http://www.youtube.com/watch?v=YVvn8dpSAt0</code>), and:");
@@ -653,13 +742,19 @@ class EmbedPlusOfficialPlugin
                         <li>Make sure you did <strong>not</strong> format or align the url in any way. If your url still appears in your actual post instead of a video, highlight it and click the "remove formatting" button (formatting can be invisible sometimes): <img src="<?php echo plugins_url('images/erase.png', __FILE__) ?>"/></li>
                     </ul>       
                     <?php
-                    _e("This plugin can make those \"auto-embeds\" display the enhanced player if you check the first option below"
+                    _e("This plugin can make those \"auto-embeds\" display the enhanced player if you check the first option below. "
                             . (get_option('embed_autourls') ? "" : " <strong>Make sure that <strong><a href=\"/wp-admin/options-media.php\">Settings &raquo; Media &raquo; Embeds &raquo; Auto-embeds</a></strong> is checked too.</strong>"));
                     ?>
                     </p>
                     <p>
                         <input name="<?php echo self::$opt_enhance_youtube; ?>" id="<?php echo self::$opt_enhance_youtube; ?>" <?php checked($all[self::$opt_enhance_youtube], 1); ?> type="checkbox" class="checkbox">
                         <label for="<?php echo self::$opt_enhance_youtube; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/> <?php _e('Automatically enhance all your YouTube embeds') ?></label>
+                    </p>
+                    <p>
+                        <input name="<?php echo self::$opt_oldspacing; ?>" id="<?php echo self::$opt_oldspacing; ?>" <?php checked($all[self::$opt_oldspacing], 1); ?> type="checkbox" class="checkbox">
+                        <label for="<?php echo self::$opt_oldspacing; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/oldspacing.jpg"/>
+                            Continue the spacing style from version 4.0 and older. Those versions required you to manually add spacing above and below your video. Unchecking this will automatically add the spacing for you.
+                        </label>
                     </p>
                     <p>
                         <input name="<?php echo self::$opt_auto_hd; ?>" id="<?php echo self::$opt_auto_hd; ?>" <?php checked($all[self::$opt_auto_hd], 1); ?> type="checkbox" class="checkbox">
@@ -699,7 +794,7 @@ class EmbedPlusOfficialPlugin
                         ?>
                         <p>
                             <input type="checkbox" disabled class="checkbox">
-                            <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> Hide Social Media Reactions (This button shows web discussions for each video right from your blog) (<a class="pp" target="_blank" href="<?php echo self::$epbase ?>/dashboard/sale.aspx?iframe=true&width=90%&height=80%" title="">available in PRO version &raquo;</a>)
+                            <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> Hide Social Media Reactions (This button shows web discussions for each video right from your blog) (<a target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">available in PRO version &raquo;</a>)
                         </p>
                         <?php
                     }
@@ -712,7 +807,17 @@ class EmbedPlusOfficialPlugin
                         ?>
                         <p>
                             <input name="<?php echo self::$opt_emb; ?>" id="<?php echo self::$opt_emb; ?>" <?php checked($all[self::$opt_emb], '0'); ?> type="checkbox" class="checkbox">
-                            <label for="<?php echo self::$opt_emb; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/get.jpg"/> <?php _e('Hide GET button') ?></label>
+                            <label for="<?php echo self::$opt_emb; ?>">
+                                <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/get.jpg"/> <?php _e('Hide GET button') ?></label>
+                        </p>
+                        <p>
+                            <img class="ssschema" src="<?php echo plugins_url('images/ssschemaorg.jpg', __FILE__) ?>" />
+                            <input name="<?php echo self::$opt_schemaorg; ?>" id="<?php echo self::$opt_schemaorg; ?>" <?php checked($all[self::$opt_schemaorg], 1); ?> type="checkbox" class="checkbox">
+                            <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/videoseoicon.png"/>
+                            <sup class="orange bold">NEW</sup>
+                            <label for="<?php echo self::$opt_schemaorg; ?>">
+                                Automatically add Google, Bing, and Yahoo friendly markup so that your pages with video embeds can be indexed to have a greater chance of showing up in search engine results for those particular videos, even if you aren't the owner. This markup also promotes the chances of your pages showing up with actual video thumbnails within search results (see example on the right). Just check the PRO setting and we'll handle the SEO.
+                            </label>
                         </p>
 
                         <?php
@@ -722,7 +827,15 @@ class EmbedPlusOfficialPlugin
                         ?>
                         <p>
                             <input type="checkbox" disabled class="checkbox">
-                            <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/get.jpg"/> Hide GET button (<a class="pp" target="_blank" href="<?php echo self::$epbase ?>/dashboard/sale.aspx?iframe=true&width=90%&height=80%" title="">available in PRO version &raquo;</a>)</span>
+                            <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/get.jpg"/> Hide GET button (<a target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">available in PRO version &raquo;</a>)</span>
+                        </p>
+                        <p>
+                            <img class="ssschema" src="<?php echo plugins_url('images/ssschemaorg.jpg', __FILE__) ?>" />
+                            <input type="checkbox" disabled class="checkbox">
+                            <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/videoseoicon.png"/> 
+                            <sup class="orange bold">NEW</sup>
+                            Automatically add Google, Bing, and Yahoo friendly markup so that your pages with video embeds can be indexed to have a greater chance of showing up in search engine results for those particular videos, even if you aren't the owner. This markup also promotes the chances of your pages showing up with actual video thumbnails within search results (see example on the right). Just check the PRO setting and we'll handle the SEO.
+                            (<a target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">available in PRO version &raquo;</a>)</span>
                         </p>
                         <?php
                     }
@@ -769,11 +882,12 @@ class EmbedPlusOfficialPlugin
 
             </p>
             <iframe src="<?php echo self::$epbase ?>/wpembedcode.aspx?fromiframe=1&eadopt=<?php echo get_option('embedplusopt_enhance_youtube') === false ? '0' : '1' ?>&prokey=<?php echo $all[self::$opt_pro]; ?>&domain=<?php echo site_url(); ?>&blogwidth=<?php
-        self::init_dimensions();
-        echo self::$defaultwidth ? self::$defaultwidth : ""
-        ?>" width="950" height="1200" class="shadow"></iframe>
+            self::init_dimensions();
+            echo self::$defaultwidth ? self::$defaultwidth : ""
+            ?>" width="950" height="1200" class="shadow"></iframe>
             <br>
         </div>
+                <br>
         <?php
         echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Priority Support') . "</h2>";
         ?>
@@ -794,6 +908,9 @@ class EmbedPlusOfficialPlugin
             </div>
             <iframe src="<?php echo self::$epbase ?>/dashboard/prosupport.aspx?&prokey=<?php echo $all[self::$opt_pro]; ?>&domain=<?php echo site_url(); ?>" width="500" height="500"></iframe>
         </div>
+                <br>
+                
+                <!--
         <?php
         echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __("What's next for us? Take this survey.") . "</h2>";
         ?>
@@ -802,62 +919,63 @@ class EmbedPlusOfficialPlugin
             <div id="surveyMonkeyInfo" style="width:600px;font-size:10px;color:#666;border:1px solid #ccc;padding:4px;"><div><iframe id="sm_e_s" src="http://www.surveymonkey.com/jsEmbed.aspx?sm=fzDp_2bBj61z8oFK7Z7Kd3lQ_3d_3d" width="600" height="900" style="border:0px;padding-bottom:4px;" frameborder="0" allowtransparency="true" ></iframe></div>
             </div>
         </div>
+                -->
         <script type="text/javascript">
             var prokeyval;
             jQuery(document).ready(function($) {
-                                                                                                                                                                                                                                                                                                                                                                
-                $('.pp').prettyPhoto({ modal: false, theme: 'dark_rounded' });
-                                                                                                                                                        
-                jQuery('#showprokey').click(function(){
+
+                $('.pp').prettyPhoto({modal: false, theme: 'dark_rounded'});
+
+                jQuery('#showprokey').click(function() {
                     jQuery('.submitpro').show(500);
                     return false;
                 });
-                                                                                                                                             
-                                                                                                                                             
-                jQuery('#prokeysubmit').click(function(){
+
+
+                jQuery('#prokeysubmit').click(function() {
                     jQuery(this).attr('disabled', 'disabled');
                     jQuery('#prokeyfailed').hide();
                     jQuery('#prokeysuccess').hide();
                     jQuery('#prokeyloading').show();
                     prokeyval = jQuery('#opt_pro').val();
-                                                                                                                                                                            
-                    var tempscript=document.createElement("script");
-                    tempscript.src="//www.embedplus.com/dashboard/wordpress-pro-validatejp.aspx?prokey=" + prokeyval;
-                    var n=document.getElementsByTagName("head")[0].appendChild(tempscript);
-                    setTimeout(function(){
+
+                    var tempscript = document.createElement("script");
+                    tempscript.src = "//www.embedplus.com/dashboard/wordpress-pro-validatejp.aspx?prokey=" + prokeyval;
+                    var n = document.getElementsByTagName("head")[0].appendChild(tempscript);
+                    setTimeout(function() {
                         n.parentNode.removeChild(n)
-                    },500);
+                    }, 500);
                     return false;
                 });
-                                                                                                                                        
-                window.embedplus_record_prokey = function(good){
-                                                                                            
+
+                window.embedplus_record_prokey = function(good) {
+
                     jQuery.ajax({
-                        type : "post",
-                        dataType : "json",
+                        type: "post",
+                        dataType: "json",
                         timeout: 30000,
-                        url : "<?php echo admin_url('admin-ajax.php') ?>",
-                        data : { action: 'my_embedplus_pro_record', <?php echo self::$opt_pro; ?>:  (good? prokeyval : "")},
+                        url: "<?php echo admin_url('admin-ajax.php') ?>",
+                        data: {action: 'my_embedplus_pro_record', <?php echo self::$opt_pro; ?>: (good ? prokeyval : "")},
                         success: function(response) {
-                            if(response.type == "success") {
+                            if (response.type == "success") {
                                 jQuery("#prokeysuccess").show();
                             }
                             else {
                                 jQuery("#prokeyfailed").show();
                             }
                         },
-                        error: function(xhr, ajaxOptions, thrownError){
+                        error: function(xhr, ajaxOptions, thrownError) {
                             jQuery('#prokeyfailed').show();
                         },
                         complete: function() {
                             jQuery('#prokeyloading').hide();
                             jQuery('#prokeysubmit').removeAttr('disabled');
                         }
-                                                                                                                                                                                                                                                                                                                                                                                                                        
+
                     });
-                                                                                            
+
                 };
-                                                                                                                                        
+
             });
         </script>
         <?php
@@ -947,19 +1065,8 @@ $embedplusoplg = new EmbedPlusOfficialPlugin();
 $embedplusmce = new Add_new_tinymce_btn_EmbedPlus('|', 'embedpluswiz', plugins_url() . '/embedplus-for-wordpress/js/embedplus_mce.js');
 $epstatsmce = new Add_new_tinymce_btn_EmbedPlus('|', 'embedplusstats', plugins_url() . '/embedplus-for-wordpress/js/embedplusstats_mce.js');
 
-if (EmbedPlusOfficialPlugin::wp_above_version('2.9'))
-{
-    add_action('admin_enqueue_scripts', 'embedplus_admin_enqueue_scripts');
-    //add_action("wp_ajax_my_embedplus_pro_validate", array('EmbedPlusOfficialPlugin', 'my_embedplus_pro_validate'));
-    add_action("wp_ajax_my_embedplus_pro_record", array('EmbedPlusOfficialPlugin', 'my_embedplus_pro_record'));
-}
-else
-{
-    add_action('wp_print_scripts', 'embedplus_output_scriptvars');
-    wp_enqueue_style('embedpluswiz', plugins_url() . '/embedplus-for-wordpress/css/embedplus_mce.css');
-    wp_enqueue_style('embedplusoptionscss', plugins_url() . '/embedplus-for-wordpress/css/prettyPhoto.css');
-    wp_enqueue_script('embedplusoptionsjs', plugins_url() . '/embedplus-for-wordpress/js/jquery.prettyPhoto.js');
-}
+add_action('admin_enqueue_scripts', 'embedplus_admin_enqueue_scripts');
+add_action("wp_ajax_my_embedplus_pro_record", array('EmbedPlusOfficialPlugin', 'my_embedplus_pro_record'));
 
 function embedplus_admin_enqueue_scripts()
 {
