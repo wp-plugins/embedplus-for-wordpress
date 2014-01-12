@@ -41,6 +41,8 @@ It will even alert you if Google takes down a YouTube video you embedded on your
 
 Hear about major upcoming announcements and feature updates by [signing up here](http://eepurl.com/tpncn).
 
+[Maintained by EmbedPlus for YouTube >>](http://www.embedplus.com/)
+
 == Installation ==
 
 1. Install the plugin using the plugin installer within WordPress (or, upload the `embedplus-for-wordpress` folder to the `/wp-content/plugins/` directory)
