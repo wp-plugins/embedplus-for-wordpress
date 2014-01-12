@@ -3,7 +3,7 @@
   Plugin Name: Advanced YouTube Embed by Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin. Enhanced playback and engagement of each YouTube embed. Optional analytics dashboard to track your YouTube embed performance.
-  Version: 4.0
+  Version: 4.1
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -46,6 +46,7 @@ class EmbedPlusOfficialPlugin
     public static $opt_pro = 'pro';
     public static $opt_oldspacing = 'oldspacing';
     public static $opt_schemaorg = 'schemaorg';
+    public static $opt_ssl = 'ssl';
     public static $opt_alloptions = 'embedplusopt_alloptions';
     public static $alloptions = null;
     //public static $epbase = 'http://localhost:2346';
@@ -116,6 +117,7 @@ class EmbedPlusOfficialPlugin
         $_opt_pro = get_option('embedplusopt_pro', '');
         $_opt_oldspacing = 1;
         $_schemaorg = 0;
+        $_ssl = 0;
 
         $arroptions = get_option(self::$opt_alloptions);
 
@@ -129,6 +131,7 @@ class EmbedPlusOfficialPlugin
             $_opt_pro = self::tryget($arroptions, self::$opt_pro, '');
             $_opt_oldspacing = self::tryget($arroptions, self::$opt_oldspacing, 1);
             $_schemaorg = self::tryget($arroptions, self::$opt_schemaorg, 0);
+            $_ssl = self::tryget($arroptions, self::$opt_ssl, 0);
         }
         else
         {
@@ -142,6 +145,7 @@ class EmbedPlusOfficialPlugin
             self::$opt_auto_hd => $_opt_auto_hd,
             self::$opt_sweetspot => $_opt_sweetspot,
             self::$opt_pro => $_opt_pro,
+            self::$opt_ssl => $_ssl,
             self::$opt_emb => $_opt_emb,
             self::$opt_oldspacing => $_opt_oldspacing,
             self::$opt_schemaorg => $_schemaorg
@@ -271,31 +275,31 @@ class EmbedPlusOfficialPlugin
 
         // setup variables for creating embed code
         $epreq['vars'] = 'ytid=';
-        $epreq['standard'] = 'http://www.youtube.com/v/';
+        $epreq['standard'] = '//www.youtube.com/v/';
         if ($ytkvp['v'])
         {
             $epreq['vars'] .= strip_tags($ytkvp['v']) . '&amp;';
             $epreq['standard'] .= strip_tags($ytkvp['v']) . '?fs=1&amp;';
         }
-        $realheight = intval($ytkvp['h'] ? $ytkvp['h'] : $epreq['height']);
+        $realheight = intval(isset($ytkvp['h']) && is_numeric($ytkvp['h']) ? $ytkvp['h'] : $epreq['height']);
         $epreq['vars'] .= 'height=' . $realheight . '&amp;';
         $epreq['height'] = $realheight;
 
-        $realwidth = intval($ytkvp['w'] ? $ytkvp['w'] : $epreq['width']);
+        $realwidth = intval(isset($ytkvp['w']) && is_numeric($ytkvp['w']) ? $ytkvp['w'] : $epreq['width']);
         $epreq['vars'] .= 'width=' . $realwidth . '&amp;';
         $epreq['width'] = $realwidth;
 
 
-        $realhd = intval(self::$alloptions[self::$opt_auto_hd]) == 1 ? 'hd=1&amp;' : '';
-        $realhd = $ytkvp['hd'] ? 'hd=' . intval($ytkvp['hd']) . '&amp;' : $realhd;
+        $realhd = isset(self::$alloptions[self::$opt_auto_hd]) && self::$alloptions[self::$opt_auto_hd] == 1 ? 'hd=1&amp;' : '';
+        $realhd = isset($ytkvp['hd']) && $ytkvp['hd'] == 1 ? 'hd=1&amp;' : $realhd;
         $epreq['vars'] .= $realhd;
-        $epreq['standard'] .= $realhd;
+        $epreq['standard'] .= str_replace('hd=1', 'vq=720', $realhd);
 
-        $realstart = $ytkvp['start'] ? 'start=' . intval($ytkvp['start']) . '&amp;' : '';
+        $realstart = isset($ytkvp['start']) && is_numeric($ytkvp['start']) ? 'start=' . intval($ytkvp['start']) . '&amp;' : '';
         $epreq['vars'] .= $realstart;
         $epreq['standard'] .= $realstart;
 
-        $realend = $ytkvp['end'] ? 'end=' . intval($ytkvp['end']) . '&amp;' : '';
+        $realend = isset($ytkvp['end']) && is_numeric($ytkvp['end']) ? 'end=' . intval($ytkvp['end']) . '&amp;' : '';
         $epreq['vars'] .= preg_replace('/end/', 'stop', $realend);
         $epreq['standard'] .= $realend;
 
@@ -340,6 +344,7 @@ class EmbedPlusOfficialPlugin
         $epstandard = $incomingfromhandler['standard'];
         $epfullheight = null;
         $schemaorgoutput = '';
+        $linkscheme = 'http';
 
 
         if (self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0)
@@ -348,6 +353,10 @@ class EmbedPlusOfficialPlugin
             {
                 $epvarsarr = self::keyvalue($epvars, true);
                 $schemaorgoutput = self::getschemaorgoutput($epvarsarr['ytid']);
+            }
+            if (self::$alloptions[self::$opt_ssl] == 1)
+            {
+                $linkscheme = 'https';
             }
         }
 
@@ -382,7 +391,7 @@ class EmbedPlusOfficialPlugin
 
         if ($epstandard == "")
         {
-            $epstandard = "http://www.youtube.com/embed/";
+            $epstandard = "//www.youtube.com/embed/";
             $ytidmatch = array();
             preg_match('/ytid=([^&]+)&/i', $epvars, $ytidmatch);
             $epstandard .= $ytidmatch[1];
@@ -395,8 +404,8 @@ class EmbedPlusOfficialPlugin
 
 
         $epoutput = $schemaorgoutput .
-                '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="http://getembedplus.com/embedplus.swf" id="' . $epobjid . '">' . chr(13) .
-                '<param value="http://getembedplus.com/embedplus.swf" name="movie" />' . chr(13) .
+                '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="' . $linkscheme . '://getembedplus.com/embedplus.swf" id="' . $epobjid . '">' . chr(13) .
+                '<param value="' . $linkscheme . '://getembedplus.com/embedplus.swf" name="movie" />' . chr(13) .
                 '<param value="high" name="quality" />' . chr(13) .
                 '<param value="transparent" name="wmode" />' . chr(13) .
                 '<param value="always" name="allowscriptaccess" />' . chr(13) .
@@ -642,13 +651,14 @@ class EmbedPlusOfficialPlugin
             // Read their posted values
             $new_options = array();
 
-            $new_options[self::$opt_enhance_youtube] = $_POST[self::$opt_enhance_youtube] == (true || 'on') ? 1 : 0;
-            $new_options[self::$opt_show_react] = $_POST[self::$opt_show_react] == (true || 'on') ? 1 : 0;
-            $new_options[self::$opt_auto_hd] = $_POST[self::$opt_auto_hd] == (true || 'on') ? 1 : 0;
-            $new_options[self::$opt_sweetspot] = $_POST[self::$opt_sweetspot] == (true || 'on') ? 1 : 0;
-            $new_options[self::$opt_emb] = $_POST[self::$opt_emb] == (true || 'on') ? 0 : 1;
-            $new_options[self::$opt_oldspacing] = $_POST[self::$opt_oldspacing] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_enhance_youtube] = isset($_POST[self::$opt_enhance_youtube]) && $_POST[self::$opt_enhance_youtube] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_show_react] = isset($_POST[self::$opt_show_react]) && $_POST[self::$opt_show_react] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_auto_hd] = isset($_POST[self::$opt_auto_hd]) && $_POST[self::$opt_auto_hd] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_sweetspot] = isset($_POST[self::$opt_sweetspot]) && $_POST[self::$opt_sweetspot] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_emb] = isset($_POST[self::$opt_emb]) && $_POST[self::$opt_emb] == (true || 'on') ? 0 : 1;
+            $new_options[self::$opt_oldspacing] = isset($_POST[self::$opt_oldspacing]) && $_POST[self::$opt_oldspacing] == (true || 'on') ? 1 : 0;
             $new_options[self::$opt_schemaorg] = isset($_POST[self::$opt_schemaorg]) && $_POST[self::$opt_schemaorg] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_ssl] = isset($_POST[self::$opt_ssl]) && $_POST[self::$opt_ssl] == (true || 'on') ? 1 : 0;
 
             $all = $new_options + $all;
 
@@ -675,6 +685,7 @@ class EmbedPlusOfficialPlugin
             iframe.shadow {-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;}
             .smallnote {font-style: italic; color: #888888; font-size: 11px;}
             #nonprosupport {border-radius: 15px; padding: 5px 10px 10px 10px;  border: 3px solid #ff6655; width: 800px;}
+            input[type=checkbox] {border: 1px solid #000000;}
             .ssschema {float: right; width: 350px; height: auto; margin-right: 10px;}
         </style>
         <div class="wrap" style="max-width: 1000px;">
@@ -819,6 +830,13 @@ class EmbedPlusOfficialPlugin
                                 Automatically add Google, Bing, and Yahoo friendly markup so that your pages with video embeds can be indexed to have a greater chance of showing up in search engine results for those particular videos, even if you aren't the owner. This markup also promotes the chances of your pages showing up with actual video thumbnails within search results (see example on the right). Just check the PRO setting and we'll handle the SEO.
                             </label>
                         </p>
+                        <p>
+                            <input name="<?php echo self::$opt_ssl; ?>" id="<?php echo self::$opt_ssl; ?>" <?php checked($all[self::$opt_ssl], '1'); ?> type="checkbox" class="checkbox">
+                            <label for="<?php echo self::$opt_ssl; ?>">
+                                <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/ssl.png"/>
+                                <sup class="orange bold">NEW</sup>
+                                HTTPS/SSL Player: Use the secure player for all of your visitors and videos you embed. This will go back and also secure your past embeds as they are loaded on their pages.</label>
+                        </p>
 
                         <?php
                     }
@@ -837,6 +855,13 @@ class EmbedPlusOfficialPlugin
                             Automatically add Google, Bing, and Yahoo friendly markup so that your pages with video embeds can be indexed to have a greater chance of showing up in search engine results for those particular videos, even if you aren't the owner. This markup also promotes the chances of your pages showing up with actual video thumbnails within search results (see example on the right). Just check the PRO setting and we'll handle the SEO.
                             (<a target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">available in PRO version &raquo;</a>)</span>
                         </p>
+                        <p>
+                            <input type="checkbox" disabled class="checkbox">
+                            <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/ssl.png"/> 
+                            <sup class="orange bold">NEW</sup>
+                            HTTPS/SSL Player: Use the secure player for all of your visitors and videos you embed. This will go back and also secure your past embeds as they are loaded on their pages. (<a target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">available in PRO version &raquo;</a>)</span>
+                        </p>
+                        
                         <?php
                     }
                     ?>
