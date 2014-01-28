@@ -1,9 +1,9 @@
 <?php
 /*
-  Plugin Name: Advanced YouTube Embed by Embed Plus
+  Plugin Name: YouTube Advanced Embed by Embed Plus
   Plugin URI: http://www.embedplus.com
   Description: YouTube embed plugin. Enhanced playback and engagement of each YouTube embed. Optional analytics dashboard to track your YouTube embed performance.
-  Version: 4.2
+  Version: 4.3
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '4.2';
+    public static $version = '4.3';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -41,6 +41,7 @@ class EmbedPlusOfficialPlugin
     public static $opt_enhance_youtube = 'enhance_youtube';
     public static $opt_show_react = 'show_react';
     public static $opt_auto_hd = 'auto_hd';
+    public static $opt_show_ann = 'show_ann';
     public static $opt_sweetspot = 'sweetspot';
     public static $opt_emb = 'emb';
     public static $opt_pro = 'pro';
@@ -118,6 +119,7 @@ class EmbedPlusOfficialPlugin
         $_opt_oldspacing = 1;
         $_schemaorg = 0;
         $_ssl = 0;
+        $_opt_show_ann = 1;
 
         $arroptions = get_option(self::$opt_alloptions);
 
@@ -132,6 +134,8 @@ class EmbedPlusOfficialPlugin
             $_opt_oldspacing = self::tryget($arroptions, self::$opt_oldspacing, 1);
             $_schemaorg = self::tryget($arroptions, self::$opt_schemaorg, 0);
             $_ssl = self::tryget($arroptions, self::$opt_ssl, 0);
+            $_opt_show_ann = self::tryget($arroptions, self::$opt_show_ann, 1);
+            
         }
         else
         {
@@ -143,6 +147,7 @@ class EmbedPlusOfficialPlugin
             self::$opt_enhance_youtube => $_opt_enhance_youtube,
             self::$opt_show_react => $_opt_show_react,
             self::$opt_auto_hd => $_opt_auto_hd,
+            self::$opt_show_ann => $_opt_show_ann,
             self::$opt_sweetspot => $_opt_sweetspot,
             self::$opt_pro => $_opt_pro,
             self::$opt_ssl => $_ssl,
@@ -294,6 +299,11 @@ class EmbedPlusOfficialPlugin
         $realhd = isset($ytkvp['hd']) && $ytkvp['hd'] == 1 ? 'hd=1&amp;' : $realhd;
         $epreq['vars'] .= $realhd;
         $epreq['standard'] .= str_replace('hd=1', 'vq=720', $realhd);
+
+        $realshow_ann = isset(self::$alloptions[self::$opt_show_ann]) && self::$alloptions[self::$opt_show_ann] == 3 ? 'iv_load_policy=3&amp;' : '';
+        $realshow_ann = isset($ytkvp['show_ann']) && $ytkvp['show_ann'] == 3 ? 'iv_load_policy=3&amp;' : $realshow_ann;
+        $epreq['vars'] .= $realshow_ann;
+        $epreq['standard'] .= $realshow_ann;
 
         $realstart = isset($ytkvp['start']) && is_numeric($ytkvp['start']) ? 'start=' . intval($ytkvp['start']) . '&amp;' : '';
         $epreq['vars'] .= $realstart;
@@ -649,6 +659,7 @@ class EmbedPlusOfficialPlugin
                 $new_options[self::$opt_enhance_youtube] = isset($_POST[self::$opt_enhance_youtube]) && $_POST[self::$opt_enhance_youtube] == (true || 'on') ? 1 : 0;
                 $new_options[self::$opt_show_react] = isset($_POST[self::$opt_show_react]) && $_POST[self::$opt_show_react] == (true || 'on') ? 1 : 0;
                 $new_options[self::$opt_auto_hd] = isset($_POST[self::$opt_auto_hd]) && $_POST[self::$opt_auto_hd] == (true || 'on') ? 1 : 0;
+                $new_options[self::$opt_show_ann] = isset($_POST[self::$opt_show_ann]) && $_POST[self::$opt_show_ann] == (true || 'on') ? 1 : 3;
                 $new_options[self::$opt_sweetspot] = isset($_POST[self::$opt_sweetspot]) && $_POST[self::$opt_sweetspot] == (true || 'on') ? 1 : 0;
                 $new_options[self::$opt_emb] = isset($_POST[self::$opt_emb]) && $_POST[self::$opt_emb] == (true || 'on') ? 0 : 1;
                 $new_options[self::$opt_oldspacing] = isset($_POST[self::$opt_oldspacing]) && $_POST[self::$opt_oldspacing] == (true || 'on') ? 1 : 0;
@@ -765,6 +776,10 @@ class EmbedPlusOfficialPlugin
                     <p>
                         <input name="<?php echo self::$opt_auto_hd; ?>" id="<?php echo self::$opt_auto_hd; ?>" <?php checked($all[self::$opt_auto_hd], 1); ?> type="checkbox" class="checkbox">
                         <label for="<?php echo self::$opt_auto_hd; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hd.jpg"/> <?php _e('Automatically make all videos HD quality (when possible).') ?></label>
+                    </p>
+                    <p>
+                        <input name="<?php echo self::$opt_show_ann; ?>" id="<?php echo self::$opt_show_ann; ?>" <?php checked($all[self::$opt_show_ann], 1); ?> type="checkbox" class="checkbox">
+                        <label for="<?php echo self::$opt_show_ann; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/show_ann.png"/> <?php _e("Show the video creator's annotations, if any.") ?></label>
                     </p>
                     <p>
                         <input name="<?php echo self::$opt_sweetspot; ?>" id="<?php echo self::$opt_sweetspot; ?>" <?php checked($all[self::$opt_sweetspot], 1); ?> type="checkbox" class="checkbox">
