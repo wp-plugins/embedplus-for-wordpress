@@ -1,11 +1,11 @@
 <?php
 /*
-  Plugin Name: YouTube Advanced Embed by Embed Plus
-  Plugin URI: http://www.embedplus.com
-  Description: YouTube embed plugin. Enhanced playback and engagement of each YouTube embed. Optional analytics dashboard to track your YouTube embed performance.
-  Version: 4.3
+  Plugin Name: YouTube Advanced by Embed Plus
+  Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
+  Description: YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
+  Version: 4.4
   Author: EmbedPlus Team
-  Author URI: http://www.embedplus.com
+  Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
  */
 
 /*
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '4.3';
+    public static $version = '4.4';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -135,7 +135,6 @@ class EmbedPlusOfficialPlugin
             $_schemaorg = self::tryget($arroptions, self::$opt_schemaorg, 0);
             $_ssl = self::tryget($arroptions, self::$opt_ssl, 0);
             $_opt_show_ann = self::tryget($arroptions, self::$opt_show_ann, 1);
-            
         }
         else
         {
@@ -409,6 +408,15 @@ class EmbedPlusOfficialPlugin
 
         $epstandard = preg_replace('/\s/', '', $epstandard);
 
+
+        if (strpos($epvars, 'iv_load_policy') === false)
+        {
+            $realshow_ann = isset(self::$alloptions[self::$opt_show_ann]) && self::$alloptions[self::$opt_show_ann] == 3 ? '&amp;iv_load_policy=3' : '';
+            $epvars .= $realshow_ann;
+            $epstandard .= $realshow_ann;
+        }
+
+
         $epstandard = preg_replace('/youtube.com\/v\//i', 'youtube.com/embed/', $epstandard);
         $epoutputstandard = '<iframe class="cantembedplus" title="YouTube video player" width="~width" height="~height" src="~standard" frameborder="0" allowfullscreen></iframe>';
 
@@ -558,121 +566,192 @@ class EmbedPlusOfficialPlugin
         }
         ?>
         <div class="wrap">
-        <?php
-        if (self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0)
-        {
-            //// header
-            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('YouTube Analytics Dashboard') . "</h2>";
-            echo '<p><i>Logging you in...</i></p>';
-        }
-        else
-        {
-            //// header
-            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus PRO') . "</h2><p class='bold orange'>This tab is here to provide direct access to analytics. Graphs and other data about your site will show below after you activate PRO.</p><br>";
-        }
+            <?php
+            if (self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0)
+            {
+                //// header
+                echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('YouTube Analytics Dashboard') . "</h2>";
+                echo '<p><i>Logging you in...</i></p>';
+            }
+            else
+            {
+                //// header
+                echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus PRO') . "</h2><p class='bold orange'>This tab is here to provide direct access to analytics. Graphs and other data about your site will show below after you activate PRO.</p><br>";
+            }
 
 
-        // settings form
-        ?>
+            // settings form
+            ?>
             <style type="text/css">
                 .epicon { width: 20px; height: 20px; vertical-align: middle; padding-right: 5px;}
                 .epindent {padding-left: 25px;}
                 iframe.shadow {-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;}
             </style>
             <br>
-        <?php
-        $thishost = (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "");
-        $thiskey = self::$alloptions[self::$opt_pro];
-        ?>
+            <?php
+            $thishost = (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "");
+            $thiskey = self::$alloptions[self::$opt_pro];
+            ?>
             <iframe class="shadow" src="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab&domain=<?php echo $thishost; ?>&prokey=<?php echo $thiskey; ?>" width="1030" height="2000" scrolling="auto"></iframe>
         </div>
-            <?php
-        }
+        <?php
+    }
 
-        public static function keyvalue($qry, $includev)
+    public static function keyvalue($qry, $includev)
+    {
+        $ytvars = explode('&', $qry);
+        $ytkvp = array();
+        foreach ($ytvars as $k => $v)
         {
-            $ytvars = explode('&', $qry);
-            $ytkvp = array();
-            foreach ($ytvars as $k => $v)
+            $kvp = explode('=', $v);
+            if (count($kvp) == 2 && ($includev || strtolower($kvp[0]) != 'v'))
             {
-                $kvp = explode('=', $v);
-                if (count($kvp) == 2 && ($includev || strtolower($kvp[0]) != 'v'))
-                {
-                    $ytkvp[$kvp[0]] = $kvp[1];
-                }
+                $ytkvp[$kvp[0]] = $kvp[1];
             }
-
-            return $ytkvp;
         }
 
-        public static function my_embedplus_pro_record()
-        {
-            $result = array();
-            if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-            {
-                $tmppro = preg_replace('/[^A-Za-z0-9-]/i', '', $_REQUEST[self::$opt_pro]);
-                $new_options = array();
-                $new_options[self::$opt_pro] = $tmppro;
-                $all = get_option(self::$opt_alloptions);
-                $all = $new_options + $all;
-                update_option(self::$opt_alloptions, $all);
+        return $ytkvp;
+    }
 
-                if (strlen($tmppro) > 0)
-                {
-                    $result['type'] = 'success';
-                }
-                else
-                {
-                    $result['type'] = 'error';
-                }
-                echo json_encode($result);
+    public static function custom_admin_pointers_check()
+    {
+        $admin_pointers = self::custom_admin_pointers();
+        foreach ($admin_pointers as $pointer => $array)
+        {
+            if ($array['active'])
+                return true;
+        }
+    }
+
+    public static function custom_admin_pointers_footer()
+    {
+        $admin_pointers = self::custom_admin_pointers();
+        ?>
+        <script type="text/javascript">
+            /* <![CDATA[ */
+            (function($) {
+        <?php
+        foreach ($admin_pointers as $pointer => $array)
+        {
+            if ($array['active'])
+            {
+                ?>
+                        var wpajaxurl = "<?php echo admin_url('admin-ajax.php') ?>";
+                        if (window.location.toString().indexOf('https://') == 0)
+                        {
+                            wpajaxurl = wpajaxurl.replace("http://", "https://");
+                        }
+                        $('<?php echo $array['anchor_id']; ?>').pointer({
+                            content: '<?php echo $array['content']; ?>',
+                            position: {
+                                edge: '<?php echo $array['edge']; ?>',
+                                align: '<?php echo $array['align']; ?>'
+                            },
+                            close: function() {
+                                $.post(wpajaxurl, {
+                                    pointer: '<?php echo $pointer; ?>',
+                                    action: 'dismiss-wp-pointer'
+                                });
+                            }
+                        }).pointer('open');
+                <?php
+            }
+        }
+        ?>
+            })(jQuery);
+            /* ]]> */
+        </script>
+        <?php
+    }
+
+    public static function custom_admin_pointers()
+    {
+        $dismissed = explode(',', (string) get_user_meta(get_current_user_id(), 'dismissed_wp_pointers', true));
+        $version = str_replace('.', '_', self::$version); // replace all periods in 1.0 with an underscore
+        $prefix = 'custom_admin_pointers' . $version . '_';
+
+        $new_pointer_content = '<h3>' . __('New Feature!') . '</h3>';
+        $new_pointer_content .= '<p>' . __('Thank you for using the YouTube Advanced Plugin. Please review your video settings as our most recent update improves an existing free feature. Pro users can also review <a target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer' . '">recent enhancements here &raquo;</a>') . '</p>';
+
+        return array(
+            $prefix . 'new_items' => array(
+                'content' => $new_pointer_content,
+                'anchor_id' => '#toplevel_page_embedplus-official-options',
+                'edge' => 'top',
+                'align' => 'left',
+                'active' => (!in_array($prefix . 'new_items', $dismissed) )
+            ),
+        );
+    }
+
+    public static function my_embedplus_pro_record()
+    {
+        $result = array();
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+        {
+            $tmppro = preg_replace('/[^A-Za-z0-9-]/i', '', $_REQUEST[self::$opt_pro]);
+            $new_options = array();
+            $new_options[self::$opt_pro] = $tmppro;
+            $all = get_option(self::$opt_alloptions);
+            $all = $new_options + $all;
+            update_option(self::$opt_alloptions, $all);
+
+            if (strlen($tmppro) > 0)
+            {
+                $result['type'] = 'success';
             }
             else
             {
                 $result['type'] = 'error';
-                header("Location: " . $_SERVER["HTTP_REFERER"]);
             }
-            die();
+            echo json_encode($result);
+        }
+        else
+        {
+            $result['type'] = 'error';
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+        }
+        die();
+    }
+
+    public static function embedplus_show_options()
+    {
+
+        if (!current_user_can('manage_options'))
+        {
+            wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 
-        public static function embedplus_show_options()
+        // variables for the field and option names 
+        $embedplus_submitted = 'embedplus_submitted';
+        $pro_submitted = 'pro_submitted';
+
+        $all = get_option(self::$opt_alloptions);
+
+        // See if the user has posted us some information
+        // If they did, this hidden field will be set to 'Y'
+        if (isset($_POST[$embedplus_submitted]) && $_POST[$embedplus_submitted] == 'Y')
         {
+            // Read their posted values
+            $new_options = array();
 
-            if (!current_user_can('manage_options'))
-            {
-                wp_die(__('You do not have sufficient permissions to access this page.'));
-            }
+            $new_options[self::$opt_enhance_youtube] = isset($_POST[self::$opt_enhance_youtube]) && $_POST[self::$opt_enhance_youtube] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_show_react] = isset($_POST[self::$opt_show_react]) && $_POST[self::$opt_show_react] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_auto_hd] = isset($_POST[self::$opt_auto_hd]) && $_POST[self::$opt_auto_hd] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_show_ann] = isset($_POST[self::$opt_show_ann]) && $_POST[self::$opt_show_ann] == (true || 'on') ? 1 : 3;
+            $new_options[self::$opt_sweetspot] = isset($_POST[self::$opt_sweetspot]) && $_POST[self::$opt_sweetspot] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_emb] = isset($_POST[self::$opt_emb]) && $_POST[self::$opt_emb] == (true || 'on') ? 0 : 1;
+            $new_options[self::$opt_oldspacing] = isset($_POST[self::$opt_oldspacing]) && $_POST[self::$opt_oldspacing] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_schemaorg] = isset($_POST[self::$opt_schemaorg]) && $_POST[self::$opt_schemaorg] == (true || 'on') ? 1 : 0;
+            $new_options[self::$opt_ssl] = isset($_POST[self::$opt_ssl]) && $_POST[self::$opt_ssl] == (true || 'on') ? 1 : 0;
 
-            // variables for the field and option names 
-            $embedplus_submitted = 'embedplus_submitted';
-            $pro_submitted = 'pro_submitted';
+            $all = $new_options + $all;
 
-            $all = get_option(self::$opt_alloptions);
+            // Save the posted value in the database
+            update_option(self::$opt_alloptions, $all);
 
-            // See if the user has posted us some information
-            // If they did, this hidden field will be set to 'Y'
-            if (isset($_POST[$embedplus_submitted]) && $_POST[$embedplus_submitted] == 'Y')
-            {
-                // Read their posted values
-                $new_options = array();
-
-                $new_options[self::$opt_enhance_youtube] = isset($_POST[self::$opt_enhance_youtube]) && $_POST[self::$opt_enhance_youtube] == (true || 'on') ? 1 : 0;
-                $new_options[self::$opt_show_react] = isset($_POST[self::$opt_show_react]) && $_POST[self::$opt_show_react] == (true || 'on') ? 1 : 0;
-                $new_options[self::$opt_auto_hd] = isset($_POST[self::$opt_auto_hd]) && $_POST[self::$opt_auto_hd] == (true || 'on') ? 1 : 0;
-                $new_options[self::$opt_show_ann] = isset($_POST[self::$opt_show_ann]) && $_POST[self::$opt_show_ann] == (true || 'on') ? 1 : 3;
-                $new_options[self::$opt_sweetspot] = isset($_POST[self::$opt_sweetspot]) && $_POST[self::$opt_sweetspot] == (true || 'on') ? 1 : 0;
-                $new_options[self::$opt_emb] = isset($_POST[self::$opt_emb]) && $_POST[self::$opt_emb] == (true || 'on') ? 0 : 1;
-                $new_options[self::$opt_oldspacing] = isset($_POST[self::$opt_oldspacing]) && $_POST[self::$opt_oldspacing] == (true || 'on') ? 1 : 0;
-                $new_options[self::$opt_schemaorg] = isset($_POST[self::$opt_schemaorg]) && $_POST[self::$opt_schemaorg] == (true || 'on') ? 1 : 0;
-                $new_options[self::$opt_ssl] = isset($_POST[self::$opt_ssl]) && $_POST[self::$opt_ssl] == (true || 'on') ? 1 : 0;
-
-                $all = $new_options + $all;
-
-                // Save the posted value in the database
-                update_option(self::$opt_alloptions, $all);
-
-                // Put a settings updated message on the screen
-                ?>
+            // Put a settings updated message on the screen
+            ?>
             <div class="updated"><p><strong><?php _e('Settings saved.'); ?></strong></p></div>
             <?php
         }
@@ -697,15 +776,15 @@ class EmbedPlusOfficialPlugin
         <div class="wrap" style="max-width: 1000px;">
 
 
-        <?php
-        $haspro = ($all[self::$opt_pro] && strlen(trim($all[self::$opt_pro])) > 0);
+            <?php
+            $haspro = ($all[self::$opt_pro] && strlen(trim($all[self::$opt_pro])) > 0);
 
-        if ($haspro)
-        {
-            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Thank you for going PRO.');
-            echo ' &nbsp;<input type="submit" name="showkey" class="button-primary" style="vertical-align: 15%;" id="showprokey" value="Show my PRO key" />';
-            echo "</h2>";
-            ?>
+            if ($haspro)
+            {
+                echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Thank you for going PRO.');
+                echo ' &nbsp;<input type="submit" name="showkey" class="button-primary" style="vertical-align: 15%;" id="showprokey" value="Show my PRO key" />';
+                echo "</h2>";
+                ?>
                 <?php
             }
             else
@@ -713,8 +792,8 @@ class EmbedPlusOfficialPlugin
                 echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Go PRO') . "</h2>";
                 ?>
                 <span class="orange bold">
-                    Want to go PRO? Our PRO users help to keep this plugin running and frequently updated. Go PRO and get enhanced embedding and 
-                    <a class="button-primary" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">special perks &raquo;</a> </span>
+                    PRO users help keep new features coming and our coffee cups filled. Go PRO and <a class="button-primary" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">get these perks in return &raquo;</a>
+                </span>
                 <?php
             }
             ?>
@@ -738,30 +817,30 @@ class EmbedPlusOfficialPlugin
 
             </div>
 
-        <?php
-        // header
+            <?php
+            // header
 
-        echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus Settings') . "</h2>";
+            echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus Settings') . "</h2>";
 
-        // settings form
-        ?>
+            // settings form
+            ?>
 
             <div class="epindent">
                 <form name="form1" method="post" action="" id="epform">
                     <input type="hidden" name="<?php echo $embedplus_submitted; ?>" value="Y">
                     <p>
-        <?php
-        _e("This plugin automatically converts YouTube URLs that are on their own line, in plain text, to actual video embeds. All you have to do is paste the YouTube URL in the editor (example: <code>http://www.youtube.com/watch?v=YVvn8dpSAt0</code>), and:");
-        ?>
+                        <?php
+                        _e("This plugin automatically converts YouTube URLs that are on their own line, in plain text, to actual video embeds. All you have to do is paste the YouTube URL in the editor (example: <code>http://www.youtube.com/watch?v=YVvn8dpSAt0</code>), and:");
+                        ?>
                     <ul class="reglist">
                         <li>Make sure the url is really on its own line by itself</li>
                         <li>Make sure the url is <strong>not</strong> an active hyperlink (i.e., it should just be plain text). Otherwise, highlight the url and click the "unlink" button in your editor: <img src="<?php echo plugins_url('images/unlink.png', __FILE__) ?>"/></li>
                         <li>Make sure you did <strong>not</strong> format or align the url in any way. If your url still appears in your actual post instead of a video, highlight it and click the "remove formatting" button (formatting can be invisible sometimes): <img src="<?php echo plugins_url('images/erase.png', __FILE__) ?>"/></li>
                     </ul>       
-        <?php
-        _e("This plugin can make those \"auto-embeds\" display the enhanced player if you check the first option below. "
-                . (get_option('embed_autourls') ? "" : " <strong>Make sure that <strong><a href=\"/wp-admin/options-media.php\">Settings &raquo; Media &raquo; Embeds &raquo; Auto-embeds</a></strong> is checked too.</strong>"));
-        ?>
+                    <?php
+                    _e("This plugin can make those \"auto-embeds\" display the enhanced player if you check the first option below. "
+                            . (get_option('embed_autourls') ? "" : " <strong>Make sure that <strong><a href=\"/wp-admin/options-media.php\">Settings &raquo; Media &raquo; Embeds &raquo; Auto-embeds</a></strong> is checked too.</strong>"));
+                    ?>
                     </p>
                     <p>
                         <input name="<?php echo self::$opt_enhance_youtube; ?>" id="<?php echo self::$opt_enhance_youtube; ?>" <?php checked($all[self::$opt_enhance_youtube], 1); ?> type="checkbox" class="checkbox">
@@ -779,53 +858,53 @@ class EmbedPlusOfficialPlugin
                     </p>
                     <p>
                         <input name="<?php echo self::$opt_show_ann; ?>" id="<?php echo self::$opt_show_ann; ?>" <?php checked($all[self::$opt_show_ann], 1); ?> type="checkbox" class="checkbox">
-                        <label for="<?php echo self::$opt_show_ann; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/show_ann.png"/> <?php _e("Show the video creator's annotations, if any.") ?></label>
+                        <label for="<?php echo self::$opt_show_ann; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/show_ann.png"/> <sup class="orange">NEW</sup><?php _e("Show the video creator's annotations, if any. (uncheck to hide)") ?></label>
                     </p>
                     <p>
                         <input name="<?php echo self::$opt_sweetspot; ?>" id="<?php echo self::$opt_sweetspot; ?>" <?php checked($all[self::$opt_sweetspot], 1); ?> type="checkbox" class="checkbox">
                         <label for="<?php echo self::$opt_sweetspot; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/ssm.jpg"/> <?php _e('Enable <a href="' . self::$epbase . '/whysearchhere.aspx" target="_blank">Sweetspot Marking</a> for the next/previous buttons') ?></label>            
                     </p>
-        <?php
-        $eadopt = get_option('embedplusopt_enhance_youtube') !== false;
-        $prostuffmsg = "<p class=\"smallnote\">
+                    <?php
+                    $eadopt = get_option('embedplusopt_enhance_youtube') !== false;
+                    $prostuffmsg = "<p class=\"smallnote\">
                             We're building a growing list of customizations that offer more advanced and dynamic functionality. These will be made available to our PRO users as they are developed over time. We, in fact, encourage you to send us suggestions with the PRO priority support form (at the bottom of this page).
                         </p>";
-        if (!$eadopt)
-        {
-            echo $prostuffmsg;
-        }
+                    if (!$eadopt)
+                    {
+                        echo $prostuffmsg;
+                    }
 
-        if ($haspro || $eadopt)
-        {
-            ?>
+                    if ($haspro || $eadopt)
+                    {
+                        ?>
                         <p>
                             <input name="<?php echo self::$opt_show_react; ?>" id="<?php echo self::$opt_show_react; ?>" <?php checked($all[self::$opt_show_react], 1); ?> type="checkbox" class="checkbox">
                             <label for="<?php echo self::$opt_show_react; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> <?php _e('Display Social Media Reactions (This is recommended so your visitors can see web discussions for each video right from your blog)') ?></label>            
                         </p>
 
 
-            <?php
-            if ($eadopt)
-            {
-                echo $prostuffmsg;
-            }
-        }
-        else
-        {
-            ?>
+                        <?php
+                        if ($eadopt)
+                        {
+                            echo $prostuffmsg;
+                        }
+                    }
+                    else
+                    {
+                        ?>
                         <p>
                             <input type="checkbox" disabled class="checkbox">
                             <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> Hide Social Media Reactions (This button shows web discussions for each video right from your blog) (<a target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">available in PRO version &raquo;</a>)
                         </p>
-            <?php
-        }
+                        <?php
+                    }
 
 
 
-        //////////////////////
-        if ($haspro)
-        {
-            ?>
+                    //////////////////////
+                    if ($haspro)
+                    {
+                        ?>
                         <p>
                             <input name="<?php echo self::$opt_emb; ?>" id="<?php echo self::$opt_emb; ?>" <?php checked($all[self::$opt_emb], '0'); ?> type="checkbox" class="checkbox">
                             <label for="<?php echo self::$opt_emb; ?>">
@@ -848,11 +927,11 @@ class EmbedPlusOfficialPlugin
                                 HTTPS/SSL Player: Use the secure player for all of your visitors and videos you embed. This will go back and also secure your past embeds as they are loaded on their pages.</label>
                         </p>
 
-            <?php
-        }
-        else
-        {
-            ?>
+                        <?php
+                    }
+                    else
+                    {
+                        ?>
                         <p>
                             <input type="checkbox" disabled class="checkbox">
                             <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/get.jpg"/> Hide GET button (<a target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">available in PRO version &raquo;</a>)</span>
@@ -872,9 +951,9 @@ class EmbedPlusOfficialPlugin
                             HTTPS/SSL Player: Use the secure player for all of your visitors and videos you embed. This will go back and also secure your past embeds as they are loaded on their pages. (<a target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">available in PRO version &raquo;</a>)</span>
                         </p>
 
-            <?php
-        }
-        ?>
+                        <?php
+                    }
+                    ?>
                     <p>
                         <input type="checkbox" disabled class="checkbox">
                         <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/nobar.jpg"/> <i>Coming Soon?</i> Advanced hiding of other buttons or entire extra control bar with dynamic player resizing
@@ -885,19 +964,19 @@ class EmbedPlusOfficialPlugin
             </div>
 
 
-        <?php echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" />' . " Additional URL Options</h2>" ?>
+            <?php echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" />' . " Additional URL Options</h2>" ?>
             <div class="epindent">
 
-            <?php
-            _e("<p>If you are using the auto-embed feature above, the following optional values can be added to the YouTube URLs to quickly override default behavior. Each option should begin with '&'</p>");
-            _e('<ul>');
-            _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em> Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
-            _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
-            _e("<li><strong>hd - If set to 1, this makes the video play in HD quality when possible.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
-            _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
-            _e("<li><strong>end - Sets the time (in seconds) to end the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&end=60</strong></em> </li>");
-            _e('</ul>');
-            ?>
+                <?php
+                _e("<p>If you are using the auto-embed feature above, the following optional values can be added to the YouTube URLs to quickly override default behavior. Each option should begin with '&'</p>");
+                _e('<ul>');
+                _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em> Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
+                _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
+                _e("<li><strong>hd - If set to 1, this makes the video play in HD quality when possible.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
+                _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
+                _e("<li><strong>end - Sets the time (in seconds) to end the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&end=60</strong></em> </li>");
+                _e('</ul>');
+                ?>
 
             </div>
 
@@ -917,15 +996,15 @@ class EmbedPlusOfficialPlugin
 
             </p>
             <iframe src="<?php echo self::$epbase ?>/wpembedcode.aspx?fromiframe=1&eadopt=<?php echo get_option('embedplusopt_enhance_youtube') === false ? '0' : '1' ?>&prokey=<?php echo $all[self::$opt_pro]; ?>&domain=<?php echo site_url(); ?>&blogwidth=<?php
-        self::init_dimensions();
-        echo self::$defaultwidth ? self::$defaultwidth : ""
-        ?>" width="950" height="1200" class="shadow"></iframe>
+            self::init_dimensions();
+            echo self::$defaultwidth ? self::$defaultwidth : ""
+            ?>" width="950" height="1200" class="shadow"></iframe>
             <br>
         </div>
         <br>
-                    <?php
-                    echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Priority Support') . "</h2>";
-                    ?>
+        <?php
+        echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Priority Support') . "</h2>";
+        ?>
         <div class="epindent">
             <p>
                 <strong>PRO users:</strong> Below, We've enabled the ability to have priority support with our team.  Use this to get one-on-one help with any issues you might have or to send us suggestions for future features.  We typically respond within minutes during normal work hours.  
@@ -1114,6 +1193,15 @@ function embedplus_admin_enqueue_scripts()
     wp_enqueue_style('embedpluswiz', plugins_url() . '/embedplus-for-wordpress/css/embedplus_mce.css');
     wp_enqueue_style('embedplusoptionscss', plugins_url() . '/embedplus-for-wordpress/css/prettyPhoto.css');
     wp_enqueue_script('embedplusoptionsjs', plugins_url() . '/embedplus-for-wordpress/js/jquery.prettyPhoto.js');
+
+
+    if ((get_bloginfo('version') >= '3.3') && EmbedPlusOfficialPlugin::custom_admin_pointers_check())
+    {
+        add_action('admin_print_footer_scripts', 'EmbedPlusOfficialPlugin::custom_admin_pointers_footer');
+
+        wp_enqueue_script('wp-pointer');
+        wp_enqueue_style('wp-pointer');
+    }
 }
 
 function embedplus_output_scriptvars()
