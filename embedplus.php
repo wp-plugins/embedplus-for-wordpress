@@ -3,7 +3,7 @@
   Plugin Name: YouTube Advanced by Embed Plus
   Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
   Description: YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
-  Version: 4.4
+  Version: 4.5
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '4.4';
+    public static $version = '4.5';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -57,9 +57,9 @@ class EmbedPlusOfficialPlugin
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
-    public static $oldytregex = '@^\s*https?://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)\s*$@im';
+    public static $oldytregex = '@^\s*http[vhs]?://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)\s*$@im';
     //public static $ytregex = '@^[\r\n]{0,1}[[:blank:]]*https?://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)[[:blank:]]*[\r\n]{0,1}$@im';
-    public static $ytregex = '@^[\r\t ]*https?://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)[\r\t ]*$@im';
+    public static $ytregex = '@^[\r\t ]*http[vhs]?://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)[\r\t ]*$@im';
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,24 +179,17 @@ class EmbedPlusOfficialPlugin
     {
         if (!is_admin())
         {
-            add_filter('the_content', 'EmbedPlusOfficialPlugin::youtube2embedplus_non_oembed', 1);
-            wp_embed_register_handler('youtube2embedplus', self::$ytregex, 'EmbedPlusOfficialPlugin::youtube2embedplus_handler', 1);
+            //add_filter('the_content', 'EmbedPlusOfficialPlugin::youtube2embedplus_non_oembed', 1);
+            //wp_embed_register_handler('youtube2embedplus', self::$ytregex, 'EmbedPlusOfficialPlugin::youtube2embedplus_handler', 1);
+            add_filter('the_content', 'EmbedPlusOfficialPlugin::youtube2embedplus_filter', 1);
+            add_filter('widget_text', 'EmbedPlusOfficialPlugin::youtube2embedplus_filter', 1);
         }
     }
 
-    public static function youtube2embedplus_non_oembed($content)
+    public static function youtube2embedplus_filter($content)
     {
-        if (strpos($content, 'httpv://') !== false)
-        {
-            $findv = '@^[\r\t ]*http[vh]://(?:www\.)?(?:(?:youtube.com/watch\?)|(?:youtu.be/))([^\s"]+)[\r\t ]*$@im';
-            $content = preg_replace_callback($findv, "EmbedPlusOfficialPlugin::httpv_convert", $content);
-        }
+        $content = preg_replace_callback(self::$ytregex, "EmbedPlusOfficialPlugin::youtube2embedplus_handler", $content);
         return $content;
-    }
-
-    public static function httpv_convert($m)
-    {
-        return self::youtube2embedplus_handler($m, '', $m[0], '');
     }
 
     public static function init_dimensions($url = null)
@@ -240,12 +233,15 @@ class EmbedPlusOfficialPlugin
         return $aspectheight + 30;
     }
 
-    public static function youtube2embedplus_handler($matches, $attr, $url, $rawattr)
+    public static function youtube2embedplus_handler($m)
     {
 
         //for future: cache results http://codex.wordpress.org/Class_Reference/WP_Object_Cache
         //$cachekey = '_epembed_' . md5( $url . serialize( $attr ) );
 
+        $url = trim(preg_replace('/&amp;/i', '&', $m[0]));
+        $urlqstring = preg_split('/[?]/i', $url);
+        
         self::init_dimensions($url);
 
         $epreq = array(
@@ -257,8 +253,10 @@ class EmbedPlusOfficialPlugin
         );
 
         $ytvars = array();
-        $matches[1] = preg_replace('/&amp;/i', '&', $matches[1]);
-        $ytvars = preg_split('/[&?]/i', $matches[1]);
+        if (count($urlqstring) > 1)
+        {
+            $ytvars = preg_split('/[&]/i', $urlqstring[1]);
+        }
 
 
         // extract youtube vars (special case for youtube id)
@@ -270,10 +268,16 @@ class EmbedPlusOfficialPlugin
             {
                 $ytkvp[$kvp[0]] = $kvp[1];
             }
-            else if (count($kvp) == 1 && $k == 0)
-            {
-                $ytkvp['v'] = $kvp[0];
-            }
+//            else if (count($kvp) == 1 && $k == 0)
+//            {
+//                $ytkvp['v'] = $kvp[0];
+//            }
+        }
+
+        if (strpos($url, 'youtu.be') !== false && !isset($ytkvp['v']))
+        {
+            $vtemp = explode('/', $urlqstring[0]);
+            $ytkvp['v'] = array_pop($vtemp);
         }
 
 
@@ -670,8 +674,8 @@ class EmbedPlusOfficialPlugin
         $version = str_replace('.', '_', self::$version); // replace all periods in 1.0 with an underscore
         $prefix = 'custom_admin_pointers' . $version . '_';
 
-        $new_pointer_content = '<h3>' . __('New Feature!') . '</h3>';
-        $new_pointer_content .= '<p>' . __('Thank you for using the YouTube Advanced Plugin. Please review your video settings as our most recent update improves an existing free feature. Pro users can also review <a target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer' . '">recent enhancements here &raquo;</a>') . '</p>';
+        $new_pointer_content = '<h3>' . __('Plugin Improvements') . '</h3>';
+        $new_pointer_content .= '<p>' . __('This update improves our regex matching for both versions, free and <a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer' . '">PRO &raquo;</a>') . '</p>';
 
         return array(
             $prefix . 'new_items' => array(
