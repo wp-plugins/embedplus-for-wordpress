@@ -5,13 +5,15 @@ Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Tags: https, ssl, secure, rich snippets, analytics, vlog, vlogging, video blogging, seo, takedown, youtube seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
 Requires at least: 2.9
-Tested up to: 3.8.1
+Tested up to: 3.8.3
 Stable tag: 4.5
 License: GPLv3 or later
 
 YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
 
 == Description ==
+
+**Note: compatability with WordPress 3.9 coming very soon!**
 
 YouTube Advanced Embed is a plugin that enhances the YouTube videos you embed in your WordPress site. It's a feature-rich and smart upgrade to the standard YouTube embed. **[By just pasting a YouTube link](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg),** you'll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, video reactions beyond YouTube.com comments (e.g., Google+, Reddit, and Twitter). With our free wizard, you can also customize your YouTube embeds with third-party annotations, chapters, and more.
 
