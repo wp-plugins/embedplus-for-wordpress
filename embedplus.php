@@ -3,7 +3,7 @@
   Plugin Name: YouTube Advanced by Embed Plus
   Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
   Description: YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
-  Version: 4.5
+  Version: 4.6
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '4.5';
+    public static $version = '4.6';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -675,12 +675,22 @@ class EmbedPlusOfficialPlugin
         $prefix = 'custom_admin_pointers' . $version . '_';
 
         $new_pointer_content = '<h3>' . __('Plugin Improvements') . '</h3>';
-        $new_pointer_content .= '<p>' . __('This update improves our regex matching for both versions, free and <a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer' . '">PRO &raquo;</a>') . '</p>';
+        $new_pointer_content .= '<p>' . __('Now compatible with the new WordPress 3.9! ');
+        if (!(self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0))
+        {
+            $new_pointer_content .= __('This update is applied to both plugin versions, free and <a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer' . '">PRO &raquo;</a>');
+        }
+        else
+        {
+            //$new_pointer_content .= __('');
+        }
+        $new_pointer_content .= '</p>';
+        
 
         return array(
             $prefix . 'new_items' => array(
                 'content' => $new_pointer_content,
-                'anchor_id' => '#toplevel_page_embedplus-official-options',
+                'anchor_id' => 'a.toplevel_page_embedplus-official-options',
                 'edge' => 'top',
                 'align' => 'left',
                 'active' => (!in_array($prefix . 'new_items', $dismissed) )
@@ -1217,8 +1227,9 @@ function embedplus_output_scriptvars()
 
         global $content_width;
         if (empty($content_width))
+        {
             $content_width = $GLOBALS['content_width'];
-
+        }
         $blogwidth = $embed_size_w ? $embed_size_w : ($content_width ? $content_width : 450);
     }
     catch (Exception $ex)
@@ -1231,6 +1242,7 @@ function embedplus_output_scriptvars()
     $eadopt = get_option('embedplusopt_enhance_youtube') === false ? '0' : '1';
     ?>
     <script type="text/javascript">
+        var epdomain = '<?php echo (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ""); ?>';
         var epblogwidth = <?php echo $blogwidth; ?>;
         var epprokey = '<?php echo $epprokey; ?>';
         var epbasesite = '<?php echo EmbedPlusOfficialPlugin::$epbase; ?>';
