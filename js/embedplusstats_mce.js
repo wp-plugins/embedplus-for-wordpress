@@ -6,7 +6,7 @@
             ed.addButton('embedplusstats', {
                 title : 'How much are your visitors actually watching the videos you post? Click here to start using this popular feature from EmbedPlus Labs »',
                 onclick : function(ev) {
-                    window.open(epbasesite + '/dashboard/easy-video-analytics-seo.aspx?ref=wysiwygbutton&prokey=' + epprokey, '_blank');
+                    window.open(epbasesite + '/dashboard/easy-video-analytics-seo.aspx?ref=wysiwygbutton&domain=' + epdomain + '&prokey=' + epprokey, '_blank');
                 }
             });
 
