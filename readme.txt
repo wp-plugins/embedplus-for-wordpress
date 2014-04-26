@@ -6,7 +6,7 @@ Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Tags: https, ssl, secure, rich snippets, analytics, vlog, vlogging, video blogging, seo, takedown, youtube seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
 Requires at least: 2.9
 Tested up to: 3.9
-Stable tag: 4.6
+Stable tag: 4.7
 License: GPLv3 or later
 
 YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
@@ -120,6 +120,9 @@ YouTube Advanced Embed by Embed Plus Advanced YouTube Embed by Embed Plus
 9. YouTube Advanced Embed Screenshot 9: Are you interested in learning how much your visitors are actually watching the videos you post? We suggest signing up now for this popular analytics feature to start getting data today. Use it to supplement Google Analytics.
 
 == Changelog ==
+
+= YouTube Advanced Embed 4.7 =
+This update fixes an annotations and CSS issue for both versions, Free and PRO.
 
 = YouTube Advanced Embed 4.6 =
 Compatible with WordPress 3.9.

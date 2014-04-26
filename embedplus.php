@@ -3,7 +3,7 @@
   Plugin Name: YouTube Advanced by Embed Plus
   Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
   Description: YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
-  Version: 4.6
+  Version: 4.7
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '4.6';
+    public static $version = '4.7';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -105,6 +105,8 @@ class EmbedPlusOfficialPlugin
             // allow shortcode in widgets
 
             add_filter('widget_text', 'do_shortcode', 11);
+
+            add_action('wp_print_scripts', array('EmbedPlusOfficialPlugin', 'cantembedplus'));
         }
     }
 
@@ -241,7 +243,7 @@ class EmbedPlusOfficialPlugin
 
         $url = trim(preg_replace('/&amp;/i', '&', $m[0]));
         $urlqstring = preg_split('/[?]/i', $url);
-        
+
         self::init_dimensions($url);
 
         $epreq = array(
@@ -433,8 +435,8 @@ class EmbedPlusOfficialPlugin
                 '<param value="true" name="allowFullScreen" />' . chr(13) .
                 '<param name="flashvars" value="~vars&amp;rs=w" />' . chr(13) .
                 $epoutputstandard . chr(13) .
-                '</object>' . $schemaorgoutput .
-                '<!--[if lte IE 6]> <style type="text/css">.cantembedplus{display:none;}</style><![endif]-->';
+                '</object>' . $schemaorgoutput;
+
 
         $ua = $_SERVER['HTTP_USER_AGENT'];
         if (strlen($epvars) == 0 ||
@@ -471,6 +473,11 @@ class EmbedPlusOfficialPlugin
 
         //send back text to calling function
         return $epoutput;
+    }
+
+    public static function cantembedplus()
+    {
+        echo '<!--[if lte IE 6]> <style type="text/css">.cantembedplus{display:none;}</style><![endif]-->';
     }
 
     public static function getschemaorgoutput($vidid)
@@ -550,7 +557,9 @@ class EmbedPlusOfficialPlugin
         if (self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0)
         {
             add_menu_page('EmbedPlus Settings', 'EmbedPlus PRO', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options', plugins_url('images/epicon.png', __FILE__), '10.000592854349');
-            add_menu_page('EmbedPlus Video Analytics Dashboard', 'PRO Analytics', 'manage_options', 'embedplus-video-analytics-dashboard', 'EmbedPlusOfficialPlugin::epstats_show_options', plugins_url('images/epstats16.png', __FILE__), '10.000692884349');
+            //add_menu_page('EmbedPlus Video Analytics Dashboard', 'PRO Analytics', 'manage_options', 'embedplus-video-analytics-dashboard', 'EmbedPlusOfficialPlugin::epstats_show_options', plugins_url('images/epstats16.png', __FILE__), '10.000692884349');
+            add_submenu_page('embedplus-official-options', '', '', 'manage_options', 'embedplus-official-options', 'EmbedPlusOfficialPlugin::embedplus_show_options');
+            add_submenu_page('embedplus-official-options', 'EmbedPlus Video Analytics Dashboard', 'PRO Analytics', 'manage_options', 'embedplus-video-analytics-dashboard', 'EmbedPlusOfficialPlugin::epstats_show_options');
         }
         else
         {
@@ -569,13 +578,24 @@ class EmbedPlusOfficialPlugin
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
         ?>
+        <style type="text/css">
+            .epicon { width: 20px; height: 20px; vertical-align: middle; padding-right: 5px;}
+            .epindent {padding-left: 25px;}
+            iframe.shadow {-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;}
+        </style>
+        <?php
+        $thishost = (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "");
+        $thiskey = self::$alloptions[self::$opt_pro];
+
+        $dashurl = self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=protab&domain=' . $thishost . '&prokey=' . $thiskey;
+        ?>
         <div class="wrap">
             <?php
             if (self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0)
             {
                 //// header
                 echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('YouTube Analytics Dashboard') . "</h2>";
-                echo '<p><i>Logging you in...</i></p>';
+                echo '<p><i>Logging you in below... (You can also <a class="button-primary" target="_blank" href="' . $dashurl . '">click here</a> to launch your dashboard in a new tab)</i></p>';
             }
             else
             {
@@ -586,17 +606,9 @@ class EmbedPlusOfficialPlugin
 
             // settings form
             ?>
-            <style type="text/css">
-                .epicon { width: 20px; height: 20px; vertical-align: middle; padding-right: 5px;}
-                .epindent {padding-left: 25px;}
-                iframe.shadow {-webkit-box-shadow: 0px 0px 20px 0px #000000; box-shadow: 0px 0px 20px 0px #000000;}
-            </style>
             <br>
-            <?php
-            $thishost = (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "");
-            $thiskey = self::$alloptions[self::$opt_pro];
-            ?>
-            <iframe class="shadow" src="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab&domain=<?php echo $thishost; ?>&prokey=<?php echo $thiskey; ?>" width="1030" height="2000" scrolling="auto"></iframe>
+
+            <iframe class="shadow" src="<?php echo $dashurl; ?>" width="1030" height="2000" scrolling="auto"></iframe>
         </div>
         <?php
     }
@@ -675,17 +687,17 @@ class EmbedPlusOfficialPlugin
         $prefix = 'custom_admin_pointers' . $version . '_';
 
         $new_pointer_content = '<h3>' . __('Plugin Improvements') . '</h3>';
-        $new_pointer_content .= '<p>' . __('Now compatible with the new WordPress 3.9! ');
+        $new_pointer_content .= '<p>' . __('This update fixes an annotations and CSS issue for both versions, Free and  ');
         if (!(self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0))
         {
-            $new_pointer_content .= __('This update is applied to both plugin versions, free and <a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer' . '">PRO &raquo;</a>');
+            $new_pointer_content .= __('<a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer' . '">PRO &raquo;</a>');
         }
         else
         {
-            //$new_pointer_content .= __('');
+            $new_pointer_content .= __('PRO.');
         }
         $new_pointer_content .= '</p>';
-        
+
 
         return array(
             $prefix . 'new_items' => array(
@@ -1002,18 +1014,16 @@ class EmbedPlusOfficialPlugin
         ?>
         <div class="epindent">
             <p>
-                If you want make further customizations, use the wizard below and you'll get the appropriate code to embed in the end. Otherwise, you can just click save changes above and begin embedding videos.
+                If your blog's rich-text editor is enabled, you have access to a new EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>). 
+                If you use the HTML editor instead, you can <a href="<?php echo self::$epbase ?>/wpembedcode.aspx" target="_blank">open the wizard in a new tab</a>.
             </p>
             <p>
-                If your blog's rich-text editor is enabled, you have access to a new EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>). 
-                If you use the HTML editor instead, you can use the wizard here below, or go to our <a href="<?php echo self::$epbase ?>/embedcode.aspx" target="_blank">website</a>.
-
+                <span class="bold orange">Coming soon:</span> easy wizard "Insert" button for both Visual and HTML editors. 
             </p>
-            <iframe src="<?php echo self::$epbase ?>/wpembedcode.aspx?fromiframe=1&eadopt=<?php echo get_option('embedplusopt_enhance_youtube') === false ? '0' : '1' ?>&prokey=<?php echo $all[self::$opt_pro]; ?>&domain=<?php echo site_url(); ?>&blogwidth=<?php
+<!--            <iframe src="<?php echo self::$epbase ?>/wpembedcode.aspx?fromiframe=1&eadopt=<?php echo get_option('embedplusopt_enhance_youtube') === false ? '0' : '1' ?>&prokey=<?php echo $all[self::$opt_pro]; ?>&domain=<?php echo site_url(); ?>&blogwidth=<?php
             self::init_dimensions();
             echo self::$defaultwidth ? self::$defaultwidth : ""
-            ?>" width="950" height="1200" class="shadow"></iframe>
-            <br>
+            ?>" width="950" height="1200" class="shadow"></iframe>-->
         </div>
         <br>
         <?php
