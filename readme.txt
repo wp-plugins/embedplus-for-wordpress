@@ -6,14 +6,14 @@ Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Tags: https, ssl, secure, rich snippets, analytics, vlog, vlogging, video blogging, seo, takedown, youtube seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
 Requires at least: 2.9
 Tested up to: 3.9
-Stable tag: 4.7
+Stable tag: 4.8
 License: GPLv3 or later
 
 YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
 
 == Description ==
 
-YouTube Advanced Embed is a plugin that enhances the YouTube videos you embed in your WordPress site. It's a feature-rich and smart upgrade to the standard YouTube embed. **[By just pasting a YouTube link](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg),** you'll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, video reactions beyond YouTube.com comments (e.g., Google+, Reddit, and Twitter). With our free wizard, you can also customize your YouTube embeds with third-party annotations, chapters, and more.
+YouTube Advanced Embed is a plugin that enhances the YouTube videos you embed in your WordPress site. It's a feature-rich and smart upgrade to the standard YouTube embed. **[By just pasting a YouTube link](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg),** you'll not only get the features of YouTube's standard embed, but also extra playback options, relevant user-generated content, video reactions beyond YouTube.com comments (e.g., Google+, Reddit, and Twitter). With our free wizard, you can also customize your YouTube embeds with third-party annotations, chapters, and more. Go PRO and add clickable links, analytics, alerts, and more.
 
 More specifically, YouTube Advanced Embed can provide you and your visitors with the following features for each YouTube embed:
 
@@ -29,7 +29,7 @@ More specifically, YouTube Advanced Embed can provide you and your visitors with
 
 ...All without having to alter the original video's content. Please see the YouTube embed on our [home page](http://embedplus.com) demo to try some of these features. If you like them, come back here to download the WordPress plugin so that your visitors also see them in your existing and future YouTube embeds -- even if you use the nifty [oEmbed method](http://codex.wordpress.org/Embeds) of just [pasting a YouTube video link on its own line](http://s.wordpress.org/extend/plugins/embedplus-for-wordpress/screenshot-1.jpg?r=618112).
 
-After installing, you have the ability to add on options like [One-click YouTube SEO tags and a user-friendly YouTube analytics dashboard](https://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx). The dashboard answers important questions like: 
+After installing, you have the ability to add on PRO options like [One-click YouTube SEO tags and a user-friendly YouTube analytics dashboard](https://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx). The dashboard answers important questions like: 
 
 * How much are your visitors actually watching the videos you post?
 * How does the view activity on your site compare to other sites like it?
@@ -120,6 +120,9 @@ YouTube Advanced Embed by Embed Plus Advanced YouTube Embed by Embed Plus
 9. YouTube Advanced Embed Screenshot 9: Are you interested in learning how much your visitors are actually watching the videos you post? We suggest signing up now for this popular analytics feature to start getting data today. Use it to supplement Google Analytics.
 
 == Changelog ==
+
+= YouTube Advanced Embed 4.8 =
+This update adds an easy "Insert" button in the wizard, without the need to copy/paste (Free and PRO users). PRO users can now hide all the buttons in the bottom bar, which can be useful to make room for clean looking annotations.
 
 = YouTube Advanced Embed 4.7 =
 This update fixes an annotations and CSS issue for both versions, Free and PRO.

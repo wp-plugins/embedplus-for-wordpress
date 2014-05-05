@@ -8,7 +8,12 @@
                     modalh = Math.round(jQuery(window).height() *.8);
                     ed.windowManager.open({
                         title : "EmbedPlus Shortcode Wizard - for YouTube",
-                        file : epbasesite + '/wpembedcode.aspx?blogwidth=' + epblogwidth + '&domain=' + escape(window.location.toString()) + '&prokey=' + escape(epprokey) + '&eadopt=' + epeadopt,
+                        file : epbasesite + '/wpembedcode.aspx?pluginversion=' + epversion + 
+                                '&blogwidth=' + epblogwidth + 
+                                '&domain=' + escape(window.location.toString()) + 
+                                '&prokey=' + escape(epprokey) + 
+                                '&eadopt=' + epeadopt + 
+                                '&mydefaults=' + epdefaults,
                         width : 950,
                         height : modalh,
                         inline : true,
