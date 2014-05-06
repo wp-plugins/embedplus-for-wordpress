@@ -820,6 +820,8 @@ class EmbedPlusOfficialPlugin
             a.goprolink {font-weight: bold; color: #f85d00;}
 
             .ssschema {float: right; width: 350px; height: auto; margin-right: 10px;}
+            .hideallnote {float: right; width: 300px; height: auto; margin-right: 10px;}
+            .clearboth {clear: both;}
         </style>
         <div class="wrap" style="max-width: 1000px;">
 
@@ -898,6 +900,7 @@ class EmbedPlusOfficialPlugin
                         <input name="<?php echo self::$opt_oldspacing; ?>" id="<?php echo self::$opt_oldspacing; ?>" <?php checked($all[self::$opt_oldspacing], 1); ?> type="checkbox" class="checkbox">
                         <label for="<?php echo self::$opt_oldspacing; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/oldspacing.jpg"/>
                             Continue the spacing style from version 4.0 and older. Those versions required you to manually add spacing above and below your video. Unchecking this will automatically add the spacing for you.
+                            <i>(Ignore this option if you installed this plugin after Jan 2014)</i>
                         </label>
                     </p>
                     <p>
@@ -913,7 +916,6 @@ class EmbedPlusOfficialPlugin
                         <label for="<?php echo self::$opt_sweetspot; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/ssm.jpg"/> <?php _e('Enable <a href="' . self::$epbase . '/whysearchhere.aspx" target="_blank">Sweetspot Marking</a> for the next/previous buttons') ?></label>            
                     </p>
                     <?php
-                
                     $eadopt = get_option('embedplusopt_enhance_youtube') !== false;
                     $prostuffmsg = ''; //"<p class=\"smallnote bold\"> The below options are available to PRO users. We're building a growing list of customizations that offer more advanced and dynamic functionality. These will be made available to our PRO users as they are developed over time. We, in fact, encourage you to send us suggestions with the PRO priority support form (at the bottom of this page).</p>";
 
@@ -924,18 +926,19 @@ class EmbedPlusOfficialPlugin
                         if ($haspro)
                         {
                             ?>
-                    
+
 
                             <p id="chkhideall">
+                                <img class="hideallnote" src="<?php echo plugins_url('images/samplehideallnote.jpg', __FILE__) ?>" />
                                 <input name="<?php echo self::$opt_lean; ?>" id="<?php echo self::$opt_lean; ?>" <?php checked($all[self::$opt_lean], '1'); ?> type="checkbox" class="checkbox">
 
                                 <label for="<?php echo self::$opt_lean; ?>">
                                     <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/>
                                     <sup class="orange bold">NEW</sup>
-                                    Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links.
+                                    Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (View sample on the right)
                                 </label>
                             </p>
-                            <p class="panshowreact">
+                            <p class="panshowreact clearboth">
                                 <input name="<?php echo self::$opt_show_react; ?>" id="<?php echo self::$opt_show_react; ?>" <?php checked($all[self::$opt_show_react], 1); ?> type="checkbox" class="checkbox">
                                 <label for="<?php echo self::$opt_show_react; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> <?php _e('Display Social Media Reactions (This is recommended so your visitors can see web discussions for each video right from your blog)') ?></label>            
                             </p>
@@ -945,7 +948,7 @@ class EmbedPlusOfficialPlugin
                         else
                         {
                             ?>
-                            
+
                             <p>
                                 <input type="checkbox" disabled class="checkbox">
                                 <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/><sup class="orange bold">NEW</sup> 
@@ -1056,36 +1059,35 @@ class EmbedPlusOfficialPlugin
                     </p>
             </div>
 
-
-            <?php echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" />' . " Additional URL Options</h2>" ?>
-            <div class="epindent">
-
-                <?php
-                _e("<p>If you are using the auto-embed feature above, the following optional values can be added to the YouTube URLs to quickly override default behavior. Each option should begin with '&'</p>");
-                _e('<ul>');
-                _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em> Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
-                _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
-                _e("<li><strong>hd - If set to 1, this makes the video play in HD quality when possible.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
-                _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
-                _e("<li><strong>end - Sets the time (in seconds) to end the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&end=60</strong></em> </li>");
-                _e('</ul>');
-                ?>
-
-            </div>
-
         </form>
-
-
         <?php
         echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus Wizard') . "</h2>";
         ?>
         <div class="epindent">
             <p>
-                If your blog's rich-text editor is enabled, you have access to a new EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>). 
-                If you use the HTML editor instead, you can <a href="<?php echo self::$epbase ?>/wpembedcode.aspx" target="_blank">open the wizard in a new tab</a>.
+                If your blog's rich-text editor is enabled, you have access to a new EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>).
+                It allows you to override some of the above global defaults. If you use the HTML editor instead, you can <a href="<?php echo self::$epbase ?>/wpembedcode.aspx" target="_blank">open the wizard in a new tab</a>.
+                <br>
+                <br>
+                <img src="<?php echo plugins_url('images/screenshot-2.jpg', __FILE__) ?>" />
             </p>
         </div>
-        <br>
+        <?php echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" />' . " Additional URL Options</h2>" ?>
+        <div class="epindent">
+            <?php
+            _e("<p>If you prefer to override values manually, the following optional values can be added to the YouTube URLs to override default behavior. The URL must be pasted on its own line. Each additional option should begin with '&'</p>");
+            _e('<ul>');
+            _e("<li><strong>w - Sets the width of your player.</strong> If omitted, the default width will be the width of your theme's content (or your <a href=\"/wp-admin/options-media.php\">WordPress maximum embed size</a>, if set).<em> Example: http://www.youtube.com/watch?v=quwebVjAEJA<strong>&w=500</strong>&h=350</em></li>");
+            _e("<li><strong>h - Sets the height of your player.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500<strong>&h=350</strong></em> </li>");
+            _e("<li><strong>hd - If set to 1, this makes the video play in HD quality when possible.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&hd=1</strong></em> </li>");
+            _e("<li><strong>start - Sets the time (in seconds) to start the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&start=20</strong></em> </li>");
+            _e("<li><strong>end - Sets the time (in seconds) to end the video.</strong> <em>Example: http://www.youtube.com/watch?v=quwebVjAEJA&w=500&h=350<strong>&end=60</strong></em> </li>");
+            _e('</ul>');
+            ?>
+        </div>
+
+
+
         <?php
         echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('Priority Support') . "</h2>";
         ?>
