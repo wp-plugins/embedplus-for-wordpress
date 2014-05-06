@@ -704,7 +704,7 @@ class EmbedPlusOfficialPlugin
         $prefix = 'custom_admin_pointers' . $version . '_';
 
         $new_pointer_content = '<h3>' . __('Plugin Improvements') . '</h3>';
-        $new_pointer_content .= '<p>' . __('This update adds an easy "Insert" button in the wizard, without the need to copy/paste (Free and PRO users). Pro users can now hide all the buttons in the bottom bar, to allow more emphasis on your annotations and clickable links.');
+        $new_pointer_content .= '<p>' . __('This update adds an easy "Insert" button in the wizard, without the need to copy/paste (Free and PRO users). Pro users can now hide all the buttons in the bottom bar, which can allow more emphasis on your annotations and clickable links.');
         if (!(self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0))
         {
             $new_pointer_content = str_replace('Pro users ', '<a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer">PRO users &raquo; </a>', $new_pointer_content);
@@ -932,7 +932,7 @@ class EmbedPlusOfficialPlugin
                                 <label for="<?php echo self::$opt_lean; ?>">
                                     <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/>
                                     <sup class="orange bold">NEW</sup>
-                                    Checking this option will hide the extra buttons to allow more emphasis on your annotations and clickable links.
+                                    Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links.
                                 </label>
                             </p>
                             <p class="panshowreact">
@@ -949,7 +949,7 @@ class EmbedPlusOfficialPlugin
                             <p>
                                 <input type="checkbox" disabled class="checkbox">
                                 <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/><sup class="orange bold">NEW</sup> 
-                                Checking this option will hide the extra buttons to allow more emphasis on your annotations and clickable links. (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a>)</span>
+                                Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a>)</span>
                             </p>
                             <p>
                                 <input type="checkbox" disabled class="checkbox">
@@ -974,7 +974,7 @@ class EmbedPlusOfficialPlugin
                                 <label for="<?php echo self::$opt_lean; ?>">
                                     <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/>
                                     <sup class="orange bold">NEW</sup>
-                                    Checking this option will hide the extra buttons to allow more emphasis on your annotations and clickable links.
+                                    Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links.
                                 </label>
                             </p>
                             <?php
@@ -990,7 +990,7 @@ class EmbedPlusOfficialPlugin
                             <p>
                                 <input type="checkbox" disabled class="checkbox">
                                 <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/><sup class="orange bold">NEW</sup> 
-                                Checking this option will hide the extra buttons to allow more emphasis on your annotations and clickable links. (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a>)</span>
+                                Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a>)</span>
                             </p>
                             <?php
                         }
