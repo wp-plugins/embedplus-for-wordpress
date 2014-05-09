@@ -444,8 +444,8 @@ class EmbedPlusOfficialPlugin
 
         //       $epoutput = '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="' . self::$epbase . '/_embedplus.swf" id="' . $epobjid . '">' . chr(13) .
         //               '<param value="' . self::$epbase . '/_embedplus.swf" name="movie" />' . chr(13) .
-        $epoutput = '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="' . $linkscheme . '://getembedplus.com/_embedplus.swf" id="' . $epobjid . '">' . chr(13) .
-                '<param value="' . $linkscheme . '://getembedplus.com/_embedplus.swf" name="movie" />' . chr(13) .
+        $epoutput = '<object type="application/x-shockwave-flash" width="~width" height="~fullheight" data="' . $linkscheme . '://getembedplus.com/embedplus.swf" id="' . $epobjid . '">' . chr(13) .
+                '<param value="' . $linkscheme . '://getembedplus.com/embedplus.swf" name="movie" />' . chr(13) .
                 '<param value="high" name="quality" />' . chr(13) .
                 '<param value="transparent" name="wmode" />' . chr(13) .
                 '<param value="always" name="allowscriptaccess" />' . chr(13) .
