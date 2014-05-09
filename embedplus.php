@@ -3,7 +3,7 @@
   Plugin Name: YouTube Advanced by Embed Plus
   Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
   Description: YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
-  Version: 4.8
+  Version: 4.9
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '4.8';
+    public static $version = '4.9';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -492,6 +492,28 @@ class EmbedPlusOfficialPlugin
         return $epoutput;
     }
 
+    public static function calcblogwidth()
+    {
+        $blogwidth = null;
+        try
+        {
+            $embed_size_w = intval(get_option('embed_size_w'));
+
+            global $content_width;
+            if (empty($content_width))
+            {
+                $content_width = $GLOBALS['content_width'];
+            }
+            $blogwidth = $embed_size_w ? $embed_size_w : ($content_width ? $content_width : 450);
+        }
+        catch (Exception $ex)
+        {
+            
+        }
+
+        return $blogwidth;
+    }
+
     public static function cantembedplus()
     {
         echo '<!--[if lte IE 6]> <style type="text/css">.cantembedplus{display:none;}</style><![endif]-->';
@@ -704,10 +726,10 @@ class EmbedPlusOfficialPlugin
         $prefix = 'custom_admin_pointers' . $version . '_';
 
         $new_pointer_content = '<h3>' . __('Plugin Improvements') . '</h3>';
-        $new_pointer_content .= '<p>' . __('This update adds an easy "Insert" button in the wizard, without the need to copy/paste (Free and PRO users). Pro users can now hide all the buttons in the bottom bar, which can allow more emphasis on your annotations and clickable links.');
+        $new_pointer_content .= '<p>' . __('Compatible with WordPress 3.9.1. Also, we have a redesigned player! Check out the screenshots on our <a href="http://www.embedplus.com" target="_blank">homepage &raquo;</a>');
         if (!(self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0))
         {
-            $new_pointer_content = str_replace('Pro users ', '<a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer">PRO users &raquo; </a>', $new_pointer_content);
+            //$new_pointer_content = str_replace('Pro users ', '<a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer">PRO users &raquo; </a>', $new_pointer_content);
             //$new_pointer_content .= __('<a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer' . '">PRO &raquo;</a>');
         }
         else
@@ -1064,9 +1086,18 @@ class EmbedPlusOfficialPlugin
         echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus Wizard') . "</h2>";
         ?>
         <div class="epindent">
+            <?php
+            $newtab = self::$epbase . '/wpembedcode.aspx?pluginversion=' . self::$version .
+                    '&blogwidth=' . self::calcblogwidth() .
+                    '&domain=' . urlencode(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "") .
+                    '&prokey=' . urlencode(self::$alloptions[self::$opt_pro]) .
+                    '&eadopt=' . (get_option('embedplusopt_enhance_youtube') === false ? '0' : '1') .
+                    '&external=1' .
+                    '&mydefaults=' . urlencode(http_build_query(self::$alloptions));
+            ?>
             <p>
                 If your blog's rich-text editor is enabled, you have access to a new EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>).
-                It allows you to override some of the above global defaults. If you use the HTML editor instead, you can <a href="<?php echo self::$epbase ?>/wpembedcode.aspx" target="_blank">open the wizard in a new tab</a>.
+                It allows you to override some of the above global defaults. If you use the HTML editor instead, you can <a href="<?php echo $newtab ?>" target="_blank">open the wizard in a new tab</a>.
                 <br>
                 <br>
                 <img src="<?php echo plugins_url('images/screenshot-2.jpg', __FILE__) ?>" />

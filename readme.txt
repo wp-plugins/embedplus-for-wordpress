@@ -5,8 +5,8 @@ Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Tags: https, ssl, secure, rich snippets, analytics, vlog, vlogging, video blogging, seo, takedown, youtube seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, teacher, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
 Requires at least: 2.9
-Tested up to: 3.9
-Stable tag: 4.8
+Tested up to: 3.9.1
+Stable tag: 4.9
 License: GPLv3 or later
 
 YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
@@ -120,6 +120,9 @@ YouTube Advanced Embed by Embed Plus Advanced YouTube Embed by Embed Plus
 9. YouTube Advanced Embed Screenshot 9: Are you interested in learning how much your visitors are actually watching the videos you post? We suggest signing up now for this popular analytics feature to start getting data today. Use it to supplement Google Analytics.
 
 == Changelog ==
+
+= YouTube Advanced Embed 4.9 =
+Compatible with WordPress 3.9.1. Also, we have a redesigned player. Check out the screenshots on our (homepage >>)[http://www.embedplus.com]
 
 = YouTube Advanced Embed 4.8 =
 This update adds an easy "Insert" button in the wizard, without the need to copy/paste (Free and PRO users). PRO users can now hide all the buttons in the bottom bar, which can be useful to make room for clean looking annotations.
