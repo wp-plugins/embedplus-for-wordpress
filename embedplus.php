@@ -3,7 +3,7 @@
   Plugin Name: YouTube Advanced by Embed Plus
   Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
   Description: YouTube embed plugin. Uses an advanced YouTube player to enhance the playback and engagement of each YouTube embed. Just paste YouTube Links!
-  Version: 4.9
+  Version: 5.0
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '4.9';
+    public static $version = '5.0';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -424,7 +424,7 @@ class EmbedPlusOfficialPlugin
             $epstandard = "//www.youtube.com/embed/";
             $ytidmatch = array();
             preg_match('/ytid=([^&]+)&/i', $epvars, $ytidmatch);
-            $epstandard .= $ytidmatch[1];
+            $epstandard .= $ytidmatch[1] . '?';
         }
 
         $epstandard = preg_replace('/\s/', '', $epstandard);
@@ -725,12 +725,13 @@ class EmbedPlusOfficialPlugin
         $version = str_replace('.', '_', self::$version); // replace all periods in 1.0 with an underscore
         $prefix = 'custom_admin_pointers' . $version . '_';
 
-        $new_pointer_content = '<h3>' . __('Plugin Improvements') . '</h3>';
-        $new_pointer_content .= '<p>' . __('Compatible with WordPress 3.9.1. Also, we have a redesigned player! Check out the screenshots on our <a href="http://www.embedplus.com" target="_blank">homepage &raquo;</a>');
+        $new_pointer_content = '<h3>' . __('Plugin Update') . '</h3>';
+        $new_pointer_content .= '<p>';
         if (!(self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0))
         {
             //$new_pointer_content = str_replace('Pro users ', '<a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer">PRO users &raquo; </a>', $new_pointer_content);
             //$new_pointer_content .= __('<a style="font-weight: bold;" target="_blank" href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=frompointer' . '">PRO &raquo;</a>');
+            
         }
         else
         {
@@ -931,7 +932,7 @@ class EmbedPlusOfficialPlugin
                     </p>
                     <p>
                         <input name="<?php echo self::$opt_show_ann; ?>" id="<?php echo self::$opt_show_ann; ?>" <?php checked($all[self::$opt_show_ann], 1); ?> type="checkbox" class="checkbox">
-                        <label for="<?php echo self::$opt_show_ann; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/show_ann.png"/> <sup class="orange">NEW</sup><?php _e("Show the video creator's annotations, if any. (uncheck to hide)") ?></label>
+                        <label for="<?php echo self::$opt_show_ann; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/show_ann.png"/> <sup class="orange">NEW</sup> <?php _e("Show the video creator's annotations, if any. (uncheck to hide)") ?></label>
                     </p>
                     <p>
                         <input name="<?php echo self::$opt_sweetspot; ?>" id="<?php echo self::$opt_sweetspot; ?>" <?php checked($all[self::$opt_sweetspot], 1); ?> type="checkbox" class="checkbox">
@@ -1096,8 +1097,8 @@ class EmbedPlusOfficialPlugin
                     '&mydefaults=' . urlencode(http_build_query(self::$alloptions));
             ?>
             <p>
-                If your blog's rich-text editor is enabled, you have access to a new EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>).
-                It allows you to override some of the above global defaults. If you use the HTML editor instead, you can <a href="<?php echo $newtab ?>" target="_blank">open the wizard in a new tab</a>.
+                If your blog's rich-text editor is enabled, you have access to a EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>).
+                It allows you to override some of the above global defaults. It's also where you create your annotations, chapter markers, and other customizations to a video. If you use the HTML editor instead, you can <a href="<?php echo $newtab ?>" target="_blank">open the wizard in a new tab</a>.
                 <br>
                 <br>
                 <img src="<?php echo plugins_url('images/screenshot-2.jpg', __FILE__) ?>" />
@@ -1330,7 +1331,7 @@ function embedplus_admin_enqueue_scripts()
     wp_enqueue_script('embedplusoptionsjs', plugins_url() . '/embedplus-for-wordpress/js/jquery.prettyPhoto.js');
 
 
-    if ((get_bloginfo('version') >= '3.3') && EmbedPlusOfficialPlugin::custom_admin_pointers_check())
+    if (false && (get_bloginfo('version') >= '3.3') && EmbedPlusOfficialPlugin::custom_admin_pointers_check())
     {
         add_action('admin_print_footer_scripts', 'EmbedPlusOfficialPlugin::custom_admin_pointers_footer');
 
