@@ -3,7 +3,7 @@
   Plugin Name: YouTube Advanced by Embed Plus
   Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
   Description: YouTube embed plugin. Customize a YouTube embed with your own annotations, links, and extra controls. Visitors will see YouTube in a unique way!
-  Version: 5.2
+  Version: 5.3
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '5.2';
+    public static $version = '5.3';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -47,6 +47,7 @@ class EmbedPlusOfficialPlugin
     public static $opt_pro = 'pro';
     public static $opt_oldspacing = 'oldspacing';
     public static $opt_schemaorg = 'schemaorg';
+    public static $opt_apikey = 'apikey';
     public static $opt_ogvideo = 'ogvideo';
     public static $opt_ssl = 'ssl';
     public static $opt_lean = 'lean';
@@ -132,6 +133,7 @@ class EmbedPlusOfficialPlugin
         $_opt_pro = get_option('embedplusopt_pro', '');
         $_opt_oldspacing = 1;
         $_schemaorg = 0;
+        $_apikey = '';
         $_ssl = 0;
         $_ogvideo = 0;
         $_opt_show_ann = 1;
@@ -149,6 +151,7 @@ class EmbedPlusOfficialPlugin
             $_opt_pro = self::tryget($arroptions, self::$opt_pro, '');
             $_opt_oldspacing = self::tryget($arroptions, self::$opt_oldspacing, 1);
             $_schemaorg = self::tryget($arroptions, self::$opt_schemaorg, 0);
+            $_apikey = self::tryget($arroptions, self::$opt_apikey, '');
             $_ssl = self::tryget($arroptions, self::$opt_ssl, 0);
             $_ogvideo = self::tryget($arroptions, self::$opt_ogvideo, 0);
             $_opt_show_ann = self::tryget($arroptions, self::$opt_show_ann, 1);
@@ -171,7 +174,8 @@ class EmbedPlusOfficialPlugin
             self::$opt_ogvideo => $_ogvideo,
             self::$opt_emb => $_opt_emb,
             self::$opt_oldspacing => $_opt_oldspacing,
-            self::$opt_schemaorg => $_schemaorg
+            self::$opt_schemaorg => $_schemaorg,
+            self::$opt_apikey => $_apikey
         );
 
         update_option(self::$opt_alloptions, $all);
@@ -536,7 +540,9 @@ class EmbedPlusOfficialPlugin
         $schemaorgcode = '';
         try
         {
-            $ytapilink = 'https://gdata.youtube.com/feeds/api/videos/' . $vidid . '?v=2&alt=json&fields=id,published,title,content,media:group(media:description,yt:duration)';
+            $ytapilink = 'https://www.googleapis.com/youtube/v3/videos?id=' . $vidid . '&part=contentDetails,snippet&key=' . self::$alloptions[self::$opt_apikey];
+
+
             $apidata = wp_remote_get($ytapilink);
             if (!is_wp_error($apidata))
             {
@@ -546,11 +552,11 @@ class EmbedPlusOfficialPlugin
                     $json = json_decode($raw, true);
                     if (is_array($json))
                     {
-                        $_name = esc_attr(sanitize_text_field($json['entry']['title']['$t']));
-                        $_description = esc_attr(sanitize_text_field($json['entry']['media$group']['media$description']['$t']));
+                        $_name = esc_attr(sanitize_text_field(str_replace("@", "&#64;", $json['items'][0]['snippet']['title'])));
+                        $_description = esc_attr(sanitize_text_field(str_replace("@", "&#64;", $json['items'][0]['snippet']['description'])));
                         $_thumbnailUrl = esc_url("http://i.ytimg.com/vi/" . $vidid . "/0.jpg");
-                        $_duration = self::formatDuration(self::secondsToDuration(intval($json['entry']['media$group']['yt$duration']['seconds'])));
-                        $_uploadDate = sanitize_text_field($json['entry']['published']['$t']);
+                        $_duration = $json['items'][0]['contentDetails']['duration']; // "T0H9M35S" "PT9M35S"
+                        $_uploadDate = sanitize_text_field($json['items'][0]['snippet']['publishedAt']); // "2014-10-03T15:30:12.000Z"
 
                         $schemaorgcode = '<span itemprop="video" itemscope itemtype="http://schema.org/VideoObject">';
                         $schemaorgcode .= '<meta itemprop="embedURL" content="http://www.youtube.com/embed/' . $vidid . '">';
@@ -780,11 +786,18 @@ class EmbedPlusOfficialPlugin
         $new_pointer_content .= '<p>';
         if (!(self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0))
         {
-            $new_pointer_content .= "Expanded HTTPS/SSL support (now for both FREE and <a href=\"" . self::$epbase . "/dashboard/easy-video-analytics-seo.aspx?ref=protab\" target=\"blank\">PRO users>></a>)";
+            $new_pointer_content .= __('We upgraded the plugin to use the newest version of YouTube&apos;s API, v3.  Used in FREE and  <a href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">PRO features &raquo;</a>.');
         }
         else
         {
-            $new_pointer_content .= "Expanded HTTPS/SSL support (now for both FREE and PRO users)";
+            if (self::$alloptions[self::$opt_schemaorg] == 1)
+            {
+                $new_pointer_content .= 'Important for Pro users: YouTube now requires an API key for SEO tags. Please <a href="' . admin_url('admin.php?page=embedplus-official-options') . '#emb">read more here &raquo;</a>';
+            }
+            else
+            {
+                $new_pointer_content .= __('We upgraded the plugin to use the newest version of YouTube&apos;s API, v3.  Used in FREE and PRO features.');
+            }
         }
         $new_pointer_content .= '</p>';
 
@@ -863,6 +876,18 @@ class EmbedPlusOfficialPlugin
             $new_options[self::$opt_ogvideo] = isset($_POST[self::$opt_ogvideo]) && $_POST[self::$opt_ogvideo] == (true || 'on') ? 1 : 0;
             $new_options[self::$opt_ssl] = isset($_POST[self::$opt_ssl]) && $_POST[self::$opt_ssl] == (true || 'on') ? 1 : 0;
 
+            $_apikey = '';
+            try
+            {
+                $_apikey = trim(str_replace(array(' ', "'", '"'), array('', '', ''), strip_tags($_POST[self::$opt_apikey])));
+            }
+            catch (Exception $ex)
+            {
+                $_apikey = '';
+            }
+            $new_options[self::$opt_apikey] = $_apikey;
+
+
             $all = $new_options + $all;
 
             // Save the posted value in the database
@@ -893,9 +918,15 @@ class EmbedPlusOfficialPlugin
             a.goprolink {font-weight: bold; color: #f85d00;}
 
             .ssschema {float: right; width: 350px; height: auto; margin-right: 10px;}
-            .ssfb {float: right; width: 300px; height: auto; margin-right: 10px;}
-            .hideallnote {float: right; width: 300px; height: auto; margin-right: 10px;}
+            .ssfb {float: right; width: 300px; height: auto; margin: 0 10px;}
+            .hideallnote {float: right; width: 300px; height: auto; margin: 0px 10px;}
             .clearboth {clear: both;}
+            #boxschemaorg {font-weight: bold; padding: 7px 0;  <?php echo $all[self::$opt_schemaorg] ? 'display: block;' : 'display: none;' ?>}
+            .apikey-msg {display: inline-block; width: 45%; vertical-align: top;}
+            .apikey-video{margin-left: 3%; display: inline-block; width: 50%; position: relative; padding-top: 29%}
+            .apikey-video iframe{display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0;}
+            .upgchecks { padding: 10px 20px; border-radius: 15px; border: 1px dotted #777777; background-color: #fcfcfc; }
+            .orange.smallnote {color: #f85d00;}
         </style>
         <div class="wrap" style="max-width: 1000px;">
 
@@ -998,7 +1029,7 @@ class EmbedPlusOfficialPlugin
 
                     <?php
                     $eadopt = get_option('embedplusopt_enhance_youtube') !== false;
-                    $prostuffmsg = ''; //"<p class=\"smallnote bold\"> The below options are available to PRO users. We're building a growing list of customizations that offer more advanced and dynamic functionality. These will be made available to our PRO users as they are developed over time. We, in fact, encourage you to send us suggestions with the PRO priority support form (at the bottom of this page).</p>";
+                    $prostuffmsg = '<div class="upgchecks"><p class="orange smallnote bold">Below are some PRO features. <a href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">Activate them and more here &raquo;</a></p>';
 
 
                     if (!$eadopt)
@@ -1008,17 +1039,16 @@ class EmbedPlusOfficialPlugin
                         {
                             ?>
 
-
                             <p id="chkhideall">
                                 <img class="hideallnote" src="<?php echo plugins_url('images/samplehideallnote.jpg', __FILE__) ?>" />
                                 <input name="<?php echo self::$opt_lean; ?>" id="<?php echo self::$opt_lean; ?>" <?php checked($all[self::$opt_lean], '1'); ?> type="checkbox" class="checkbox">
 
                                 <label for="<?php echo self::$opt_lean; ?>">
                                     <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/>
-                                    <sup class="orange bold">NEW</sup>
-                                    Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (View sample on the right)
+                                    Hides all extra control buttons. Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (View sample on the right)
                                 </label>
                             </p>
+                            <div class="clearboth"></div>
                             <p class="panshowreact clearboth">
                                 <input name="<?php echo self::$opt_show_react; ?>" id="<?php echo self::$opt_show_react; ?>" <?php checked($all[self::$opt_show_react], 1); ?> type="checkbox" class="checkbox">
                                 <label for="<?php echo self::$opt_show_react; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> <?php _e('Display Social Media Reactions (This is recommended so your visitors can see web discussions for each video right from your blog)') ?></label>            
@@ -1031,10 +1061,12 @@ class EmbedPlusOfficialPlugin
                             ?>
 
                             <p>
+                                <img class="hideallnote" src="<?php echo plugins_url('images/samplehideallnote.jpg', __FILE__) ?>" />
                                 <input type="checkbox" disabled class="checkbox">
-                                <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/><sup class="orange bold">NEW</sup> 
-                                Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a>)</span>
+                                <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/>
+                                Hides all extra control buttons. Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a> View sample on the right)</span>
                             </p>
+                            <div class="clearboth"></div>
                             <p>
                                 <input type="checkbox" disabled class="checkbox">
                                 <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/convo.jpg"/> Hide Social Media Reactions (This button shows web discussions for each video right from your blog) (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a>)
@@ -1053,14 +1085,15 @@ class EmbedPlusOfficialPlugin
                             </p>
                             <?php echo $prostuffmsg; ?>
                             <p id="chkhideall">
+                                <img class="hideallnote" src="<?php echo plugins_url('images/samplehideallnote.jpg', __FILE__) ?>" />
                                 <input name="<?php echo self::$opt_lean; ?>" id="<?php echo self::$opt_lean; ?>" <?php checked($all[self::$opt_lean], '1'); ?> type="checkbox" class="checkbox">
 
                                 <label for="<?php echo self::$opt_lean; ?>">
                                     <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/>
-                                    <sup class="orange bold">NEW</sup>
-                                    Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links.
+                                    Hides all extra control buttons. Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (View sample on the right)
                                 </label>
                             </p>
+                            <div class="clearboth"></div>
                             <?php
                         }
                         else
@@ -1072,10 +1105,12 @@ class EmbedPlusOfficialPlugin
                             </p>
                             <?php echo $prostuffmsg; ?>
                             <p>
+                                <img class="hideallnote" src="<?php echo plugins_url('images/samplehideallnote.jpg', __FILE__) ?>" />
                                 <input type="checkbox" disabled class="checkbox">
-                                <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/><sup class="orange bold">NEW</sup> 
-                                Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a>)</span>
+                                <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hideall.png"/>
+                                Hides all extra control buttons. Checking this option will hide the extra buttons which can allow more emphasis on your annotations and clickable links. (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a> View sample on the right)</span>
                             </p>
+                            <div class="clearboth"></div>
                             <?php
                         }
                     }
@@ -1097,6 +1132,20 @@ class EmbedPlusOfficialPlugin
                             <label for="<?php echo self::$opt_schemaorg; ?>">
                                 Automatically add Google, Bing, and Yahoo friendly markup so that your pages with video embeds can be indexed to have a greater chance of showing up in search engine results for those particular videos, even if you aren't the owner.
                             </label>
+                            <span id="boxschemaorg">
+                                <span class="apikey-msg">
+                                    The video SEO tags include data like the title, description, and thumbnail information of each video you embed.  This plugin automatically extracts this data directly from YouTube using the version 3 API,
+                                    which will soon replace the version 2 API. This particular API version requires that you obtain an API key so that YouTube can authenticate the requests.  Don't worry, it's an easy process.  
+                                    Just <a href="https://developers.google.com/youtube/registering_an_application" target="_blank">click this link &raquo;</a> and follow the video to the right to get your API key. Then paste it in the box below, and click the "Save Changes" button:
+                                    <br>
+                                    <span style="vertical-align: middle; display: inline-block;">
+                                        YouTube API Key: <input type="text" name="<?php echo self::$opt_apikey; ?>" id="<?php echo self::$opt_apikey; ?>" value="<?php echo trim($all[self::$opt_apikey]); ?>" class="textinput" style="width: 200px;">
+                                    </span>
+                                </span>
+                                <span class="apikey-video">
+                                    <iframe width="384" height="216" src="https://www.youtube.com/embed/2vmBACVETf4?rel=0" frameborder="0" allowfullscreen></iframe>
+                                </span>
+                            </span>
                         </p>
                         <p id="jumpfb">
                             <br>
@@ -1104,7 +1153,6 @@ class EmbedPlusOfficialPlugin
                             <input name="<?php echo self::$opt_ogvideo; ?>" id="<?php echo self::$opt_ogvideo; ?>" <?php checked($all[self::$opt_ogvideo], '1'); ?> type="checkbox" class="checkbox">
                             <label for="<?php echo self::$opt_ogvideo; ?>">
                                 <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/facebook.png"/>
-                                <sup class="orange bold">NEW</sup>
                                 Facebook Open Graph Markup: Automatically add Open Graph markup on your pages with YouTube embeds to enhance Facebook sharing and discovery of the pages.  Your shared pages, for example, will also display embedded video thumbnails on Facebook Timelines (See example on the right).                            
                             </label>
                         </p>
@@ -1129,24 +1177,24 @@ class EmbedPlusOfficialPlugin
                             <img class="ssfb" src="<?php echo plugins_url('images/ssfb.jpg', __FILE__) ?>" />
                             <input type="checkbox" disabled class="checkbox">
                             <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/facebook.png"/>
-                            <sup class="orange bold">NEW</sup>
                             Facebook Open Graph Markup: Automatically add Open Graph markup on your pages with YouTube embeds to enhance Facebook sharing and discovery of the pages.  Your shared pages, for example, will also display embedded video thumbnails on Facebook Timelines (See example on the right).
                             (<a class="goprolink"  target="_blank" href="<?php echo self::$epbase ?>/dashboard/easy-video-analytics-seo.aspx?ref=protab" title="">PRO &raquo;</a>)
                         </p>
 
-
-                        <?php
-                    }
-                    ?>
-                    <p class="submit">
-                        <input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
-                    </p>
-            </div>
+                        <div class="clearboth"></div>
+                </div>
+                <?php
+            }
+            ?>
+            <p class="submit">
+                <input type="submit" name="Submit" onclick="return savevalidate()" class="button-primary" value="<?php _e('Save Changes') ?>" />
+            </p>
+        </div>
 
         </form>
         <br>
         <?php
-        echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus Wizard') . "</h2>";
+        echo "<h2>" . '<img src="' . plugins_url('images/epicon.png', __FILE__) . '" /> ' . __('EmbedPlus Wizard Settings') . "</h2>";
         ?>
         <div class="epindent">
             <?php
@@ -1159,6 +1207,7 @@ class EmbedPlusOfficialPlugin
                     '&mydefaults=' . urlencode(http_build_query(self::$alloptions));
             ?>
             <p>
+                Most of the FREE and PRO settings that this plugin offers are made through its wizard. 
                 If your blog's rich-text editor is enabled, you have access to a EmbedPlus wizard button (look for this in your editor: <img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/epicon.png"/>).
                 It allows you to override some of the above global defaults. It's also where you create your annotations, chapter markers, and other customizations to a video. If you use the HTML editor instead, you can <a href="<?php echo $newtab ?>" target="_blank">open the wizard in a new tab</a>.
                 <br>
@@ -1215,8 +1264,45 @@ class EmbedPlusOfficialPlugin
         </div>
         -->
         <script type="text/javascript">
+            function savevalidate()
+            {
+                var valid = true;
+                var alertmessage = '';
+
+                if (jQuery("#<?php echo self::$opt_schemaorg; ?>").is(":checked"))
+                {
+                    if (!(jQuery.trim(jQuery("#<?php echo self::$opt_apikey; ?>").val()).length > 0))
+                    {
+                        alertmessage += "Please enter a valid YouTube API key, or uncheck the 'Video SEO Tags' option.";
+                        jQuery("#boxschemaorg input").css("background-color", "#ffcccc").css("border", "2px solid #000000");
+                        valid = false;
+                    }
+                }
+
+
+                if (!valid)
+                {
+                    alert(alertmessage);
+                }
+                return valid;
+            }
+
+
             var prokeyval;
             jQuery(document).ready(function($) {
+
+                jQuery('#<?php echo self::$opt_schemaorg; ?>').change(function()
+                {
+                    if (jQuery(this).is(":checked"))
+                    {
+                        jQuery("#boxschemaorg").show(500);
+                    }
+                    else
+                    {
+                        jQuery("#boxschemaorg").hide(500);
+                    }
+                });
+
 
                 $('.pp').prettyPhoto({modal: false, theme: 'dark_rounded'});
 
