@@ -5,7 +5,7 @@ Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Tags: youtube for education, youtube snippets, deleted youtube videos, youtube takedowns, blocked youtube videos, youtube impressions, youtube alerts, https, ssl, secure, rich snippets, analytics, vlog, vlogging, video blogging, seo, takedown, youtube seo, statistics, view count, play count, video seo, youtube analytics, video analytics, youtube seo, google analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, academic, annotations, digg, DVD chapter markers, educational, embed, embed plus, embedplus, entertainment, google+, google plus, instant replay, looping, movable zoom, play, playback, plugin, real-time reactions, reddit, scene skipping, slomo, slow motion, social, tool, tv, twitter, video, web videos, youtube, embed videos, HD, height, width, crop, chapters, object, iframe, manage, manage youtube, media, plugin, smart, widget, flash, flv, swf, wizard, editor, embedding, youtube player, shortcode, smart youtube playback, action, sports, youtube embed, advanced youtube embed, wordpress youtube embed, advanced youtube embedding, embedding youtube, google+, youtube embedding, facebook, video plugin, autohd, auto hd, auto replay
 Requires at least: 2.9
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 5.3
 License: GPLv3 or later
 
