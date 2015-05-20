@@ -3,7 +3,7 @@
   Plugin Name: YouTube Advanced by Embed Plus
   Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
   Description: YouTube embed plugin. Customize a YouTube embed with your own annotations, links, and extra controls. Visitors will see YouTube in a unique way!
-  Version: 5.3
+  Version: 5.4
   Author: EmbedPlus Team
   Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
  */
@@ -32,7 +32,7 @@
 class EmbedPlusOfficialPlugin
 {
 
-    public static $version = '5.3';
+    public static $version = '5.4';
     public static $opt_version = 'version';
     public static $optembedwidth = null;
     public static $optembedheight = null;
@@ -786,19 +786,13 @@ class EmbedPlusOfficialPlugin
         $new_pointer_content .= '<p>';
         if (!(self::$alloptions[self::$opt_pro] && strlen(trim(self::$alloptions[self::$opt_pro])) > 0))
         {
-            $new_pointer_content .= __('We upgraded the plugin to use the newest version of YouTube&apos;s API, v3.  Used in FREE and  <a href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">PRO features &raquo;</a>.');
+            $new_pointer_content .= __('This version removes the prettyPhoto.js library, which is no longer needed in both Free and <a href="' . self::$epbase . '/dashboard/easy-video-analytics-seo.aspx?ref=protab" target="_blank">PRO versions &raquo;</a>.');
         }
         else
         {
-            if (self::$alloptions[self::$opt_schemaorg] == 1)
-            {
-                $new_pointer_content .= 'Important for Pro users: YouTube now requires an API key for SEO tags. Please <a href="' . admin_url('admin.php?page=embedplus-official-options') . '#emb">read more here &raquo;</a>';
-            }
-            else
-            {
-                $new_pointer_content .= __('We upgraded the plugin to use the newest version of YouTube&apos;s API, v3.  Used in FREE and PRO features.');
-            }
+            $new_pointer_content .= __('This version removes the prettyPhoto.js library, which is no longer needed in both Free and Pro versions.');
         }
+
         $new_pointer_content .= '</p>';
 
 
@@ -1304,8 +1298,6 @@ class EmbedPlusOfficialPlugin
                 });
 
 
-                $('.pp').prettyPhoto({modal: false, theme: 'dark_rounded'});
-
                 jQuery('#showprokey').click(function() {
                     jQuery('.submitpro').show(500);
                     return false;
@@ -1475,8 +1467,6 @@ function embedplus_admin_enqueue_scripts()
 
     add_action('wp_print_scripts', 'embedplus_output_scriptvars');
     wp_enqueue_style('embedpluswiz', plugins_url() . '/embedplus-for-wordpress/css/embedplus_mce.css');
-    wp_enqueue_style('embedplusoptionscss', plugins_url() . '/embedplus-for-wordpress/css/prettyPhoto.css');
-    wp_enqueue_script('embedplusoptionsjs', plugins_url() . '/embedplus-for-wordpress/js/jquery.prettyPhoto.js');
 
 
     if ((get_bloginfo('version') >= '3.3') && EmbedPlusOfficialPlugin::custom_admin_pointers_check())
