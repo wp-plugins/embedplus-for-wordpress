@@ -1304,7 +1304,6 @@ class EmbedPlusOfficialPlugin
                 });
 
 
-                $('.pp').prettyPhoto({modal: false, theme: 'dark_rounded'});
 
                 jQuery('#showprokey').click(function() {
                     jQuery('.submitpro').show(500);
@@ -1475,8 +1474,6 @@ function embedplus_admin_enqueue_scripts()
 
     add_action('wp_print_scripts', 'embedplus_output_scriptvars');
     wp_enqueue_style('embedpluswiz', plugins_url() . '/embedplus-for-wordpress/css/embedplus_mce.css');
-    wp_enqueue_style('embedplusoptionscss', plugins_url() . '/embedplus-for-wordpress/css/prettyPhoto.css');
-    wp_enqueue_script('embedplusoptionsjs', plugins_url() . '/embedplus-for-wordpress/js/jquery.prettyPhoto.js');
 
 
     if ((get_bloginfo('version') >= '3.3') && EmbedPlusOfficialPlugin::custom_admin_pointers_check())
