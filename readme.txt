@@ -3,13 +3,13 @@ Contributors: embedplus
 Plugin Name: YouTube Advanced Embed by Embed Plus
 Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
-Tags: youtube for education, youtube snippets, deleted youtube videos, youtube takedowns, blocked youtube videos, youtube impressions, youtube alerts, https, analytics, seo, youtube seo, youtube analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, annotations, embed, embed plus, loop, reddit, slow motion, video, youtube, embed videos, crop, chapters, iframe, manage youtube, widget, youtube player, youtube embed, advanced youtube embed, wordpress youtube embed
+Tags: youtube for education, youtube snippets, deleted youtube videos, youtube takedowns, blocked youtube videos, youtube impressions, youtube alerts, https, analytics, seo, youtube seo, youtube analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, annotations, embed, embed plus, loop, reddit, slow motion, video, youtube, embed videos, crop, chapters, iframe, manage youtube, widget, youtube player, youtube embed, advanced youtube embed, wordpress youtube embed, youtube oembed, customized youtube player, youtube ssl, youtube call to action, youtube loop
 Requires at least: 2.9
 Tested up to: 4.2
 Stable tag: 5.4
 License: GPLv3 or later
 
-YouTube embed plugin. Customize a YouTube embed with your own annotations, links, and extra controls. Visitors will see YouTube in a unique way!
+YouTube embed plugin. Customize a YouTube embed with your own annotations, links, and controls. YouTube fans will see YouTube in a unique way!
 
 == Description ==
 
