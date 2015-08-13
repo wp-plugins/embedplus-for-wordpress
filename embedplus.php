@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: YouTube Advanced by Embed Plus
+  Plugin Name: YouTube Advanced Embed
   Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
   Description: YouTube embed plugin. Customize a YouTube embed with your own annotations, links, and extra controls. Visitors will see YouTube in a unique way!
   Version: 5.4
@@ -921,6 +921,7 @@ class EmbedPlusOfficialPlugin
             .apikey-video iframe{display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0;}
             .upgchecks { padding: 10px 20px; border-radius: 15px; border: 1px dotted #777777; background-color: #fcfcfc; }
             .orange.smallnote {color: #f85d00;}
+            .strike {text-decoration: line-through;}
         </style>
         <div class="wrap" style="max-width: 1000px;">
 
@@ -1003,8 +1004,11 @@ class EmbedPlusOfficialPlugin
                         </label>
                     </p>
                     <p>
-                        <input name="<?php echo self::$opt_auto_hd; ?>" id="<?php echo self::$opt_auto_hd; ?>" <?php checked($all[self::$opt_auto_hd], 1); ?> type="checkbox" class="checkbox">
-                        <label for="<?php echo self::$opt_auto_hd; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hd.jpg"/> <?php _e('Automatically make all videos HD quality (when possible).') ?></label>
+                        <input disabled name="<?php echo self::$opt_auto_hd; ?>" id="<?php echo self::$opt_auto_hd; ?>" <?php checked($all[self::$opt_auto_hd], 1); ?> type="checkbox" class="checkbox">
+                        <label for="<?php echo self::$opt_auto_hd; ?>"><img class="epicon" src="<?php echo WP_PLUGIN_URL; ?>/embedplus-for-wordpress/images/hd.jpg"/>
+                            <span class="strike"><?php _e('Automatically make all videos HD quality.') ?></span>
+                            <b>NOTE:</b> YouTube has deprecated this unofficially supported option. 
+                        </label>
                     </p>
                     <p>
                         <input name="<?php echo self::$opt_show_ann; ?>" id="<?php echo self::$opt_show_ann; ?>" <?php checked($all[self::$opt_show_ann], 1); ?> type="checkbox" class="checkbox">
