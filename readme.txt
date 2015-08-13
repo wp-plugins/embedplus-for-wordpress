@@ -1,6 +1,6 @@
-=== YouTube Advanced by Embed Plus ===
+=== YouTube Advanced Embed ===
 Contributors: embedplus
-Plugin Name: YouTube Advanced Embed by Embed Plus
+Plugin Name: YouTube Advanced Embed
 Plugin URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Author URI: http://www.embedplus.com/dashboard/easy-video-analytics-seo.aspx
 Tags: youtube for education, youtube snippets, deleted youtube videos, youtube takedowns, blocked youtube videos, youtube impressions, youtube alerts, https, analytics, seo, youtube seo, youtube analytics, advanced youtube, youtube plugin, youtube shortcode, embed youtube, embedplus youtube, annotations, embed, embed plus, loop, reddit, slow motion, video, youtube, embed videos, crop, chapters, iframe, manage youtube, widget, youtube player, youtube embed, advanced youtube embed, wordpress youtube embed, youtube oembed, customized youtube player, youtube ssl, youtube call to action, youtube loop
@@ -123,6 +123,7 @@ YouTube Advanced Embed by Embed Plus Advanced YouTube Embed by Embed Plus
 
 = YouTube Advanced Embed 5.4 =
 This version removes the prettyPhoto.js library, which is no longer needed in both Free and Pro versions.
+Deprecates the force HD option.
 
 = YouTube Advanced Embed 5.3 =
 Upgraded code to use YouTube API v3.
